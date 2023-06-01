@@ -22,6 +22,7 @@ import { BusinessWhereUniqueInput } from "../../business/base/BusinessWhereUniqu
 import { Type } from "class-transformer";
 import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
 import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+import { OfferUpdateManyWithoutOrdersInput } from "./OfferUpdateManyWithoutOrdersInput";
 import { ReviewUpdateManyWithoutOrdersInput } from "./ReviewUpdateManyWithoutOrdersInput";
 
 @InputType()
@@ -116,6 +117,18 @@ class OrderUpdateInput {
     nullable: true,
   })
   deliveryZoneId?: string | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => OfferUpdateManyWithoutOrdersInput,
+  })
+  @ValidateNested()
+  @Type(() => OfferUpdateManyWithoutOrdersInput)
+  @IsOptional()
+  @Field(() => OfferUpdateManyWithoutOrdersInput, {
+    nullable: true,
+  })
+  offers?: OfferUpdateManyWithoutOrdersInput;
 
   @ApiProperty({
     required: false,

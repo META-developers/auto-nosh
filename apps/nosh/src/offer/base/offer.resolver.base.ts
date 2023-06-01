@@ -25,6 +25,8 @@ import { DeleteOfferArgs } from "./DeleteOfferArgs";
 import { OfferFindManyArgs } from "./OfferFindManyArgs";
 import { OfferFindUniqueArgs } from "./OfferFindUniqueArgs";
 import { Offer } from "./Offer";
+import { OrderFindManyArgs } from "../../order/base/OrderFindManyArgs";
+import { Order } from "../../order/base/Order";
 import { OfferService } from "../offer.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Offer)
@@ -139,5 +141,25 @@ export class OfferResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Order], { name: "order" })
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldOrder(
+    @graphql.Parent() parent: Offer,
+    @graphql.Args() args: OrderFindManyArgs
+  ): Promise<Order[]> {
+    const results = await this.service.findOrder(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }
