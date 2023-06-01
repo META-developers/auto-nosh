@@ -21,7 +21,8 @@ model User {
 model Cart {
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
-  orders    Order[]
+  orders    Order?   @relation(fields: [ordersId], references: [id])
+  ordersId  String?  @unique
   updatedAt DateTime @updatedAt
 }
 
@@ -45,8 +46,7 @@ model Order {
   appId            String?
   business         Business? @relation(fields: [businessId], references: [id])
   businessId       String?
-  cart             Cart?     @relation(fields: [cartId], references: [id])
-  cartId           String?
+  cart             Cart?
   comment          String?
   createdAt        DateTime  @default(now())
   customer         Customer? @relation(fields: [customerId], references: [id])
