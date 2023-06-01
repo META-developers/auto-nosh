@@ -1,5 +1,5 @@
-import { OrderCreateNestedManyWithoutCartsInput } from "./OrderCreateNestedManyWithoutCartsInput";
+import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 
 export type CartCreateInput = {
-  orders?: OrderCreateNestedManyWithoutCartsInput;
+  orders?: OrderWhereUniqueInput | null;
 };

@@ -1,5 +1,5 @@
-import { OrderUpdateManyWithoutCartsInput } from "./OrderUpdateManyWithoutCartsInput";
+import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 
 export type CartUpdateInput = {
-  orders?: OrderUpdateManyWithoutCartsInput;
+  orders?: OrderWhereUniqueInput | null;
 };
