@@ -1,0 +1,81 @@
+datasource postgres {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  createdAt DateTime @default(now())
+  firstName String?
+  id        String   @id @default(cuid())
+  lastName  String?
+  password  String
+  roles     Json
+  updatedAt DateTime @updatedAt
+  username  String   @unique
+}
+
+model Cart {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  orders    Order[]
+  updatedAt DateTime @updatedAt
+}
+
+model Business {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String
+  orders    Order[]
+  updatedAt DateTime @updatedAt
+}
+
+model Customer {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  name      String?
+  orders    Order[]
+  updatedAt DateTime @updatedAt
+}
+
+model Order {
+  appId            String?
+  business         Business?     @relation(fields: [businessId], references: [id])
+  businessId       String?
+  cart             Cart?         @relation(fields: [cartId], references: [id])
+  cartId           String?
+  comment          String?
+  createdAt        DateTime      @default(now())
+  customer         Customer?     @relation(fields: [customerId], references: [id])
+  customerId       String?
+  deliveryDatetime DateTime?
+  deliveryType     Int
+  deliveryZoneId   String?
+  id               String        @id @default(cuid())
+  paymethodId      String?
+  products         ProductCart[]
+  review           Review[]
+  status           Int
+  updatedAt        DateTime      @updatedAt
+}
+
+model ProductCart {
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  order     Order?   @relation(fields: [orderId], references: [id])
+  orderId   String?
+  price     Float?
+  quantity  Int?
+  updatedAt DateTime @updatedAt
+}
+
+model Review {
+  comment   String?
+  createdAt DateTime @default(now())
+  id        String   @id @default(cuid())
+  orders    Order[]
+  updatedAt DateTime @updatedAt
+}
