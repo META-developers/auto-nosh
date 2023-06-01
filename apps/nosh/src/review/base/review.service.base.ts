@@ -47,14 +47,11 @@ export class ReviewServiceBase {
     return this.prisma.review.delete(args);
   }
 
-  async findOrders(
-    parentId: string,
-    args: Prisma.OrderFindManyArgs
-  ): Promise<Order[]> {
+  async getOrders(parentId: string): Promise<Order | null> {
     return this.prisma.review
-      .findUniqueOrThrow({
+      .findUnique({
         where: { id: parentId },
       })
-      .orders(args);
+      .orders();
   }
 }

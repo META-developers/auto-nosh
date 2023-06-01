@@ -378,6 +378,13 @@ export class OrderControllerBase {
         comment: true,
         createdAt: true,
         id: true,
+
+        orders: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });

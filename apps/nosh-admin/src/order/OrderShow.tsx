@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
@@ -6,7 +7,11 @@ import {
   TextField,
   ReferenceField,
   DateField,
+  ReferenceManyField,
+  Datagrid,
 } from "react-admin";
+
+import { ORDER_TITLE_FIELD } from "./OrderTitle";
 import { BUSINESS_TITLE_FIELD } from "../business/BusinessTitle";
 import { CART_TITLE_FIELD } from "../cart/CartTitle";
 import { CUSTOMER_TITLE_FIELD } from "../customer/CustomerTitle";
@@ -42,6 +47,17 @@ export const OrderShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Paymethod ID" source="paymethodId" />
         <TextField label="Status" source="status" />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceManyField reference="Review" target="OrderId" label="Reviews">
+          <Datagrid rowClick="show">
+            <TextField label="Comment" source="comment" />
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="ID" source="id" />
+            <ReferenceField label="Orders" source="order.id" reference="Order">
+              <TextField source={ORDER_TITLE_FIELD} />
+            </ReferenceField>
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );

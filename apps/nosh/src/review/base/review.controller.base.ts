@@ -27,9 +27,6 @@ import { ReviewWhereUniqueInput } from "./ReviewWhereUniqueInput";
 import { ReviewFindManyArgs } from "./ReviewFindManyArgs";
 import { ReviewUpdateInput } from "./ReviewUpdateInput";
 import { Review } from "./Review";
-import { OrderFindManyArgs } from "../../order/base/OrderFindManyArgs";
-import { Order } from "../../order/base/Order";
-import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -51,11 +48,26 @@ export class ReviewControllerBase {
   })
   async create(@common.Body() data: ReviewCreateInput): Promise<Review> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        orders: data.orders
+          ? {
+              connect: data.orders,
+            }
+          : undefined,
+      },
       select: {
         comment: true,
         createdAt: true,
         id: true,
+
+        orders: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -81,6 +93,13 @@ export class ReviewControllerBase {
         comment: true,
         createdAt: true,
         id: true,
+
+        orders: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -107,6 +126,13 @@ export class ReviewControllerBase {
         comment: true,
         createdAt: true,
         id: true,
+
+        orders: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -137,11 +163,26 @@ export class ReviewControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          orders: data.orders
+            ? {
+                connect: data.orders,
+              }
+            : undefined,
+        },
         select: {
           comment: true,
           createdAt: true,
           id: true,
+
+          orders: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -176,6 +217,13 @@ export class ReviewControllerBase {
           comment: true,
           createdAt: true,
           id: true,
+
+          orders: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -187,127 +235,5 @@ export class ReviewControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/orders")
-  @ApiNestedQuery(OrderFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Order",
-    action: "read",
-    possession: "any",
-  })
-  async findManyOrders(
-    @common.Req() request: Request,
-    @common.Param() params: ReviewWhereUniqueInput
-  ): Promise<Order[]> {
-    const query = plainToClass(OrderFindManyArgs, request.query);
-    const results = await this.service.findOrders(params.id, {
-      ...query,
-      select: {
-        appId: true,
-
-        business: {
-          select: {
-            id: true,
-          },
-        },
-
-        cart: {
-          select: {
-            id: true,
-          },
-        },
-
-        comment: true,
-        createdAt: true,
-
-        customer: {
-          select: {
-            id: true,
-          },
-        },
-
-        deliveryDatetime: true,
-        deliveryType: true,
-        deliveryZoneId: true,
-        id: true,
-        paymethodId: true,
-        status: true,
-        updatedAt: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/orders")
-  @nestAccessControl.UseRoles({
-    resource: "Review",
-    action: "update",
-    possession: "any",
-  })
-  async connectOrders(
-    @common.Param() params: ReviewWhereUniqueInput,
-    @common.Body() body: OrderWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      orders: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/orders")
-  @nestAccessControl.UseRoles({
-    resource: "Review",
-    action: "update",
-    possession: "any",
-  })
-  async updateOrders(
-    @common.Param() params: ReviewWhereUniqueInput,
-    @common.Body() body: OrderWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      orders: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/orders")
-  @nestAccessControl.UseRoles({
-    resource: "Review",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectOrders(
-    @common.Param() params: ReviewWhereUniqueInput,
-    @common.Body() body: OrderWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      orders: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

@@ -65,7 +65,8 @@ model Review {
   comment   String?
   createdAt DateTime @default(now())
   id        String   @id @default(cuid())
-  orders    Order[]
+  orders    Order?   @relation(fields: [ordersId], references: [id])
+  ordersId  String?
   updatedAt DateTime @updatedAt
 }
 

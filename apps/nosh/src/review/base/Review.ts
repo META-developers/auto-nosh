@@ -46,12 +46,12 @@ class Review {
 
   @ApiProperty({
     required: false,
-    type: () => [Order],
+    type: () => Order,
   })
   @ValidateNested()
   @Type(() => Order)
   @IsOptional()
-  orders?: Array<Order>;
+  orders?: Order | null;
 
   @ApiProperty({
     required: true,
