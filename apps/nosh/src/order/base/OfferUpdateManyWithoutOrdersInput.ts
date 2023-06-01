@@ -10,35 +10,37 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { InputType, Field } from "@nestjs/graphql";
+import { OfferWhereUniqueInput } from "../../offer/base/OfferWhereUniqueInput";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { OrderUpdateManyWithoutOffersInput } from "./OrderUpdateManyWithoutOffersInput";
-import { Type } from "class-transformer";
 
 @InputType()
-class OfferUpdateInput {
-  @ApiProperty({
-    required: false,
-    type: String,
-  })
-  @IsString()
-  @IsOptional()
-  @Field(() => String, {
+class OfferUpdateManyWithoutOrdersInput {
+  @Field(() => [OfferWhereUniqueInput], {
     nullable: true,
   })
-  description?: string | null;
+  @ApiProperty({
+    required: false,
+    type: () => [OfferWhereUniqueInput],
+  })
+  connect?: Array<OfferWhereUniqueInput>;
 
-  @ApiProperty({
-    required: false,
-    type: () => OrderUpdateManyWithoutOffersInput,
-  })
-  @ValidateNested()
-  @Type(() => OrderUpdateManyWithoutOffersInput)
-  @IsOptional()
-  @Field(() => OrderUpdateManyWithoutOffersInput, {
+  @Field(() => [OfferWhereUniqueInput], {
     nullable: true,
   })
-  order?: OrderUpdateManyWithoutOffersInput;
+  @ApiProperty({
+    required: false,
+    type: () => [OfferWhereUniqueInput],
+  })
+  disconnect?: Array<OfferWhereUniqueInput>;
+
+  @Field(() => [OfferWhereUniqueInput], {
+    nullable: true,
+  })
+  @ApiProperty({
+    required: false,
+    type: () => [OfferWhereUniqueInput],
+  })
+  set?: Array<OfferWhereUniqueInput>;
 }
 
-export { OfferUpdateInput as OfferUpdateInput };
+export { OfferUpdateManyWithoutOrdersInput as OfferUpdateManyWithoutOrdersInput };

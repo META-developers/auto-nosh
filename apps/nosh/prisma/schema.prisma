@@ -55,6 +55,7 @@ model Order {
   deliveryType     Int
   deliveryZoneId   String?
   id               String    @id @default(cuid())
+  offers           Offer[]
   paymethodId      String?
   review           Review[]
   status           Int
@@ -74,5 +75,6 @@ model Offer {
   createdAt   DateTime @default(now())
   description String?
   id          String   @id @default(cuid())
+  order       Order[]
   updatedAt   DateTime @updatedAt
 }

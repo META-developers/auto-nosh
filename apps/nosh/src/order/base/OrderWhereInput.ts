@@ -20,6 +20,7 @@ import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqu
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { IntFilter } from "../../util/IntFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { OfferListRelationFilter } from "../../offer/base/OfferListRelationFilter";
 import { ReviewListRelationFilter } from "../../review/base/ReviewListRelationFilter";
 
 @InputType()
@@ -125,6 +126,18 @@ class OrderWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => OfferListRelationFilter,
+  })
+  @ValidateNested()
+  @Type(() => OfferListRelationFilter)
+  @IsOptional()
+  @Field(() => OfferListRelationFilter, {
+    nullable: true,
+  })
+  offers?: OfferListRelationFilter;
 
   @ApiProperty({
     required: false,

@@ -22,6 +22,7 @@ import { Business } from "../../business/base/Business";
 import { Type } from "class-transformer";
 import { Cart } from "../../cart/base/Cart";
 import { Customer } from "../../customer/base/Customer";
+import { Offer } from "../../offer/base/Offer";
 import { Review } from "../../review/base/Review";
 
 @ObjectType()
@@ -120,6 +121,15 @@ class Order {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: () => [Offer],
+  })
+  @ValidateNested()
+  @Type(() => Offer)
+  @IsOptional()
+  offers?: Array<Offer>;
 
   @ApiProperty({
     required: false,

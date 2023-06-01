@@ -13,6 +13,7 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   Order,
+  Offer,
   Review,
   Business,
   Cart,
@@ -52,6 +53,17 @@ export class OrderServiceBase {
     args: Prisma.SelectSubset<T, Prisma.OrderDeleteArgs>
   ): Promise<Order> {
     return this.prisma.order.delete(args);
+  }
+
+  async findOffers(
+    parentId: string,
+    args: Prisma.OfferFindManyArgs
+  ): Promise<Offer[]> {
+    return this.prisma.order
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .offers(args);
   }
 
   async findReview(

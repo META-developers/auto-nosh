@@ -27,6 +27,9 @@ import { OrderWhereUniqueInput } from "./OrderWhereUniqueInput";
 import { OrderFindManyArgs } from "./OrderFindManyArgs";
 import { OrderUpdateInput } from "./OrderUpdateInput";
 import { Order } from "./Order";
+import { OfferFindManyArgs } from "../../offer/base/OfferFindManyArgs";
+import { Offer } from "../../offer/base/Offer";
+import { OfferWhereUniqueInput } from "../../offer/base/OfferWhereUniqueInput";
 import { ReviewFindManyArgs } from "../../review/base/ReviewFindManyArgs";
 import { Review } from "../../review/base/Review";
 import { ReviewWhereUniqueInput } from "../../review/base/ReviewWhereUniqueInput";
@@ -357,6 +360,102 @@ export class OrderControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/offers")
+  @ApiNestedQuery(OfferFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Offer",
+    action: "read",
+    possession: "any",
+  })
+  async findManyOffers(
+    @common.Req() request: Request,
+    @common.Param() params: OrderWhereUniqueInput
+  ): Promise<Offer[]> {
+    const query = plainToClass(OfferFindManyArgs, request.query);
+    const results = await this.service.findOffers(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        description: true,
+        id: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/offers")
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "update",
+    possession: "any",
+  })
+  async connectOffers(
+    @common.Param() params: OrderWhereUniqueInput,
+    @common.Body() body: OfferWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      offers: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/offers")
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "update",
+    possession: "any",
+  })
+  async updateOffers(
+    @common.Param() params: OrderWhereUniqueInput,
+    @common.Body() body: OfferWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      offers: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/offers")
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectOffers(
+    @common.Param() params: OrderWhereUniqueInput,
+    @common.Body() body: OfferWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      offers: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

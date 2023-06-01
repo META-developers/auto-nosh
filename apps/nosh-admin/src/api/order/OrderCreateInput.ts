@@ -1,6 +1,7 @@
 import { BusinessWhereUniqueInput } from "../business/BusinessWhereUniqueInput";
 import { CartWhereUniqueInput } from "../cart/CartWhereUniqueInput";
 import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
+import { OfferCreateNestedManyWithoutOrdersInput } from "./OfferCreateNestedManyWithoutOrdersInput";
 import { ReviewCreateNestedManyWithoutOrdersInput } from "./ReviewCreateNestedManyWithoutOrdersInput";
 
 export type OrderCreateInput = {
@@ -12,6 +13,7 @@ export type OrderCreateInput = {
   deliveryDatetime?: Date | null;
   deliveryType: number;
   deliveryZoneId?: string | null;
+  offers?: OfferCreateNestedManyWithoutOrdersInput;
   paymethodId?: string | null;
   review?: ReviewCreateNestedManyWithoutOrdersInput;
   status: number;
