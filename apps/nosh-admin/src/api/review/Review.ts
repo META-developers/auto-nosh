@@ -4,6 +4,6 @@ export type Review = {
   comment: string | null;
   createdAt: Date;
   id: string;
-  orders?: Array<Order>;
+  orders?: Order | null;
   updatedAt: Date;
 };

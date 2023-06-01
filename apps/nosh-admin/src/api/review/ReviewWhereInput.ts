@@ -1,9 +1,9 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
-import { OrderListRelationFilter } from "../order/OrderListRelationFilter";
+import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 
 export type ReviewWhereInput = {
   comment?: StringNullableFilter;
   id?: StringFilter;
-  orders?: OrderListRelationFilter;
+  orders?: OrderWhereUniqueInput;
 };

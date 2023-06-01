@@ -4,5 +4,6 @@ export type ReviewOrderByInput = {
   comment?: SortOrder;
   createdAt?: SortOrder;
   id?: SortOrder;
+  ordersId?: SortOrder;
   updatedAt?: SortOrder;
 };

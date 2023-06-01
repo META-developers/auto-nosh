@@ -12,7 +12,7 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsString, IsOptional, ValidateNested } from "class-validator";
-import { OrderUpdateManyWithoutReviewsInput } from "./OrderUpdateManyWithoutReviewsInput";
+import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
 import { Type } from "class-transformer";
 
 @InputType()
@@ -30,15 +30,15 @@ class ReviewUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => OrderUpdateManyWithoutReviewsInput,
+    type: () => OrderWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => OrderUpdateManyWithoutReviewsInput)
+  @Type(() => OrderWhereUniqueInput)
   @IsOptional()
-  @Field(() => OrderUpdateManyWithoutReviewsInput, {
+  @Field(() => OrderWhereUniqueInput, {
     nullable: true,
   })
-  orders?: OrderUpdateManyWithoutReviewsInput;
+  orders?: OrderWhereUniqueInput | null;
 }
 
 export { ReviewUpdateInput as ReviewUpdateInput };

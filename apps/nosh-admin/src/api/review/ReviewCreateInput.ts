@@ -1,6 +1,6 @@
-import { OrderCreateNestedManyWithoutReviewsInput } from "./OrderCreateNestedManyWithoutReviewsInput";
+import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 
 export type ReviewCreateInput = {
   comment?: string | null;
-  orders?: OrderCreateNestedManyWithoutReviewsInput;
+  orders?: OrderWhereUniqueInput | null;
 };

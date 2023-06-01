@@ -15,7 +15,7 @@ import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
-import { OrderListRelationFilter } from "../../order/base/OrderListRelationFilter";
+import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
 
 @InputType()
 class ReviewWhereInput {
@@ -43,15 +43,15 @@ class ReviewWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => OrderListRelationFilter,
+    type: () => OrderWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => OrderListRelationFilter)
+  @Type(() => OrderWhereUniqueInput)
   @IsOptional()
-  @Field(() => OrderListRelationFilter, {
+  @Field(() => OrderWhereUniqueInput, {
     nullable: true,
   })
-  orders?: OrderListRelationFilter;
+  orders?: OrderWhereUniqueInput;
 }
 
 export { ReviewWhereInput as ReviewWhereInput };

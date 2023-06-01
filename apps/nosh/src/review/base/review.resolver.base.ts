@@ -25,7 +25,6 @@ import { DeleteReviewArgs } from "./DeleteReviewArgs";
 import { ReviewFindManyArgs } from "./ReviewFindManyArgs";
 import { ReviewFindUniqueArgs } from "./ReviewFindUniqueArgs";
 import { Review } from "./Review";
-import { OrderFindManyArgs } from "../../order/base/OrderFindManyArgs";
 import { Order } from "../../order/base/Order";
 import { ReviewService } from "../review.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -93,7 +92,15 @@ export class ReviewResolverBase {
   async createReview(@graphql.Args() args: CreateReviewArgs): Promise<Review> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        orders: args.data.orders
+          ? {
+              connect: args.data.orders,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -110,7 +117,15 @@ export class ReviewResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          orders: args.data.orders
+            ? {
+                connect: args.data.orders,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -144,22 +159,23 @@ export class ReviewResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Order], { name: "orders" })
+  @graphql.ResolveField(() => Order, {
+    nullable: true,
+    name: "orders",
+  })
   @nestAccessControl.UseRoles({
     resource: "Order",
     action: "read",
     possession: "any",
   })
   async resolveFieldOrders(
-    @graphql.Parent() parent: Review,
-    @graphql.Args() args: OrderFindManyArgs
-  ): Promise<Order[]> {
-    const results = await this.service.findOrders(parent.id, args);
+    @graphql.Parent() parent: Review
+  ): Promise<Order | null> {
+    const result = await this.service.getOrders(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 }

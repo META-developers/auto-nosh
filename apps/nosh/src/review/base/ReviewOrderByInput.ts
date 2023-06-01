@@ -52,6 +52,15 @@ class ReviewOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  ordersId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   updatedAt?: SortOrder;
 }
 
