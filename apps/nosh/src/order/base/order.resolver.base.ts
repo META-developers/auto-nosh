@@ -107,11 +107,9 @@ export class OrderResolverBase {
             }
           : undefined,
 
-        cart: args.data.cart
-          ? {
-              connect: args.data.cart,
-            }
-          : undefined,
+        cart: {
+          connect: args.data.cart,
+        },
 
         customer: args.data.customer
           ? {
@@ -144,11 +142,9 @@ export class OrderResolverBase {
               }
             : undefined,
 
-          cart: args.data.cart
-            ? {
-                connect: args.data.cart,
-              }
-            : undefined,
+          cart: {
+            connect: args.data.cart,
+          },
 
           customer: args.data.customer
             ? {

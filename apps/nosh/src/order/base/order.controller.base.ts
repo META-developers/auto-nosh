@@ -63,11 +63,9 @@ export class OrderControllerBase {
             }
           : undefined,
 
-        cart: data.cart
-          ? {
-              connect: data.cart,
-            }
-          : undefined,
+        cart: {
+          connect: data.cart,
+        },
 
         customer: data.customer
           ? {
@@ -247,11 +245,9 @@ export class OrderControllerBase {
               }
             : undefined,
 
-          cart: data.cart
-            ? {
-                connect: data.cart,
-              }
-            : undefined,
+          cart: {
+            connect: data.cart,
+          },
 
           customer: data.customer
             ? {

@@ -51,16 +51,13 @@ class OrderCreateInput {
   business?: BusinessWhereUniqueInput | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => CartWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => CartWhereUniqueInput)
-  @IsOptional()
-  @Field(() => CartWhereUniqueInput, {
-    nullable: true,
-  })
-  cart?: CartWhereUniqueInput | null;
+  @Field(() => CartWhereUniqueInput)
+  cart!: CartWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,
