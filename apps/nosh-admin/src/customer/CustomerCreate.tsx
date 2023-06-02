@@ -7,14 +7,18 @@ import {
   TextInput,
   ReferenceArrayInput,
   SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
 } from "react-admin";
 
 import { OrderTitle } from "../order/OrderTitle";
+import { UserTitle } from "../user/UserTitle";
 
 export const CustomerCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
+        <TextInput label="Dropdown Option Id" source="dropdownOptionId" />
         <TextInput label="Name" source="name" />
         <ReferenceArrayInput
           source="orders"
@@ -24,6 +28,9 @@ export const CustomerCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={OrderTitle} />
         </ReferenceArrayInput>
+        <ReferenceInput source="user.id" reference="User" label="User">
+          <SelectInput optionText={UserTitle} />
+        </ReferenceInput>
       </SimpleForm>
     </Create>
   );

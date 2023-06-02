@@ -6,23 +6,28 @@ import {
   ShowProps,
   DateField,
   TextField,
+  ReferenceField,
   ReferenceManyField,
   Datagrid,
-  ReferenceField,
 } from "react-admin";
 
 import { BUSINESS_TITLE_FIELD } from "../business/BusinessTitle";
 import { CART_TITLE_FIELD } from "../cart/CartTitle";
 import { CUSTOMER_TITLE_FIELD } from "./CustomerTitle";
+import { USER_TITLE_FIELD } from "../user/UserTitle";
 
 export const CustomerShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
+        <TextField label="Dropdown Option Id" source="dropdownOptionId" />
         <TextField label="ID" source="id" />
         <TextField label="Name" source="name" />
         <DateField source="updatedAt" label="Updated At" />
+        <ReferenceField label="User" source="user.id" reference="User">
+          <TextField source={USER_TITLE_FIELD} />
+        </ReferenceField>
         <ReferenceManyField
           reference="Order"
           target="CustomerId"

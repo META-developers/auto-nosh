@@ -51,12 +51,25 @@ export class CustomerControllerBase {
   })
   async create(@common.Body() data: CustomerCreateInput): Promise<Customer> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        user: {
+          connect: data.user,
+        },
+      },
       select: {
         createdAt: true,
+        dropdownOptionId: true,
         id: true,
         name: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -79,9 +92,16 @@ export class CustomerControllerBase {
       ...args,
       select: {
         createdAt: true,
+        dropdownOptionId: true,
         id: true,
         name: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -105,9 +125,16 @@ export class CustomerControllerBase {
       where: params,
       select: {
         createdAt: true,
+        dropdownOptionId: true,
         id: true,
         name: true,
         updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
     if (result === null) {
@@ -137,12 +164,25 @@ export class CustomerControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          user: {
+            connect: data.user,
+          },
+        },
         select: {
           createdAt: true,
+          dropdownOptionId: true,
           id: true,
           name: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
@@ -174,9 +214,16 @@ export class CustomerControllerBase {
         where: params,
         select: {
           createdAt: true,
+          dropdownOptionId: true,
           id: true,
           name: true,
           updatedAt: true,
+
+          user: {
+            select: {
+              id: true,
+            },
+          },
         },
       });
     } catch (error) {
