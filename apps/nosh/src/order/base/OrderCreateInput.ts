@@ -21,7 +21,7 @@ import {
 import { BusinessWhereUniqueInput } from "../../business/base/BusinessWhereUniqueInput";
 import { Type } from "class-transformer";
 import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
-import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+import { AddressWhereUniqueInput } from "../../address/base/AddressWhereUniqueInput";
 import { OfferCreateNestedManyWithoutOrdersInput } from "./OfferCreateNestedManyWithoutOrdersInput";
 import { ReviewCreateNestedManyWithoutOrdersInput } from "./ReviewCreateNestedManyWithoutOrdersInput";
 
@@ -72,15 +72,15 @@ class OrderCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => CustomerWhereUniqueInput,
+    type: () => AddressWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => CustomerWhereUniqueInput)
+  @Type(() => AddressWhereUniqueInput)
   @IsOptional()
-  @Field(() => CustomerWhereUniqueInput, {
+  @Field(() => AddressWhereUniqueInput, {
     nullable: true,
   })
-  customer?: CustomerWhereUniqueInput | null;
+  customer?: AddressWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

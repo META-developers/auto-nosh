@@ -4,7 +4,7 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
 import { CartModule } from "./cart/cart.module";
 import { BusinessModule } from "./business/business.module";
-import { CustomerModule } from "./customer/customer.module";
+import { AddressModule } from "./address/address.module";
 import { OrderModule } from "./order/order.module";
 import { ReviewModule } from "./review/review.module";
 import { OfferModule } from "./offer/offer.module";
@@ -27,7 +27,7 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     CartModule,
     BusinessModule,
-    CustomerModule,
+    AddressModule,
     OrderModule,
     ReviewModule,
     OfferModule,

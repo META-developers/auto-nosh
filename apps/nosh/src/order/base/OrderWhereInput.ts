@@ -16,7 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { BusinessWhereUniqueInput } from "../../business/base/BusinessWhereUniqueInput";
 import { CartWhereUniqueInput } from "../../cart/base/CartWhereUniqueInput";
-import { CustomerWhereUniqueInput } from "../../customer/base/CustomerWhereUniqueInput";
+import { AddressWhereUniqueInput } from "../../address/base/AddressWhereUniqueInput";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { IntFilter } from "../../util/IntFilter";
 import { StringFilter } from "../../util/StringFilter";
@@ -73,15 +73,15 @@ class OrderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => CustomerWhereUniqueInput,
+    type: () => AddressWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => CustomerWhereUniqueInput)
+  @Type(() => AddressWhereUniqueInput)
   @IsOptional()
-  @Field(() => CustomerWhereUniqueInput, {
+  @Field(() => AddressWhereUniqueInput, {
     nullable: true,
   })
-  customer?: CustomerWhereUniqueInput;
+  customer?: AddressWhereUniqueInput;
 
   @ApiProperty({
     required: false,

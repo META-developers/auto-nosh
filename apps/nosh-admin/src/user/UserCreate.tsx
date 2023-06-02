@@ -11,7 +11,7 @@ import {
   SelectArrayInput,
 } from "react-admin";
 
-import { CustomerTitle } from "../customer/CustomerTitle";
+import { AddressTitle } from "../address/AddressTitle";
 import { ROLES_OPTIONS } from "../user/RolesOptions";
 
 export const UserCreate = (props: CreateProps): React.ReactElement => {
@@ -20,10 +20,10 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
       <SimpleForm>
         <ReferenceInput
           source="customer.id"
-          reference="Customer"
+          reference="Address"
           label="Customer"
         >
-          <SelectInput optionText={CustomerTitle} />
+          <SelectInput optionText={AddressTitle} />
         </ReferenceInput>
         <TextInput label="First Name" source="firstName" />
         <TextInput label="Last Name" source="lastName" />

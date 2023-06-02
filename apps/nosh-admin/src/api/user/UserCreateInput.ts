@@ -1,8 +1,8 @@
-import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
+import { AddressWhereUniqueInput } from "../address/AddressWhereUniqueInput";
 import { InputJsonValue } from "../../types";
 
 export type UserCreateInput = {
-  customer?: CustomerWhereUniqueInput | null;
+  customer?: AddressWhereUniqueInput | null;
   firstName?: string | null;
   lastName?: string | null;
   password: string;

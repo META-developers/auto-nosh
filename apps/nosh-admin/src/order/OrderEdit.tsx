@@ -15,7 +15,7 @@ import {
 
 import { BusinessTitle } from "../business/BusinessTitle";
 import { CartTitle } from "../cart/CartTitle";
-import { CustomerTitle } from "../customer/CustomerTitle";
+import { AddressTitle } from "../address/AddressTitle";
 import { OfferTitle } from "../offer/OfferTitle";
 import { ReviewTitle } from "../review/ReviewTitle";
 
@@ -37,10 +37,10 @@ export const OrderEdit = (props: EditProps): React.ReactElement => {
         <TextInput label="Comment" source="comment" />
         <ReferenceInput
           source="customer.id"
-          reference="Customer"
+          reference="Address"
           label="Customer"
         >
-          <SelectInput optionText={CustomerTitle} />
+          <SelectInput optionText={AddressTitle} />
         </ReferenceInput>
         <DateTimeInput label="Delivery Datetime" source="deliveryDatetime" />
         <NumberInput step={1} label="Delivery Type" source="deliveryType" />

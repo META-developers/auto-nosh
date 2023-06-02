@@ -1,7 +1,7 @@
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { BusinessWhereUniqueInput } from "../business/BusinessWhereUniqueInput";
 import { CartWhereUniqueInput } from "../cart/CartWhereUniqueInput";
-import { CustomerWhereUniqueInput } from "../customer/CustomerWhereUniqueInput";
+import { AddressWhereUniqueInput } from "../address/AddressWhereUniqueInput";
 import { DateTimeNullableFilter } from "../../util/DateTimeNullableFilter";
 import { IntFilter } from "../../util/IntFilter";
 import { StringFilter } from "../../util/StringFilter";
@@ -13,7 +13,7 @@ export type OrderWhereInput = {
   business?: BusinessWhereUniqueInput;
   cart?: CartWhereUniqueInput;
   comment?: StringNullableFilter;
-  customer?: CustomerWhereUniqueInput;
+  customer?: AddressWhereUniqueInput;
   deliveryDatetime?: DateTimeNullableFilter;
   deliveryType?: IntFilter;
   deliveryZoneId?: StringNullableFilter;

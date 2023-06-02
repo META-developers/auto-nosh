@@ -31,7 +31,7 @@ import { ReviewFindManyArgs } from "../../review/base/ReviewFindManyArgs";
 import { Review } from "../../review/base/Review";
 import { Business } from "../../business/base/Business";
 import { Cart } from "../../cart/base/Cart";
-import { Customer } from "../../customer/base/Customer";
+import { Address } from "../../address/base/Address";
 import { OrderService } from "../order.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Order)
@@ -267,18 +267,18 @@ export class OrderResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Customer, {
+  @graphql.ResolveField(() => Address, {
     nullable: true,
     name: "customer",
   })
   @nestAccessControl.UseRoles({
-    resource: "Customer",
+    resource: "Address",
     action: "read",
     possession: "any",
   })
   async resolveFieldCustomer(
     @graphql.Parent() parent: Order
-  ): Promise<Customer | null> {
+  ): Promise<Address | null> {
     const result = await this.service.getCustomer(parent.id);
 
     if (!result) {

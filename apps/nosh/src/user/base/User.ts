@@ -13,7 +13,7 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
-import { Customer } from "../../customer/base/Customer";
+import { Address } from "../../address/base/Address";
 import { IsJSONValue } from "@app/custom-validators";
 import { GraphQLJSON } from "graphql-type-json";
 import { JsonValue } from "type-fest";
@@ -30,12 +30,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => Customer,
+    type: () => Address,
   })
   @ValidateNested()
-  @Type(() => Customer)
+  @Type(() => Address)
   @IsOptional()
-  customer?: Customer | null;
+  customer?: Address | null;
 
   @ApiProperty({
     required: false,

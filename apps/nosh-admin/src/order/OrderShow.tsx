@@ -14,7 +14,7 @@ import {
 import { ORDER_TITLE_FIELD } from "./OrderTitle";
 import { BUSINESS_TITLE_FIELD } from "../business/BusinessTitle";
 import { CART_TITLE_FIELD } from "../cart/CartTitle";
-import { CUSTOMER_TITLE_FIELD } from "../customer/CustomerTitle";
+import { ADDRESS_TITLE_FIELD } from "../address/AddressTitle";
 
 export const OrderShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -35,10 +35,10 @@ export const OrderShow = (props: ShowProps): React.ReactElement => {
         <DateField source="createdAt" label="Created At" />
         <ReferenceField
           label="Customer"
-          source="customer.id"
-          reference="Customer"
+          source="address.id"
+          reference="Address"
         >
-          <TextField source={CUSTOMER_TITLE_FIELD} />
+          <TextField source={ADDRESS_TITLE_FIELD} />
         </ReferenceField>
         <TextField label="Delivery Datetime" source="deliveryDatetime" />
         <TextField label="Delivery Type" source="deliveryType" />
