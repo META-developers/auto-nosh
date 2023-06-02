@@ -25,7 +25,7 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { Customer } from "../../customer/base/Customer";
+import { Address } from "../../address/base/Address";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -153,18 +153,18 @@ export class UserResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Customer, {
+  @graphql.ResolveField(() => Address, {
     nullable: true,
     name: "customer",
   })
   @nestAccessControl.UseRoles({
-    resource: "Customer",
+    resource: "Address",
     action: "read",
     possession: "any",
   })
   async resolveFieldCustomer(
     @graphql.Parent() parent: User
-  ): Promise<Customer | null> {
+  ): Promise<Address | null> {
     const result = await this.service.getCustomer(parent.id);
 
     if (!result) {

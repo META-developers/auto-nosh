@@ -1,6 +1,6 @@
 import { Business } from "../business/Business";
 import { Cart } from "../cart/Cart";
-import { Customer } from "../customer/Customer";
+import { Address } from "../address/Address";
 import { Offer } from "../offer/Offer";
 import { Review } from "../review/Review";
 
@@ -10,7 +10,7 @@ export type Order = {
   cart?: Cart | null;
   comment: string | null;
   createdAt: Date;
-  customer?: Customer | null;
+  customer?: Address | null;
   deliveryDatetime: Date | null;
   deliveryType: number;
   deliveryZoneId: string | null;

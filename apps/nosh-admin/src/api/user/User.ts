@@ -1,9 +1,9 @@
-import { Customer } from "../customer/Customer";
+import { Address } from "../address/Address";
 import { JsonValue } from "type-fest";
 
 export type User = {
   createdAt: Date;
-  customer?: Customer | null;
+  customer?: Address | null;
   firstName: string | null;
   id: string;
   lastName: string | null;

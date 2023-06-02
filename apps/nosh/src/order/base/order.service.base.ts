@@ -17,7 +17,7 @@ import {
   Review,
   Business,
   Cart,
-  Customer,
+  Address,
 } from "@prisma/client";
 
 export class OrderServiceBase {
@@ -93,7 +93,7 @@ export class OrderServiceBase {
       .cart();
   }
 
-  async getCustomer(parentId: string): Promise<Customer | null> {
+  async getCustomer(parentId: string): Promise<Address | null> {
     return this.prisma.order
       .findUnique({
         where: { id: parentId },

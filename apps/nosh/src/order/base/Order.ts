@@ -21,7 +21,7 @@ import {
 import { Business } from "../../business/base/Business";
 import { Type } from "class-transformer";
 import { Cart } from "../../cart/base/Cart";
-import { Customer } from "../../customer/base/Customer";
+import { Address } from "../../address/base/Address";
 import { Offer } from "../../offer/base/Offer";
 import { Review } from "../../review/base/Review";
 
@@ -76,12 +76,12 @@ class Order {
 
   @ApiProperty({
     required: false,
-    type: () => Customer,
+    type: () => Address,
   })
   @ValidateNested()
-  @Type(() => Customer)
+  @Type(() => Address)
   @IsOptional()
-  customer?: Customer | null;
+  customer?: Address | null;
 
   @ApiProperty({
     required: false,
