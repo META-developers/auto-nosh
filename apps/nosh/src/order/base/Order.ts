@@ -48,12 +48,11 @@ class Order {
   business?: Business | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => Cart,
   })
   @ValidateNested()
   @Type(() => Cart)
-  @IsOptional()
   cart?: Cart | null;
 
   @ApiProperty({

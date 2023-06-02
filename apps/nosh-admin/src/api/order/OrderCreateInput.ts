@@ -7,7 +7,7 @@ import { ReviewCreateNestedManyWithoutOrdersInput } from "./ReviewCreateNestedMa
 export type OrderCreateInput = {
   appId?: string | null;
   business?: BusinessWhereUniqueInput | null;
-  cart?: CartWhereUniqueInput | null;
+  cart: CartWhereUniqueInput | null;
   comment?: string | null;
   customer?: CustomerWhereUniqueInput | null;
   deliveryDatetime?: Date | null;
