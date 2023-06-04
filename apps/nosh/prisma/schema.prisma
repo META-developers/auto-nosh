@@ -29,9 +29,9 @@ model Product {
 model ProductCart {
   createdAt          DateTime            @default(now())
   id                 String              @id @default(cuid())
+  product            Product?            @relation(fields: [productId], references: [id])
+  productId          String?
   productCartOptions ProductCartOption[]
-  products           Product?            @relation(fields: [productsId], references: [id])
-  productsId         String?
   updatedAt          DateTime            @updatedAt
 }
 

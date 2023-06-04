@@ -1,7 +1,7 @@
-import { ProductCartOptionUpdateManyWithoutProductCartsInput } from "./ProductCartOptionUpdateManyWithoutProductCartsInput";
 import { ProductWhereUniqueInput } from "../product/ProductWhereUniqueInput";
+import { ProductCartOptionUpdateManyWithoutProductCartsInput } from "./ProductCartOptionUpdateManyWithoutProductCartsInput";
 
 export type ProductCartUpdateInput = {
+  product?: ProductWhereUniqueInput | null;
   productCartOptions?: ProductCartOptionUpdateManyWithoutProductCartsInput;
-  products?: ProductWhereUniqueInput | null;
 };

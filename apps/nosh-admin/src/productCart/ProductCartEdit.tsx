@@ -4,19 +4,22 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
   ReferenceInput,
   SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
 
-import { ProductCartOptionTitle } from "../productCartOption/ProductCartOptionTitle";
 import { ProductTitle } from "../product/ProductTitle";
+import { ProductCartOptionTitle } from "../productCartOption/ProductCartOptionTitle";
 
 export const ProductCartEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
+        <ReferenceInput source="product.id" reference="Product" label="Product">
+          <SelectInput optionText={ProductTitle} />
+        </ReferenceInput>
         <ReferenceArrayInput
           source="productCartOptions"
           reference="ProductCartOption"
@@ -25,13 +28,6 @@ export const ProductCartEdit = (props: EditProps): React.ReactElement => {
         >
           <SelectArrayInput optionText={ProductCartOptionTitle} />
         </ReferenceArrayInput>
-        <ReferenceInput
-          source="products.id"
-          reference="Product"
-          label="Products"
-        >
-          <SelectInput optionText={ProductTitle} />
-        </ReferenceInput>
       </SimpleForm>
     </Edit>
   );

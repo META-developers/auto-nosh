@@ -101,9 +101,9 @@ export class ProductCartResolverBase {
       data: {
         ...args.data,
 
-        products: args.data.products
+        product: args.data.product
           ? {
-              connect: args.data.products,
+              connect: args.data.product,
             }
           : undefined,
       },
@@ -126,9 +126,9 @@ export class ProductCartResolverBase {
         data: {
           ...args.data,
 
-          products: args.data.products
+          product: args.data.product
             ? {
-                connect: args.data.products,
+                connect: args.data.product,
               }
             : undefined,
         },
@@ -189,17 +189,17 @@ export class ProductCartResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => Product, {
     nullable: true,
-    name: "products",
+    name: "product",
   })
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "read",
     possession: "any",
   })
-  async resolveFieldProducts(
+  async resolveFieldProduct(
     @graphql.Parent() parent: ProductCart
   ): Promise<Product | null> {
-    const result = await this.service.getProducts(parent.id);
+    const result = await this.service.getProduct(parent.id);
 
     if (!result) {
       return null;

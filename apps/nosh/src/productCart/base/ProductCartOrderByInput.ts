@@ -43,7 +43,7 @@ class ProductCartOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  productsId?: SortOrder;
+  productId?: SortOrder;
 
   @ApiProperty({
     required: false,
