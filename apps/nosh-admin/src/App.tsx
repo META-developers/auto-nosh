@@ -13,26 +13,26 @@ import { CartList } from "./cart/CartList";
 import { CartCreate } from "./cart/CartCreate";
 import { CartEdit } from "./cart/CartEdit";
 import { CartShow } from "./cart/CartShow";
-import { BusinessList } from "./business/BusinessList";
-import { BusinessCreate } from "./business/BusinessCreate";
-import { BusinessEdit } from "./business/BusinessEdit";
-import { BusinessShow } from "./business/BusinessShow";
-import { AddressList } from "./address/AddressList";
-import { AddressCreate } from "./address/AddressCreate";
-import { AddressEdit } from "./address/AddressEdit";
-import { AddressShow } from "./address/AddressShow";
-import { OrderList } from "./order/OrderList";
-import { OrderCreate } from "./order/OrderCreate";
-import { OrderEdit } from "./order/OrderEdit";
-import { OrderShow } from "./order/OrderShow";
-import { ReviewList } from "./review/ReviewList";
-import { ReviewCreate } from "./review/ReviewCreate";
-import { ReviewEdit } from "./review/ReviewEdit";
-import { ReviewShow } from "./review/ReviewShow";
-import { OfferList } from "./offer/OfferList";
-import { OfferCreate } from "./offer/OfferCreate";
-import { OfferEdit } from "./offer/OfferEdit";
-import { OfferShow } from "./offer/OfferShow";
+import { ProductList } from "./product/ProductList";
+import { ProductCreate } from "./product/ProductCreate";
+import { ProductEdit } from "./product/ProductEdit";
+import { ProductShow } from "./product/ProductShow";
+import { ProductCartList } from "./productCart/ProductCartList";
+import { ProductCartCreate } from "./productCart/ProductCartCreate";
+import { ProductCartEdit } from "./productCart/ProductCartEdit";
+import { ProductCartShow } from "./productCart/ProductCartShow";
+import { OptionList } from "./option/OptionList";
+import { OptionCreate } from "./option/OptionCreate";
+import { OptionEdit } from "./option/OptionEdit";
+import { OptionShow } from "./option/OptionShow";
+import { SuboptionList } from "./suboption/SuboptionList";
+import { SuboptionCreate } from "./suboption/SuboptionCreate";
+import { SuboptionEdit } from "./suboption/SuboptionEdit";
+import { SuboptionShow } from "./suboption/SuboptionShow";
+import { ProductCartSuboptionList } from "./productCartSuboption/ProductCartSuboptionList";
+import { ProductCartSuboptionCreate } from "./productCartSuboption/ProductCartSuboptionCreate";
+import { ProductCartSuboptionEdit } from "./productCartSuboption/ProductCartSuboptionEdit";
+import { ProductCartSuboptionShow } from "./productCartSuboption/ProductCartSuboptionShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,39 +74,39 @@ const App = (): React.ReactElement => {
           show={CartShow}
         />
         <Resource
-          name="Business"
-          list={BusinessList}
-          edit={BusinessEdit}
-          create={BusinessCreate}
-          show={BusinessShow}
+          name="Product"
+          list={ProductList}
+          edit={ProductEdit}
+          create={ProductCreate}
+          show={ProductShow}
         />
         <Resource
-          name="Address"
-          list={AddressList}
-          edit={AddressEdit}
-          create={AddressCreate}
-          show={AddressShow}
+          name="ProductCart"
+          list={ProductCartList}
+          edit={ProductCartEdit}
+          create={ProductCartCreate}
+          show={ProductCartShow}
         />
         <Resource
-          name="Order"
-          list={OrderList}
-          edit={OrderEdit}
-          create={OrderCreate}
-          show={OrderShow}
+          name="Option"
+          list={OptionList}
+          edit={OptionEdit}
+          create={OptionCreate}
+          show={OptionShow}
         />
         <Resource
-          name="Review"
-          list={ReviewList}
-          edit={ReviewEdit}
-          create={ReviewCreate}
-          show={ReviewShow}
+          name="Suboption"
+          list={SuboptionList}
+          edit={SuboptionEdit}
+          create={SuboptionCreate}
+          show={SuboptionShow}
         />
         <Resource
-          name="Offer"
-          list={OfferList}
-          edit={OfferEdit}
-          create={OfferCreate}
-          show={OfferShow}
+          name="ProductCartSuboption"
+          list={ProductCartSuboptionList}
+          edit={ProductCartSuboptionEdit}
+          create={ProductCartSuboptionCreate}
+          show={ProductCartSuboptionShow}
         />
       </Admin>
     </div>

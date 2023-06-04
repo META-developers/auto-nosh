@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Cart, Order } from "@prisma/client";
+import { Prisma, Cart } from "@prisma/client";
 
 export class CartServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,13 +45,5 @@ export class CartServiceBase {
     args: Prisma.SelectSubset<T, Prisma.CartDeleteArgs>
   ): Promise<Cart> {
     return this.prisma.cart.delete(args);
-  }
-
-  async getOrders(parentId: string): Promise<Order | null> {
-    return this.prisma.cart
-      .findUnique({
-        where: { id: parentId },
-      })
-      .orders();
   }
 }

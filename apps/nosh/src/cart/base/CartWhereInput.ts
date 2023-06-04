@@ -13,8 +13,7 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional, ValidateNested } from "class-validator";
-import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
+import { IsOptional } from "class-validator";
 
 @InputType()
 class CartWhereInput {
@@ -28,18 +27,6 @@ class CartWhereInput {
     nullable: true,
   })
   id?: StringFilter;
-
-  @ApiProperty({
-    required: false,
-    type: () => OrderWhereUniqueInput,
-  })
-  @ValidateNested()
-  @Type(() => OrderWhereUniqueInput)
-  @IsOptional()
-  @Field(() => OrderWhereUniqueInput, {
-    nullable: true,
-  })
-  orders?: OrderWhereUniqueInput;
 }
 
 export { CartWhereInput as CartWhereInput };
