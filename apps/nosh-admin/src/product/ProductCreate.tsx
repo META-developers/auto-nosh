@@ -22,7 +22,7 @@ export const ProductCreate = (props: CreateProps): React.ReactElement => {
           <SelectArrayInput optionText={OptionTitle} />
         </ReferenceArrayInput>
         <ReferenceArrayInput
-          source="productCart"
+          source="productCarts"
           reference="ProductCart"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

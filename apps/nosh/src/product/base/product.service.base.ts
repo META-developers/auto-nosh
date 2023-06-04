@@ -58,7 +58,7 @@ export class ProductServiceBase {
       .option(args);
   }
 
-  async findProductCart(
+  async findProductCarts(
     parentId: string,
     args: Prisma.ProductCartFindManyArgs
   ): Promise<ProductCart[]> {
@@ -66,6 +66,6 @@ export class ProductServiceBase {
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .productCart(args);
+      .productCarts(args);
   }
 }

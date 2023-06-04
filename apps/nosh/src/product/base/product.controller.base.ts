@@ -290,19 +290,19 @@ export class ProductControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/productCart")
+  @common.Get("/:id/productCarts")
   @ApiNestedQuery(ProductCartFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "ProductCart",
     action: "read",
     possession: "any",
   })
-  async findManyProductCart(
+  async findManyProductCarts(
     @common.Req() request: Request,
     @common.Param() params: ProductWhereUniqueInput
   ): Promise<ProductCart[]> {
     const query = plainToClass(ProductCartFindManyArgs, request.query);
-    const results = await this.service.findProductCart(params.id, {
+    const results = await this.service.findProductCarts(params.id, {
       ...query,
       select: {
         createdAt: true,
@@ -325,18 +325,18 @@ export class ProductControllerBase {
     return results;
   }
 
-  @common.Post("/:id/productCart")
+  @common.Post("/:id/productCarts")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
     possession: "any",
   })
-  async connectProductCart(
+  async connectProductCarts(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() body: ProductCartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productCart: {
+      productCarts: {
         connect: body,
       },
     };
@@ -347,18 +347,18 @@ export class ProductControllerBase {
     });
   }
 
-  @common.Patch("/:id/productCart")
+  @common.Patch("/:id/productCarts")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
     possession: "any",
   })
-  async updateProductCart(
+  async updateProductCarts(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() body: ProductCartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productCart: {
+      productCarts: {
         set: body,
       },
     };
@@ -369,18 +369,18 @@ export class ProductControllerBase {
     });
   }
 
-  @common.Delete("/:id/productCart")
+  @common.Delete("/:id/productCarts")
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "update",
     possession: "any",
   })
-  async disconnectProductCart(
+  async disconnectProductCarts(
     @common.Param() params: ProductWhereUniqueInput,
     @common.Body() body: ProductCartWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productCart: {
+      productCarts: {
         disconnect: body,
       },
     };

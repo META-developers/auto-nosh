@@ -5,6 +5,6 @@ export type Product = {
   createdAt: Date;
   id: string;
   option?: Array<Option>;
-  productCart?: Array<ProductCart>;
+  productCarts?: Array<ProductCart>;
   updatedAt: Date;
 };
