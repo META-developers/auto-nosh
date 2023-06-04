@@ -48,25 +48,10 @@ export class CartControllerBase {
   })
   async create(@common.Body() data: CartCreateInput): Promise<Cart> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        orders: data.orders
-          ? {
-              connect: data.orders,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         createdAt: true,
         id: true,
-
-        orders: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -91,13 +76,6 @@ export class CartControllerBase {
       select: {
         createdAt: true,
         id: true,
-
-        orders: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -123,13 +101,6 @@ export class CartControllerBase {
       select: {
         createdAt: true,
         id: true,
-
-        orders: {
-          select: {
-            id: true,
-          },
-        },
-
         updatedAt: true,
       },
     });
@@ -160,25 +131,10 @@ export class CartControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          orders: data.orders
-            ? {
-                connect: data.orders,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           createdAt: true,
           id: true,
-
-          orders: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
         },
       });
@@ -212,13 +168,6 @@ export class CartControllerBase {
         select: {
           createdAt: true,
           id: true,
-
-          orders: {
-            select: {
-              id: true,
-            },
-          },
-
           updatedAt: true,
         },
       });

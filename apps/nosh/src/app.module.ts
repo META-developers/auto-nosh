@@ -3,11 +3,11 @@ import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
 import { CartModule } from "./cart/cart.module";
-import { BusinessModule } from "./business/business.module";
-import { AddressModule } from "./address/address.module";
-import { OrderModule } from "./order/order.module";
-import { ReviewModule } from "./review/review.module";
-import { OfferModule } from "./offer/offer.module";
+import { ProductModule } from "./product/product.module";
+import { ProductCartModule } from "./productCart/productCart.module";
+import { OptionModule } from "./option/option.module";
+import { SuboptionModule } from "./suboption/suboption.module";
+import { ProductCartSuboptionModule } from "./productCartSuboption/productCartSuboption.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -26,11 +26,11 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
     UserModule,
     CartModule,
-    BusinessModule,
-    AddressModule,
-    OrderModule,
-    ReviewModule,
-    OfferModule,
+    ProductModule,
+    ProductCartModule,
+    OptionModule,
+    SuboptionModule,
+    ProductCartSuboptionModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

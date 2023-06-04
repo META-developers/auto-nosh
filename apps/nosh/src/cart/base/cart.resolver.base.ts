@@ -18,14 +18,10 @@ import * as gqlACGuard from "../../auth/gqlAC.guard";
 import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateCartArgs } from "./CreateCartArgs";
-import { UpdateCartArgs } from "./UpdateCartArgs";
 import { DeleteCartArgs } from "./DeleteCartArgs";
 import { CartFindManyArgs } from "./CartFindManyArgs";
 import { CartFindUniqueArgs } from "./CartFindUniqueArgs";
 import { Cart } from "./Cart";
-import { Order } from "../../order/base/Order";
 import { CartService } from "../cart.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Cart)
@@ -80,59 +76,6 @@ export class CartResolverBase {
     return result;
   }
 
-  @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Cart)
-  @nestAccessControl.UseRoles({
-    resource: "Cart",
-    action: "create",
-    possession: "any",
-  })
-  async createCart(@graphql.Args() args: CreateCartArgs): Promise<Cart> {
-    return await this.service.create({
-      ...args,
-      data: {
-        ...args.data,
-
-        orders: args.data.orders
-          ? {
-              connect: args.data.orders,
-            }
-          : undefined,
-      },
-    });
-  }
-
-  @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Cart)
-  @nestAccessControl.UseRoles({
-    resource: "Cart",
-    action: "update",
-    possession: "any",
-  })
-  async updateCart(@graphql.Args() args: UpdateCartArgs): Promise<Cart | null> {
-    try {
-      return await this.service.update({
-        ...args,
-        data: {
-          ...args.data,
-
-          orders: args.data.orders
-            ? {
-                connect: args.data.orders,
-              }
-            : undefined,
-        },
-      });
-    } catch (error) {
-      if (isRecordNotFoundError(error)) {
-        throw new apollo.ApolloError(
-          `No resource was found for ${JSON.stringify(args.where)}`
-        );
-      }
-      throw error;
-    }
-  }
-
   @graphql.Mutation(() => Cart)
   @nestAccessControl.UseRoles({
     resource: "Cart",
@@ -150,26 +93,5 @@ export class CartResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Order, {
-    nullable: true,
-    name: "orders",
-  })
-  @nestAccessControl.UseRoles({
-    resource: "Order",
-    action: "read",
-    possession: "any",
-  })
-  async resolveFieldOrders(
-    @graphql.Parent() parent: Cart
-  ): Promise<Order | null> {
-    const result = await this.service.getOrders(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }
