@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { Product } from "../../product/base/Product";
+import { ProductCartOption } from "../../productCartOption/base/ProductCartOption";
 import { Suboption } from "../../suboption/base/Suboption";
 
 @ObjectType()
@@ -42,6 +43,15 @@ class Option {
   @Type(() => Product)
   @IsOptional()
   product?: Product | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ProductCartOption],
+  })
+  @ValidateNested()
+  @Type(() => ProductCartOption)
+  @IsOptional()
+  productCartOptions?: Array<ProductCartOption>;
 
   @ApiProperty({
     required: false,

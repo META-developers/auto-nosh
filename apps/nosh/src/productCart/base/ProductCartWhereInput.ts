@@ -15,7 +15,7 @@ import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { ProductCartSuboptionListRelationFilter } from "../../productCartSuboption/base/ProductCartSuboptionListRelationFilter";
-import { ProductListRelationFilter } from "../../product/base/ProductListRelationFilter";
+import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
 
 @InputType()
 class ProductCartWhereInput {
@@ -44,15 +44,15 @@ class ProductCartWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductListRelationFilter,
+    type: () => ProductWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ProductListRelationFilter)
+  @Type(() => ProductWhereUniqueInput)
   @IsOptional()
-  @Field(() => ProductListRelationFilter, {
+  @Field(() => ProductWhereUniqueInput, {
     nullable: true,
   })
-  products?: ProductListRelationFilter;
+  products?: ProductWhereUniqueInput;
 }
 
 export { ProductCartWhereInput as ProductCartWhereInput };

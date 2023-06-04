@@ -25,6 +25,25 @@ export const OptionShow = (props: ShowProps): React.ReactElement => {
         </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
+          reference="ProductCartOption"
+          target="OptionId"
+          label="Product Cart Options"
+        >
+          <Datagrid rowClick="show">
+            <TextField label="Balance" source="balance" />
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="ID" source="id" />
+            <ReferenceField
+              label="Option"
+              source="option.id"
+              reference="Option"
+            >
+              <TextField source={OPTION_TITLE_FIELD} />
+            </ReferenceField>
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
+        <ReferenceManyField
           reference="Suboption"
           target="OptionId"
           label="SubOptions"

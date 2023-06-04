@@ -1,9 +1,9 @@
 import { StringFilter } from "../../util/StringFilter";
 import { ProductCartSuboptionListRelationFilter } from "../productCartSuboption/ProductCartSuboptionListRelationFilter";
-import { ProductListRelationFilter } from "../product/ProductListRelationFilter";
+import { ProductWhereUniqueInput } from "../product/ProductWhereUniqueInput";
 
 export type ProductCartWhereInput = {
   id?: StringFilter;
   productCartSuboptions?: ProductCartSuboptionListRelationFilter;
-  products?: ProductListRelationFilter;
+  products?: ProductWhereUniqueInput;
 };

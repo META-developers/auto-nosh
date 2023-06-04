@@ -45,12 +45,12 @@ class ProductCart {
 
   @ApiProperty({
     required: false,
-    type: () => [Product],
+    type: () => Product,
   })
   @ValidateNested()
   @Type(() => Product)
   @IsOptional()
-  products?: Array<Product>;
+  products?: Product | null;
 
   @ApiProperty({
     required: true,

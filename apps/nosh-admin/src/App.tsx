@@ -9,10 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { CartList } from "./cart/CartList";
-import { CartCreate } from "./cart/CartCreate";
-import { CartEdit } from "./cart/CartEdit";
-import { CartShow } from "./cart/CartShow";
 import { ProductList } from "./product/ProductList";
 import { ProductCreate } from "./product/ProductCreate";
 import { ProductEdit } from "./product/ProductEdit";
@@ -33,6 +29,10 @@ import { ProductCartSuboptionList } from "./productCartSuboption/ProductCartSubo
 import { ProductCartSuboptionCreate } from "./productCartSuboption/ProductCartSuboptionCreate";
 import { ProductCartSuboptionEdit } from "./productCartSuboption/ProductCartSuboptionEdit";
 import { ProductCartSuboptionShow } from "./productCartSuboption/ProductCartSuboptionShow";
+import { ProductCartOptionList } from "./productCartOption/ProductCartOptionList";
+import { ProductCartOptionCreate } from "./productCartOption/ProductCartOptionCreate";
+import { ProductCartOptionEdit } from "./productCartOption/ProductCartOptionEdit";
+import { ProductCartOptionShow } from "./productCartOption/ProductCartOptionShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -65,13 +65,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="Cart"
-          list={CartList}
-          edit={CartEdit}
-          create={CartCreate}
-          show={CartShow}
         />
         <Resource
           name="Product"
@@ -107,6 +100,13 @@ const App = (): React.ReactElement => {
           edit={ProductCartSuboptionEdit}
           create={ProductCartSuboptionCreate}
           show={ProductCartSuboptionShow}
+        />
+        <Resource
+          name="ProductCartOption"
+          list={ProductCartOptionList}
+          edit={ProductCartOptionEdit}
+          create={ProductCartOptionCreate}
+          show={ProductCartOptionShow}
         />
       </Admin>
     </div>

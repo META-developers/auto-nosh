@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { ProductCartSuboptionCreateNestedManyWithoutProductCartsInput } from "./ProductCartSuboptionCreateNestedManyWithoutProductCartsInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ProductCreateNestedManyWithoutProductCartsInput } from "./ProductCreateNestedManyWithoutProductCartsInput";
+import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
 
 @InputType()
 class ProductCartCreateInput {
@@ -32,15 +32,15 @@ class ProductCartCreateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductCreateNestedManyWithoutProductCartsInput,
+    type: () => ProductWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ProductCreateNestedManyWithoutProductCartsInput)
+  @Type(() => ProductWhereUniqueInput)
   @IsOptional()
-  @Field(() => ProductCreateNestedManyWithoutProductCartsInput, {
+  @Field(() => ProductWhereUniqueInput, {
     nullable: true,
   })
-  products?: ProductCreateNestedManyWithoutProductCartsInput;
+  products?: ProductWhereUniqueInput | null;
 }
 
 export { ProductCartCreateInput as ProductCartCreateInput };
