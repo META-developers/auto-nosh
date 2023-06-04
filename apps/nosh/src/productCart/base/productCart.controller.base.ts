@@ -56,11 +56,9 @@ export class ProductCartControllerBase {
       data: {
         ...data,
 
-        product: data.product
-          ? {
-              connect: data.product,
-            }
-          : undefined,
+        product: {
+          connect: data.product,
+        },
       },
       select: {
         createdAt: true,
@@ -168,11 +166,9 @@ export class ProductCartControllerBase {
         data: {
           ...data,
 
-          product: data.product
-            ? {
-                connect: data.product,
-              }
-            : undefined,
+          product: {
+            connect: data.product,
+          },
         },
         select: {
           createdAt: true,

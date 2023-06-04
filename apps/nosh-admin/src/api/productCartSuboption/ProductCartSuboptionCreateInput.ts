@@ -7,6 +7,6 @@ export type ProductCartSuboptionCreateInput = {
   productCartOptions?: ProductCartOptionCreateNestedManyWithoutProductCartSuboptionsInput;
   quantity: number;
   selected: boolean;
-  suboption?: SuboptionWhereUniqueInput | null;
+  suboption: SuboptionWhereUniqueInput;
   total?: string | null;
 };

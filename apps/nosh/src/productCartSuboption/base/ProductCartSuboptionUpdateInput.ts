@@ -91,7 +91,7 @@ class ProductCartSuboptionUpdateInput {
   @Field(() => SuboptionWhereUniqueInput, {
     nullable: true,
   })
-  suboption?: SuboptionWhereUniqueInput | null;
+  suboption?: SuboptionWhereUniqueInput;
 
   @ApiProperty({
     required: false,

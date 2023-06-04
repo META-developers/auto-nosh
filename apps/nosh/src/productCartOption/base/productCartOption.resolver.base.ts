@@ -102,11 +102,9 @@ export class ProductCartOptionResolverBase {
       data: {
         ...args.data,
 
-        option: args.data.option
-          ? {
-              connect: args.data.option,
-            }
-          : undefined,
+        option: {
+          connect: args.data.option,
+        },
 
         productCart: args.data.productCart
           ? {
@@ -133,11 +131,9 @@ export class ProductCartOptionResolverBase {
         data: {
           ...args.data,
 
-          option: args.data.option
-            ? {
-                connect: args.data.option,
-              }
-            : undefined,
+          option: {
+            connect: args.data.option,
+          },
 
           productCart: args.data.productCart
             ? {

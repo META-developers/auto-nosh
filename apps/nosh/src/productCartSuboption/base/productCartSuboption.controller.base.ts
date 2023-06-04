@@ -56,11 +56,9 @@ export class ProductCartSuboptionControllerBase {
       data: {
         ...data,
 
-        suboption: data.suboption
-          ? {
-              connect: data.suboption,
-            }
-          : undefined,
+        suboption: {
+          connect: data.suboption,
+        },
       },
       select: {
         createdAt: true,
@@ -185,11 +183,9 @@ export class ProductCartSuboptionControllerBase {
         data: {
           ...data,
 
-          suboption: data.suboption
-            ? {
-                connect: data.suboption,
-              }
-            : undefined,
+          suboption: {
+            connect: data.suboption,
+          },
         },
         select: {
           createdAt: true,

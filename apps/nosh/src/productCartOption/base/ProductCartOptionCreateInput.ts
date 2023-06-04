@@ -31,16 +31,13 @@ class ProductCartOptionCreateInput {
   balance?: number | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => OptionWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => OptionWhereUniqueInput)
-  @IsOptional()
-  @Field(() => OptionWhereUniqueInput, {
-    nullable: true,
-  })
-  option?: OptionWhereUniqueInput | null;
+  @Field(() => OptionWhereUniqueInput)
+  option!: OptionWhereUniqueInput;
 
   @ApiProperty({
     required: false,
