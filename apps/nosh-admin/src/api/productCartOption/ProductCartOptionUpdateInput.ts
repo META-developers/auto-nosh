@@ -5,6 +5,6 @@ import { ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput } from "./
 export type ProductCartOptionUpdateInput = {
   balance?: number | null;
   option?: OptionWhereUniqueInput;
-  productCart?: ProductCartWhereUniqueInput | null;
+  productCart?: ProductCartWhereUniqueInput;
   productCartSuboptions?: ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput;
 };

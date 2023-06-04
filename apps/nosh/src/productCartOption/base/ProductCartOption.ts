@@ -61,13 +61,12 @@ class ProductCartOption {
   option?: Option;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => ProductCart,
   })
   @ValidateNested()
   @Type(() => ProductCart)
-  @IsOptional()
-  productCart?: ProductCart | null;
+  productCart?: ProductCart;
 
   @ApiProperty({
     required: false,

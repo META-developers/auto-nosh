@@ -7,7 +7,7 @@ export type ProductCartOption = {
   createdAt: Date;
   id: string;
   option?: Option;
-  productCart?: ProductCart | null;
+  productCart?: ProductCart;
   productCartSuboptions?: Array<ProductCartSuboption>;
   updatedAt: Date;
 };

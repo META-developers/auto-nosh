@@ -60,11 +60,9 @@ export class ProductCartOptionControllerBase {
           connect: data.option,
         },
 
-        productCart: data.productCart
-          ? {
-              connect: data.productCart,
-            }
-          : undefined,
+        productCart: {
+          connect: data.productCart,
+        },
       },
       select: {
         balance: true,
@@ -197,11 +195,9 @@ export class ProductCartOptionControllerBase {
             connect: data.option,
           },
 
-          productCart: data.productCart
-            ? {
-                connect: data.productCart,
-              }
-            : undefined,
+          productCart: {
+            connect: data.productCart,
+          },
         },
         select: {
           balance: true,
