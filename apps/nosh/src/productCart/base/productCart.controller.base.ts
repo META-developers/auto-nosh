@@ -56,9 +56,9 @@ export class ProductCartControllerBase {
       data: {
         ...data,
 
-        products: data.products
+        product: data.product
           ? {
-              connect: data.products,
+              connect: data.product,
             }
           : undefined,
       },
@@ -66,7 +66,7 @@ export class ProductCartControllerBase {
         createdAt: true,
         id: true,
 
-        products: {
+        product: {
           select: {
             id: true,
           },
@@ -97,7 +97,7 @@ export class ProductCartControllerBase {
         createdAt: true,
         id: true,
 
-        products: {
+        product: {
           select: {
             id: true,
           },
@@ -129,7 +129,7 @@ export class ProductCartControllerBase {
         createdAt: true,
         id: true,
 
-        products: {
+        product: {
           select: {
             id: true,
           },
@@ -168,9 +168,9 @@ export class ProductCartControllerBase {
         data: {
           ...data,
 
-          products: data.products
+          product: data.product
             ? {
-                connect: data.products,
+                connect: data.product,
               }
             : undefined,
         },
@@ -178,7 +178,7 @@ export class ProductCartControllerBase {
           createdAt: true,
           id: true,
 
-          products: {
+          product: {
             select: {
               id: true,
             },
@@ -218,7 +218,7 @@ export class ProductCartControllerBase {
           createdAt: true,
           id: true,
 
-          products: {
+          product: {
             select: {
               id: true,
             },

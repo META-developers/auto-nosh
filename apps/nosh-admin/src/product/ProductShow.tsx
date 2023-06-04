@@ -47,7 +47,7 @@ export const ProductShow = (props: ShowProps): React.ReactElement => {
             <DateField source="createdAt" label="Created At" />
             <TextField label="ID" source="id" />
             <ReferenceField
-              label="Products"
+              label="Product"
               source="product.id"
               reference="Product"
             >

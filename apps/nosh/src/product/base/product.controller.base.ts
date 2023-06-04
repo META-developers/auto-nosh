@@ -308,7 +308,7 @@ export class ProductControllerBase {
         createdAt: true,
         id: true,
 
-        products: {
+        product: {
           select: {
             id: true,
           },

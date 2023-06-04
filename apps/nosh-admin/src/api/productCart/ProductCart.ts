@@ -1,10 +1,10 @@
-import { ProductCartOption } from "../productCartOption/ProductCartOption";
 import { Product } from "../product/Product";
+import { ProductCartOption } from "../productCartOption/ProductCartOption";
 
 export type ProductCart = {
   createdAt: Date;
   id: string;
+  product?: Product | null;
   productCartOptions?: Array<ProductCartOption>;
-  products?: Product | null;
   updatedAt: Date;
 };
