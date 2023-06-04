@@ -6,12 +6,11 @@ import {
   ListProps,
   DateField,
   TextField,
-  ReferenceField,
   BooleanField,
+  ReferenceField,
 } from "react-admin";
 
 import Pagination from "../Components/Pagination";
-import { PRODUCTCART_TITLE_FIELD } from "../productCart/ProductCartTitle";
 import { SUBOPTION_TITLE_FIELD } from "../suboption/SuboptionTitle";
 
 export const ProductCartSuboptionList = (
@@ -30,13 +29,6 @@ export const ProductCartSuboptionList = (
         <TextField label="ID" source="id" />
         <TextField label="Position" source="position" />
         <TextField label="Price" source="price" />
-        <ReferenceField
-          label="ProductCart"
-          source="productcart.id"
-          reference="ProductCart"
-        >
-          <TextField source={PRODUCTCART_TITLE_FIELD} />
-        </ReferenceField>
         <TextField label="Quantity" source="quantity" />
         <BooleanField label="Selected" source="selected" />
         <ReferenceField

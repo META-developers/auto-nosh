@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, ProductCartOption, Option } from "@prisma/client";
+import {
+  Prisma,
+  ProductCartOption,
+  ProductCartSuboption,
+  Option,
+  ProductCart,
+} from "@prisma/client";
 
 export class ProductCartOptionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -47,11 +53,30 @@ export class ProductCartOptionServiceBase {
     return this.prisma.productCartOption.delete(args);
   }
 
+  async findProductCartSuboption(
+    parentId: string,
+    args: Prisma.ProductCartSuboptionFindManyArgs
+  ): Promise<ProductCartSuboption[]> {
+    return this.prisma.productCartOption
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .productCartSuboption(args);
+  }
+
   async getOption(parentId: string): Promise<Option | null> {
     return this.prisma.productCartOption
       .findUnique({
         where: { id: parentId },
       })
       .option();
+  }
+
+  async getProductCart(parentId: string): Promise<ProductCart | null> {
+    return this.prisma.productCartOption
+      .findUnique({
+        where: { id: parentId },
+      })
+      .productCart();
   }
 }

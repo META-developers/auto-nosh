@@ -255,13 +255,6 @@ export class SuboptionControllerBase {
         id: true,
         position: true,
         price: true,
-
-        productCart: {
-          select: {
-            id: true,
-          },
-        },
-
         quantity: true,
         selected: true,
 

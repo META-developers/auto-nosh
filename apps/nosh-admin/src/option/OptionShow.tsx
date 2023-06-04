@@ -12,6 +12,7 @@ import {
 } from "react-admin";
 
 import { OPTION_TITLE_FIELD } from "./OptionTitle";
+import { PRODUCTCART_TITLE_FIELD } from "../productCart/ProductCartTitle";
 import { PRODUCT_TITLE_FIELD } from "../product/ProductTitle";
 
 export const OptionShow = (props: ShowProps): React.ReactElement => {
@@ -39,6 +40,13 @@ export const OptionShow = (props: ShowProps): React.ReactElement => {
               reference="Option"
             >
               <TextField source={OPTION_TITLE_FIELD} />
+            </ReferenceField>
+            <ReferenceField
+              label="ProductCart"
+              source="productcart.id"
+              reference="ProductCart"
+            >
+              <TextField source={PRODUCTCART_TITLE_FIELD} />
             </ReferenceField>
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>

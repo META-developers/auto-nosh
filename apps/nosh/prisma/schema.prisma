@@ -27,12 +27,12 @@ model Product {
 }
 
 model ProductCart {
-  createdAt             DateTime               @default(now())
-  id                    String                 @id @default(cuid())
-  productCartSuboptions ProductCartSuboption[]
-  products              Product?               @relation(fields: [productsId], references: [id])
-  productsId            String?
-  updatedAt             DateTime               @updatedAt
+  createdAt          DateTime            @default(now())
+  id                 String              @id @default(cuid())
+  productCartOptions ProductCartOption[]
+  products           Product?            @relation(fields: [productsId], references: [id])
+  productsId         String?
+  updatedAt          DateTime            @updatedAt
 }
 
 model Option {
@@ -55,25 +55,27 @@ model Suboption {
 }
 
 model ProductCartSuboption {
-  createdAt     DateTime     @default(now())
-  id            String       @id @default(cuid())
-  position      String?
-  price         Float?
-  productCart   ProductCart? @relation(fields: [productCartId], references: [id])
-  productCartId String?
-  quantity      Int
-  selected      Boolean
-  suboption     Suboption?   @relation(fields: [suboptionId], references: [id])
-  suboptionId   String?
-  total         String?
-  updatedAt     DateTime     @updatedAt
+  createdAt          DateTime            @default(now())
+  id                 String              @id @default(cuid())
+  position           String?
+  price              Float?
+  productCartOptions ProductCartOption[]
+  quantity           Int
+  selected           Boolean
+  suboption          Suboption?          @relation(fields: [suboptionId], references: [id])
+  suboptionId        String?
+  total              String?
+  updatedAt          DateTime            @updatedAt
 }
 
 model ProductCartOption {
-  balance   Int?
-  createdAt DateTime @default(now())
-  id        String   @id @default(cuid())
-  option    Option?  @relation(fields: [optionId], references: [id])
-  optionId  String?
-  updatedAt DateTime @updatedAt
+  balance              Int?
+  createdAt            DateTime               @default(now())
+  id                   String                 @id @default(cuid())
+  option               Option?                @relation(fields: [optionId], references: [id])
+  optionId             String?
+  productCart          ProductCart?           @relation(fields: [productCartId], references: [id])
+  productCartId        String?
+  productCartSuboption ProductCartSuboption[]
+  updatedAt            DateTime               @updatedAt
 }

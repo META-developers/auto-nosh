@@ -14,7 +14,7 @@ import { ProductCartSuboptionWhereUniqueInput } from "../../productCartSuboption
 import { ApiProperty } from "@nestjs/swagger";
 
 @InputType()
-class ProductCartSuboptionCreateNestedManyWithoutProductCartsInput {
+class ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput {
   @Field(() => [ProductCartSuboptionWhereUniqueInput], {
     nullable: true,
   })
@@ -25,4 +25,4 @@ class ProductCartSuboptionCreateNestedManyWithoutProductCartsInput {
   connect?: Array<ProductCartSuboptionWhereUniqueInput>;
 }
 
-export { ProductCartSuboptionCreateNestedManyWithoutProductCartsInput as ProductCartSuboptionCreateNestedManyWithoutProductCartsInput };
+export { ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput as ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput };

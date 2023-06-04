@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import {
   Create,
   SimpleForm,
@@ -6,8 +7,13 @@ import {
   NumberInput,
   ReferenceInput,
   SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
+
 import { OptionTitle } from "../option/OptionTitle";
+import { ProductCartTitle } from "../productCart/ProductCartTitle";
+import { ProductCartSuboptionTitle } from "../productCartSuboption/ProductCartSuboptionTitle";
 
 export const ProductCartOptionCreate = (
   props: CreateProps
@@ -19,6 +25,21 @@ export const ProductCartOptionCreate = (
         <ReferenceInput source="option.id" reference="Option" label="Option">
           <SelectInput optionText={OptionTitle} />
         </ReferenceInput>
+        <ReferenceInput
+          source="productCart.id"
+          reference="ProductCart"
+          label="ProductCart"
+        >
+          <SelectInput optionText={ProductCartTitle} />
+        </ReferenceInput>
+        <ReferenceArrayInput
+          source="productCartSuboption"
+          reference="ProductCartSuboption"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={ProductCartSuboptionTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Create>
   );

@@ -9,11 +9,10 @@ import {
   ReferenceField,
   ReferenceManyField,
   Datagrid,
-  BooleanField,
 } from "react-admin";
 
+import { OPTION_TITLE_FIELD } from "../option/OptionTitle";
 import { PRODUCTCART_TITLE_FIELD } from "./ProductCartTitle";
-import { SUBOPTION_TITLE_FIELD } from "../suboption/SuboptionTitle";
 import { PRODUCT_TITLE_FIELD } from "../product/ProductTitle";
 
 export const ProductCartShow = (props: ShowProps): React.ReactElement => {
@@ -31,15 +30,21 @@ export const ProductCartShow = (props: ShowProps): React.ReactElement => {
         </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
         <ReferenceManyField
-          reference="ProductCartSuboption"
+          reference="ProductCartOption"
           target="ProductCartId"
-          label="Product Cart Suboptions"
+          label="Product Cart Options"
         >
           <Datagrid rowClick="show">
+            <TextField label="Balance" source="balance" />
             <DateField source="createdAt" label="Created At" />
             <TextField label="ID" source="id" />
-            <TextField label="Position" source="position" />
-            <TextField label="Price" source="price" />
+            <ReferenceField
+              label="Option"
+              source="option.id"
+              reference="Option"
+            >
+              <TextField source={OPTION_TITLE_FIELD} />
+            </ReferenceField>
             <ReferenceField
               label="ProductCart"
               source="productcart.id"
@@ -47,16 +52,6 @@ export const ProductCartShow = (props: ShowProps): React.ReactElement => {
             >
               <TextField source={PRODUCTCART_TITLE_FIELD} />
             </ReferenceField>
-            <TextField label="Quantity" source="quantity" />
-            <BooleanField label="Selected" source="selected" />
-            <ReferenceField
-              label="Suboption"
-              source="suboption.id"
-              reference="Suboption"
-            >
-              <TextField source={SUBOPTION_TITLE_FIELD} />
-            </ReferenceField>
-            <TextField label="Total" source="total" />
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
         </ReferenceManyField>

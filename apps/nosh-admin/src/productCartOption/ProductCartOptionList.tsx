@@ -9,6 +9,7 @@ import {
 } from "react-admin";
 import Pagination from "../Components/Pagination";
 import { OPTION_TITLE_FIELD } from "../option/OptionTitle";
+import { PRODUCTCART_TITLE_FIELD } from "../productCart/ProductCartTitle";
 
 export const ProductCartOptionList = (props: ListProps): React.ReactElement => {
   return (
@@ -25,6 +26,13 @@ export const ProductCartOptionList = (props: ListProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <ReferenceField label="Option" source="option.id" reference="Option">
           <TextField source={OPTION_TITLE_FIELD} />
+        </ReferenceField>
+        <ReferenceField
+          label="ProductCart"
+          source="productcart.id"
+          reference="ProductCart"
+        >
+          <TextField source={PRODUCTCART_TITLE_FIELD} />
         </ReferenceField>
         <DateField source="updatedAt" label="Updated At" />
       </Datagrid>
