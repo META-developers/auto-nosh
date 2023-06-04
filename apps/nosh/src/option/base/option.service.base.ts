@@ -10,7 +10,13 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Option, Suboption, Product } from "@prisma/client";
+import {
+  Prisma,
+  Option,
+  ProductCartOption,
+  Suboption,
+  Product,
+} from "@prisma/client";
 
 export class OptionServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,6 +51,17 @@ export class OptionServiceBase {
     args: Prisma.SelectSubset<T, Prisma.OptionDeleteArgs>
   ): Promise<Option> {
     return this.prisma.option.delete(args);
+  }
+
+  async findProductCartOptions(
+    parentId: string,
+    args: Prisma.ProductCartOptionFindManyArgs
+  ): Promise<ProductCartOption[]> {
+    return this.prisma.option
+      .findUniqueOrThrow({
+        where: { id: parentId },
+      })
+      .productCartOptions(args);
   }
 
   async findSuboptions(

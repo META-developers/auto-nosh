@@ -25,6 +25,8 @@ import { DeleteOptionArgs } from "./DeleteOptionArgs";
 import { OptionFindManyArgs } from "./OptionFindManyArgs";
 import { OptionFindUniqueArgs } from "./OptionFindUniqueArgs";
 import { Option } from "./Option";
+import { ProductCartOptionFindManyArgs } from "../../productCartOption/base/ProductCartOptionFindManyArgs";
+import { ProductCartOption } from "../../productCartOption/base/ProductCartOption";
 import { SuboptionFindManyArgs } from "../../suboption/base/SuboptionFindManyArgs";
 import { Suboption } from "../../suboption/base/Suboption";
 import { Product } from "../../product/base/Product";
@@ -158,6 +160,28 @@ export class OptionResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [ProductCartOption], {
+    name: "productCartOptions",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "ProductCartOption",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldProductCartOptions(
+    @graphql.Parent() parent: Option,
+    @graphql.Args() args: ProductCartOptionFindManyArgs
+  ): Promise<ProductCartOption[]> {
+    const results = await this.service.findProductCartOptions(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

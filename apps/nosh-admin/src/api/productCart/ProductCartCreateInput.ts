@@ -1,7 +1,7 @@
 import { ProductCartSuboptionCreateNestedManyWithoutProductCartsInput } from "./ProductCartSuboptionCreateNestedManyWithoutProductCartsInput";
-import { ProductCreateNestedManyWithoutProductCartsInput } from "./ProductCreateNestedManyWithoutProductCartsInput";
+import { ProductWhereUniqueInput } from "../product/ProductWhereUniqueInput";
 
 export type ProductCartCreateInput = {
   productCartSuboptions?: ProductCartSuboptionCreateNestedManyWithoutProductCartsInput;
-  products?: ProductCreateNestedManyWithoutProductCartsInput;
+  products?: ProductWhereUniqueInput | null;
 };

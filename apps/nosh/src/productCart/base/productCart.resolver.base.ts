@@ -27,7 +27,6 @@ import { ProductCartFindUniqueArgs } from "./ProductCartFindUniqueArgs";
 import { ProductCart } from "./ProductCart";
 import { ProductCartSuboptionFindManyArgs } from "../../productCartSuboption/base/ProductCartSuboptionFindManyArgs";
 import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
-import { ProductFindManyArgs } from "../../product/base/ProductFindManyArgs";
 import { Product } from "../../product/base/Product";
 import { ProductCartService } from "../productCart.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -99,7 +98,15 @@ export class ProductCartResolverBase {
   ): Promise<ProductCart> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        products: args.data.products
+          ? {
+              connect: args.data.products,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -116,7 +123,15 @@ export class ProductCartResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          products: args.data.products
+            ? {
+                connect: args.data.products,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -175,22 +190,23 @@ export class ProductCartResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Product], { name: "products" })
+  @graphql.ResolveField(() => Product, {
+    nullable: true,
+    name: "products",
+  })
   @nestAccessControl.UseRoles({
     resource: "Product",
     action: "read",
     possession: "any",
   })
   async resolveFieldProducts(
-    @graphql.Parent() parent: ProductCart,
-    @graphql.Args() args: ProductFindManyArgs
-  ): Promise<Product[]> {
-    const results = await this.service.findProducts(parent.id, args);
+    @graphql.Parent() parent: ProductCart
+  ): Promise<Product | null> {
+    const result = await this.service.getProducts(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 }

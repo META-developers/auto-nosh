@@ -11,6 +11,7 @@ import {
 } from "react-admin";
 
 import { ProductTitle } from "../product/ProductTitle";
+import { ProductCartOptionTitle } from "../productCartOption/ProductCartOptionTitle";
 import { SuboptionTitle } from "../suboption/SuboptionTitle";
 
 export const OptionEdit = (props: EditProps): React.ReactElement => {
@@ -20,6 +21,14 @@ export const OptionEdit = (props: EditProps): React.ReactElement => {
         <ReferenceInput source="product.id" reference="Product" label="Product">
           <SelectInput optionText={ProductTitle} />
         </ReferenceInput>
+        <ReferenceArrayInput
+          source="productCartOptions"
+          reference="ProductCartOption"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
+        >
+          <SelectArrayInput optionText={ProductCartOptionTitle} />
+        </ReferenceArrayInput>
         <ReferenceArrayInput
           source="suboptions"
           reference="Suboption"

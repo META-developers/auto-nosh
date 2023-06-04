@@ -30,9 +30,6 @@ import { ProductCart } from "./ProductCart";
 import { ProductCartSuboptionFindManyArgs } from "../../productCartSuboption/base/ProductCartSuboptionFindManyArgs";
 import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
 import { ProductCartSuboptionWhereUniqueInput } from "../../productCartSuboption/base/ProductCartSuboptionWhereUniqueInput";
-import { ProductFindManyArgs } from "../../product/base/ProductFindManyArgs";
-import { Product } from "../../product/base/Product";
-import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -56,10 +53,25 @@ export class ProductCartControllerBase {
     @common.Body() data: ProductCartCreateInput
   ): Promise<ProductCart> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        products: data.products
+          ? {
+              connect: data.products,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
         id: true,
+
+        products: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -84,6 +96,13 @@ export class ProductCartControllerBase {
       select: {
         createdAt: true,
         id: true,
+
+        products: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -109,6 +128,13 @@ export class ProductCartControllerBase {
       select: {
         createdAt: true,
         id: true,
+
+        products: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -139,10 +165,25 @@ export class ProductCartControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          products: data.products
+            ? {
+                connect: data.products,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
           id: true,
+
+          products: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -176,6 +217,13 @@ export class ProductCartControllerBase {
         select: {
           createdAt: true,
           id: true,
+
+          products: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -293,101 +341,6 @@ export class ProductCartControllerBase {
   ): Promise<void> {
     const data = {
       productCartSuboptions: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/products")
-  @ApiNestedQuery(ProductFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Product",
-    action: "read",
-    possession: "any",
-  })
-  async findManyProducts(
-    @common.Req() request: Request,
-    @common.Param() params: ProductCartWhereUniqueInput
-  ): Promise<Product[]> {
-    const query = plainToClass(ProductFindManyArgs, request.query);
-    const results = await this.service.findProducts(params.id, {
-      ...query,
-      select: {
-        createdAt: true,
-        id: true,
-        updatedAt: true,
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/products")
-  @nestAccessControl.UseRoles({
-    resource: "ProductCart",
-    action: "update",
-    possession: "any",
-  })
-  async connectProducts(
-    @common.Param() params: ProductCartWhereUniqueInput,
-    @common.Body() body: ProductWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      products: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/products")
-  @nestAccessControl.UseRoles({
-    resource: "ProductCart",
-    action: "update",
-    possession: "any",
-  })
-  async updateProducts(
-    @common.Param() params: ProductCartWhereUniqueInput,
-    @common.Body() body: ProductWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      products: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/products")
-  @nestAccessControl.UseRoles({
-    resource: "ProductCart",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectProducts(
-    @common.Param() params: ProductCartWhereUniqueInput,
-    @common.Body() body: ProductWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      products: {
         disconnect: body,
       },
     };

@@ -38,6 +38,24 @@ export const ProductShow = (props: ShowProps): React.ReactElement => {
             <DateField source="updatedAt" label="Updated At" />
           </Datagrid>
         </ReferenceManyField>
+        <ReferenceManyField
+          reference="ProductCart"
+          target="ProductId"
+          label="ProductCarts"
+        >
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="ID" source="id" />
+            <ReferenceField
+              label="Products"
+              source="product.id"
+              reference="Product"
+            >
+              <TextField source={PRODUCT_TITLE_FIELD} />
+            </ReferenceField>
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );
