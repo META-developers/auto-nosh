@@ -3,5 +3,5 @@ import { ProductCartCreateNestedManyWithoutProductsInput } from "./ProductCartCr
 
 export type ProductCreateInput = {
   option?: OptionCreateNestedManyWithoutProductsInput;
-  productCart?: ProductCartCreateNestedManyWithoutProductsInput;
+  productCarts?: ProductCartCreateNestedManyWithoutProductsInput;
 };

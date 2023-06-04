@@ -40,7 +40,7 @@ class ProductCreateInput {
   @Field(() => ProductCartCreateNestedManyWithoutProductsInput, {
     nullable: true,
   })
-  productCart?: ProductCartCreateNestedManyWithoutProductsInput;
+  productCarts?: ProductCartCreateNestedManyWithoutProductsInput;
 }
 
 export { ProductCreateInput as ProductCreateInput };

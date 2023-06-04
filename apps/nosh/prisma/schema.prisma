@@ -19,11 +19,11 @@ model User {
 }
 
 model Product {
-  createdAt   DateTime      @default(now())
-  id          String        @id @default(cuid())
-  option      Option[]
-  productCart ProductCart[]
-  updatedAt   DateTime      @updatedAt
+  createdAt    DateTime      @default(now())
+  id           String        @id @default(cuid())
+  option       Option[]
+  productCarts ProductCart[]
+  updatedAt    DateTime      @updatedAt
 }
 
 model ProductCart {

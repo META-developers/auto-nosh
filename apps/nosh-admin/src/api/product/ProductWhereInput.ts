@@ -5,5 +5,5 @@ import { ProductCartListRelationFilter } from "../productCart/ProductCartListRel
 export type ProductWhereInput = {
   id?: StringFilter;
   option?: OptionListRelationFilter;
-  productCart?: ProductCartListRelationFilter;
+  productCarts?: ProductCartListRelationFilter;
 };

@@ -52,7 +52,7 @@ class ProductWhereInput {
   @Field(() => ProductCartListRelationFilter, {
     nullable: true,
   })
-  productCart?: ProductCartListRelationFilter;
+  productCarts?: ProductCartListRelationFilter;
 }
 
 export { ProductWhereInput as ProductWhereInput };

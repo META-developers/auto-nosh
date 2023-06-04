@@ -3,5 +3,5 @@ import { ProductCartUpdateManyWithoutProductsInput } from "./ProductCartUpdateMa
 
 export type ProductUpdateInput = {
   option?: OptionUpdateManyWithoutProductsInput;
-  productCart?: ProductCartUpdateManyWithoutProductsInput;
+  productCarts?: ProductCartUpdateManyWithoutProductsInput;
 };

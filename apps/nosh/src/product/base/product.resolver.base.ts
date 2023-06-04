@@ -170,17 +170,17 @@ export class ProductResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ProductCart], { name: "productCart" })
+  @graphql.ResolveField(() => [ProductCart], { name: "productCarts" })
   @nestAccessControl.UseRoles({
     resource: "ProductCart",
     action: "read",
     possession: "any",
   })
-  async resolveFieldProductCart(
+  async resolveFieldProductCarts(
     @graphql.Parent() parent: Product,
     @graphql.Args() args: ProductCartFindManyArgs
   ): Promise<ProductCart[]> {
-    const results = await this.service.findProductCart(parent.id, args);
+    const results = await this.service.findProductCarts(parent.id, args);
 
     if (!results) {
       return [];
