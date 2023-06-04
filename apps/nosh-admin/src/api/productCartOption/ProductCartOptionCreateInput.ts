@@ -5,6 +5,6 @@ import { ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput } fr
 export type ProductCartOptionCreateInput = {
   balance?: number | null;
   option: OptionWhereUniqueInput;
-  productCart?: ProductCartWhereUniqueInput | null;
+  productCart: ProductCartWhereUniqueInput;
   productCartSuboptions?: ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput;
 };

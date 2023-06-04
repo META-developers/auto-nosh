@@ -75,8 +75,8 @@ model ProductCartOption {
   id                    String                 @id @default(cuid())
   option                Option                 @relation(fields: [optionId], references: [id])
   optionId              String
-  productCart           ProductCart?           @relation(fields: [productCartId], references: [id])
-  productCartId         String?
+  productCart           ProductCart            @relation(fields: [productCartId], references: [id])
+  productCartId         String
   productCartSuboptions ProductCartSuboption[]
   updatedAt             DateTime               @updatedAt
 }

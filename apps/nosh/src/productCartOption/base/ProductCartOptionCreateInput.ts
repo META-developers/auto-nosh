@@ -40,16 +40,13 @@ class ProductCartOptionCreateInput {
   option!: OptionWhereUniqueInput;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => ProductCartWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => ProductCartWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ProductCartWhereUniqueInput, {
-    nullable: true,
-  })
-  productCart?: ProductCartWhereUniqueInput | null;
+  @Field(() => ProductCartWhereUniqueInput)
+  productCart!: ProductCartWhereUniqueInput;
 
   @ApiProperty({
     required: false,
