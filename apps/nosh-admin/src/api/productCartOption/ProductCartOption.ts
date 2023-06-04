@@ -8,6 +8,6 @@ export type ProductCartOption = {
   id: string;
   option?: Option;
   productCart?: ProductCart | null;
-  productCartSuboption?: Array<ProductCartSuboption>;
+  productCartSuboptions?: Array<ProductCartSuboption>;
   updatedAt: Date;
 };

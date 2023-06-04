@@ -55,27 +55,28 @@ model Suboption {
 }
 
 model ProductCartSuboption {
-  createdAt          DateTime            @default(now())
-  id                 String              @id @default(cuid())
-  position           String?
-  price              Float?
-  productCartOptions ProductCartOption[]
-  quantity           Int
-  selected           Boolean
-  suboption          Suboption           @relation(fields: [suboptionId], references: [id])
-  suboptionId        String
-  total              String?
-  updatedAt          DateTime            @updatedAt
+  createdAt            DateTime          @default(now())
+  id                   String            @id @default(cuid())
+  position             String?
+  price                Float?
+  productCartOptions   ProductCartOption @relation(fields: [productCartOptionsId], references: [id])
+  productCartOptionsId String
+  quantity             Int
+  selected             Boolean
+  suboption            Suboption         @relation(fields: [suboptionId], references: [id])
+  suboptionId          String
+  total                String?
+  updatedAt            DateTime          @updatedAt
 }
 
 model ProductCartOption {
-  balance              Int?
-  createdAt            DateTime               @default(now())
-  id                   String                 @id @default(cuid())
-  option               Option                 @relation(fields: [optionId], references: [id])
-  optionId             String
-  productCart          ProductCart?           @relation(fields: [productCartId], references: [id])
-  productCartId        String?
-  productCartSuboption ProductCartSuboption[]
-  updatedAt            DateTime               @updatedAt
+  balance               Int?
+  createdAt             DateTime               @default(now())
+  id                    String                 @id @default(cuid())
+  option                Option                 @relation(fields: [optionId], references: [id])
+  optionId              String
+  productCart           ProductCart?           @relation(fields: [productCartId], references: [id])
+  productCartId         String?
+  productCartSuboptions ProductCartSuboption[]
+  updatedAt             DateTime               @updatedAt
 }

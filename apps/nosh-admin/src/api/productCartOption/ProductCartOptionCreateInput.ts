@@ -6,5 +6,5 @@ export type ProductCartOptionCreateInput = {
   balance?: number | null;
   option: OptionWhereUniqueInput;
   productCart?: ProductCartWhereUniqueInput | null;
-  productCartSuboption?: ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput;
+  productCartSuboptions?: ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput;
 };

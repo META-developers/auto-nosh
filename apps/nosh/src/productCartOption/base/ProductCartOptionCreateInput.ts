@@ -67,7 +67,7 @@ class ProductCartOptionCreateInput {
       nullable: true,
     }
   )
-  productCartSuboption?: ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput;
+  productCartSuboptions?: ProductCartSuboptionCreateNestedManyWithoutProductCartOptionsInput;
 }
 
 export { ProductCartOptionCreateInput as ProductCartOptionCreateInput };

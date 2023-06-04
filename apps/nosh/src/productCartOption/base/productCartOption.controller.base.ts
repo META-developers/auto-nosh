@@ -281,25 +281,32 @@ export class ProductCartOptionControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/productCartSuboption")
+  @common.Get("/:id/productCartSuboptions")
   @ApiNestedQuery(ProductCartSuboptionFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "ProductCartSuboption",
     action: "read",
     possession: "any",
   })
-  async findManyProductCartSuboption(
+  async findManyProductCartSuboptions(
     @common.Req() request: Request,
     @common.Param() params: ProductCartOptionWhereUniqueInput
   ): Promise<ProductCartSuboption[]> {
     const query = plainToClass(ProductCartSuboptionFindManyArgs, request.query);
-    const results = await this.service.findProductCartSuboption(params.id, {
+    const results = await this.service.findProductCartSuboptions(params.id, {
       ...query,
       select: {
         createdAt: true,
         id: true,
         position: true,
         price: true,
+
+        productCartOptions: {
+          select: {
+            id: true,
+          },
+        },
+
         quantity: true,
         selected: true,
 
@@ -321,18 +328,18 @@ export class ProductCartOptionControllerBase {
     return results;
   }
 
-  @common.Post("/:id/productCartSuboption")
+  @common.Post("/:id/productCartSuboptions")
   @nestAccessControl.UseRoles({
     resource: "ProductCartOption",
     action: "update",
     possession: "any",
   })
-  async connectProductCartSuboption(
+  async connectProductCartSuboptions(
     @common.Param() params: ProductCartOptionWhereUniqueInput,
     @common.Body() body: ProductCartSuboptionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productCartSuboption: {
+      productCartSuboptions: {
         connect: body,
       },
     };
@@ -343,18 +350,18 @@ export class ProductCartOptionControllerBase {
     });
   }
 
-  @common.Patch("/:id/productCartSuboption")
+  @common.Patch("/:id/productCartSuboptions")
   @nestAccessControl.UseRoles({
     resource: "ProductCartOption",
     action: "update",
     possession: "any",
   })
-  async updateProductCartSuboption(
+  async updateProductCartSuboptions(
     @common.Param() params: ProductCartOptionWhereUniqueInput,
     @common.Body() body: ProductCartSuboptionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productCartSuboption: {
+      productCartSuboptions: {
         set: body,
       },
     };
@@ -365,18 +372,18 @@ export class ProductCartOptionControllerBase {
     });
   }
 
-  @common.Delete("/:id/productCartSuboption")
+  @common.Delete("/:id/productCartSuboptions")
   @nestAccessControl.UseRoles({
     resource: "ProductCartOption",
     action: "update",
     possession: "any",
   })
-  async disconnectProductCartSuboption(
+  async disconnectProductCartSuboptions(
     @common.Param() params: ProductCartOptionWhereUniqueInput,
     @common.Body() body: ProductCartSuboptionWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      productCartSuboption: {
+      productCartSuboptions: {
         disconnect: body,
       },
     };

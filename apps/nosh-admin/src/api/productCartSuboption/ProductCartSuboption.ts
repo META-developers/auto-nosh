@@ -6,7 +6,7 @@ export type ProductCartSuboption = {
   id: string;
   position: string | null;
   price: number | null;
-  productCartOptions?: Array<ProductCartOption>;
+  productCartOptions?: ProductCartOption;
   quantity: number;
   selected: boolean;
   suboption?: Suboption;

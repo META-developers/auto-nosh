@@ -64,7 +64,7 @@ class ProductCartOptionUpdateInput {
   @Field(() => ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput, {
     nullable: true,
   })
-  productCartSuboption?: ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput;
+  productCartSuboptions?: ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput;
 }
 
 export { ProductCartOptionUpdateInput as ProductCartOptionUpdateInput };
