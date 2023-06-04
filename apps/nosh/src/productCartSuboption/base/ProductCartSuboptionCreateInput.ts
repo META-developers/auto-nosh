@@ -82,16 +82,13 @@ class ProductCartSuboptionCreateInput {
   selected!: boolean;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => SuboptionWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => SuboptionWhereUniqueInput)
-  @IsOptional()
-  @Field(() => SuboptionWhereUniqueInput, {
-    nullable: true,
-  })
-  suboption?: SuboptionWhereUniqueInput | null;
+  @Field(() => SuboptionWhereUniqueInput)
+  suboption!: SuboptionWhereUniqueInput;
 
   @ApiProperty({
     required: false,

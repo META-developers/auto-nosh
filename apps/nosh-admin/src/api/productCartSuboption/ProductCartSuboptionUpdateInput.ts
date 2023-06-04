@@ -7,6 +7,6 @@ export type ProductCartSuboptionUpdateInput = {
   productCartOptions?: ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput;
   quantity?: number;
   selected?: boolean;
-  suboption?: SuboptionWhereUniqueInput | null;
+  suboption?: SuboptionWhereUniqueInput;
   total?: string | null;
 };

@@ -90,13 +90,12 @@ class ProductCartSuboption {
   selected!: boolean;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => Suboption,
   })
   @ValidateNested()
   @Type(() => Suboption)
-  @IsOptional()
-  suboption?: Suboption | null;
+  suboption?: Suboption;
 
   @ApiProperty({
     required: false,

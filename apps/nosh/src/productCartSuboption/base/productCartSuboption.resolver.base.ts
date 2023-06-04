@@ -101,11 +101,9 @@ export class ProductCartSuboptionResolverBase {
       data: {
         ...args.data,
 
-        suboption: args.data.suboption
-          ? {
-              connect: args.data.suboption,
-            }
-          : undefined,
+        suboption: {
+          connect: args.data.suboption,
+        },
       },
     });
   }
@@ -126,11 +124,9 @@ export class ProductCartSuboptionResolverBase {
         data: {
           ...args.data,
 
-          suboption: args.data.suboption
-            ? {
-                connect: args.data.suboption,
-              }
-            : undefined,
+          suboption: {
+            connect: args.data.suboption,
+          },
         },
       });
     } catch (error) {

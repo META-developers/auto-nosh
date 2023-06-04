@@ -19,16 +19,13 @@ import { ProductCartOptionCreateNestedManyWithoutProductCartsInput } from "./Pro
 @InputType()
 class ProductCartCreateInput {
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => ProductWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => ProductWhereUniqueInput)
-  @IsOptional()
-  @Field(() => ProductWhereUniqueInput, {
-    nullable: true,
-  })
-  product?: ProductWhereUniqueInput | null;
+  @Field(() => ProductWhereUniqueInput)
+  product!: ProductWhereUniqueInput;
 
   @ApiProperty({
     required: false,

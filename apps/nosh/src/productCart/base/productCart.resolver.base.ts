@@ -101,11 +101,9 @@ export class ProductCartResolverBase {
       data: {
         ...args.data,
 
-        product: args.data.product
-          ? {
-              connect: args.data.product,
-            }
-          : undefined,
+        product: {
+          connect: args.data.product,
+        },
       },
     });
   }
@@ -126,11 +124,9 @@ export class ProductCartResolverBase {
         data: {
           ...args.data,
 
-          product: args.data.product
-            ? {
-                connect: args.data.product,
-              }
-            : undefined,
+          product: {
+            connect: args.data.product,
+          },
         },
       });
     } catch (error) {

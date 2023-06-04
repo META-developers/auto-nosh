@@ -6,7 +6,7 @@ export type ProductCartOption = {
   balance: number | null;
   createdAt: Date;
   id: string;
-  option?: Option | null;
+  option?: Option;
   productCart?: ProductCart | null;
   productCartSuboption?: Array<ProductCartSuboption>;
   updatedAt: Date;

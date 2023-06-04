@@ -56,11 +56,9 @@ export class ProductCartOptionControllerBase {
       data: {
         ...data,
 
-        option: data.option
-          ? {
-              connect: data.option,
-            }
-          : undefined,
+        option: {
+          connect: data.option,
+        },
 
         productCart: data.productCart
           ? {
@@ -195,11 +193,9 @@ export class ProductCartOptionControllerBase {
         data: {
           ...data,
 
-          option: data.option
-            ? {
-                connect: data.option,
-              }
-            : undefined,
+          option: {
+            connect: data.option,
+          },
 
           productCart: data.productCart
             ? {

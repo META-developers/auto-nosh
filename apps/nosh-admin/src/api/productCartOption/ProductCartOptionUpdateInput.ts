@@ -4,7 +4,7 @@ import { ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput } from "./
 
 export type ProductCartOptionUpdateInput = {
   balance?: number | null;
-  option?: OptionWhereUniqueInput | null;
+  option?: OptionWhereUniqueInput;
   productCart?: ProductCartWhereUniqueInput | null;
   productCartSuboption?: ProductCartSuboptionUpdateManyWithoutProductCartOptionsInput;
 };

@@ -28,7 +28,7 @@ class ProductCartUpdateInput {
   @Field(() => ProductWhereUniqueInput, {
     nullable: true,
   })
-  product?: ProductWhereUniqueInput | null;
+  product?: ProductWhereUniqueInput;
 
   @ApiProperty({
     required: false,

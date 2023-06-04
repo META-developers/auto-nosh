@@ -9,7 +9,7 @@ export type ProductCartSuboption = {
   productCartOptions?: Array<ProductCartOption>;
   quantity: number;
   selected: boolean;
-  suboption?: Suboption | null;
+  suboption?: Suboption;
   total: string | null;
   updatedAt: Date;
 };

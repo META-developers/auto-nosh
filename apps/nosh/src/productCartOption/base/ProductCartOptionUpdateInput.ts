@@ -40,7 +40,7 @@ class ProductCartOptionUpdateInput {
   @Field(() => OptionWhereUniqueInput, {
     nullable: true,
   })
-  option?: OptionWhereUniqueInput | null;
+  option?: OptionWhereUniqueInput;
 
   @ApiProperty({
     required: false,
