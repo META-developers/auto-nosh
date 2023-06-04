@@ -1,10 +1,10 @@
-import { ProductCartOptionCreateNestedManyWithoutProductCartSuboptionsInput } from "./ProductCartOptionCreateNestedManyWithoutProductCartSuboptionsInput";
+import { ProductCartOptionWhereUniqueInput } from "../productCartOption/ProductCartOptionWhereUniqueInput";
 import { SuboptionWhereUniqueInput } from "../suboption/SuboptionWhereUniqueInput";
 
 export type ProductCartSuboptionCreateInput = {
   position?: string | null;
   price?: number | null;
-  productCartOptions?: ProductCartOptionCreateNestedManyWithoutProductCartSuboptionsInput;
+  productCartOptions: ProductCartOptionWhereUniqueInput;
   quantity: number;
   selected: boolean;
   suboption: SuboptionWhereUniqueInput;

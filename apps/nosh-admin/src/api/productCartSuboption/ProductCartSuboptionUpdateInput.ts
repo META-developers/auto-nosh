@@ -1,10 +1,10 @@
-import { ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput } from "./ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput";
+import { ProductCartOptionWhereUniqueInput } from "../productCartOption/ProductCartOptionWhereUniqueInput";
 import { SuboptionWhereUniqueInput } from "../suboption/SuboptionWhereUniqueInput";
 
 export type ProductCartSuboptionUpdateInput = {
   position?: string | null;
   price?: number | null;
-  productCartOptions?: ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput;
+  productCartOptions?: ProductCartOptionWhereUniqueInput;
   quantity?: number;
   selected?: boolean;
   suboption?: SuboptionWhereUniqueInput;

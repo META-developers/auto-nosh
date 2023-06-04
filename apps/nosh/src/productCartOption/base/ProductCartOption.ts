@@ -76,7 +76,7 @@ class ProductCartOption {
   @ValidateNested()
   @Type(() => ProductCartSuboption)
   @IsOptional()
-  productCartSuboption?: Array<ProductCartSuboption>;
+  productCartSuboptions?: Array<ProductCartSuboption>;
 
   @ApiProperty({
     required: true,

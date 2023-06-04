@@ -25,7 +25,6 @@ import { DeleteProductCartSuboptionArgs } from "./DeleteProductCartSuboptionArgs
 import { ProductCartSuboptionFindManyArgs } from "./ProductCartSuboptionFindManyArgs";
 import { ProductCartSuboptionFindUniqueArgs } from "./ProductCartSuboptionFindUniqueArgs";
 import { ProductCartSuboption } from "./ProductCartSuboption";
-import { ProductCartOptionFindManyArgs } from "../../productCartOption/base/ProductCartOptionFindManyArgs";
 import { ProductCartOption } from "../../productCartOption/base/ProductCartOption";
 import { Suboption } from "../../suboption/base/Suboption";
 import { ProductCartSuboptionService } from "../productCartSuboption.service";
@@ -101,6 +100,10 @@ export class ProductCartSuboptionResolverBase {
       data: {
         ...args.data,
 
+        productCartOptions: {
+          connect: args.data.productCartOptions,
+        },
+
         suboption: {
           connect: args.data.suboption,
         },
@@ -123,6 +126,10 @@ export class ProductCartSuboptionResolverBase {
         ...args,
         data: {
           ...args.data,
+
+          productCartOptions: {
+            connect: args.data.productCartOptions,
+          },
 
           suboption: {
             connect: args.data.suboption,
@@ -161,7 +168,8 @@ export class ProductCartSuboptionResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ProductCartOption], {
+  @graphql.ResolveField(() => ProductCartOption, {
+    nullable: true,
     name: "productCartOptions",
   })
   @nestAccessControl.UseRoles({
@@ -170,16 +178,14 @@ export class ProductCartSuboptionResolverBase {
     possession: "any",
   })
   async resolveFieldProductCartOptions(
-    @graphql.Parent() parent: ProductCartSuboption,
-    @graphql.Args() args: ProductCartOptionFindManyArgs
-  ): Promise<ProductCartOption[]> {
-    const results = await this.service.findProductCartOptions(parent.id, args);
+    @graphql.Parent() parent: ProductCartSuboption
+  ): Promise<ProductCartOption | null> {
+    const result = await this.service.getProductCartOptions(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)

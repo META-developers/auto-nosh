@@ -33,7 +33,7 @@ export const ProductCartOptionCreate = (
           <SelectInput optionText={ProductCartTitle} />
         </ReferenceInput>
         <ReferenceArrayInput
-          source="productCartSuboption"
+          source="productCartSuboptions"
           reference="ProductCartSuboption"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

@@ -6,11 +6,9 @@ import {
   CreateProps,
   TextInput,
   NumberInput,
-  ReferenceArrayInput,
-  SelectArrayInput,
-  BooleanInput,
   ReferenceInput,
   SelectInput,
+  BooleanInput,
 } from "react-admin";
 
 import { ProductCartOptionTitle } from "../productCartOption/ProductCartOptionTitle";
@@ -24,14 +22,13 @@ export const ProductCartSuboptionCreate = (
       <SimpleForm>
         <TextInput label="Position" source="position" />
         <NumberInput label="Price" source="price" />
-        <ReferenceArrayInput
-          source="productCartOptions"
+        <ReferenceInput
+          source="productCartOptions.id"
           reference="ProductCartOption"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
+          label="Product Cart Options"
         >
-          <SelectArrayInput optionText={ProductCartOptionTitle} />
-        </ReferenceArrayInput>
+          <SelectInput optionText={ProductCartOptionTitle} />
+        </ReferenceInput>
         <NumberInput step={1} label="Quantity" source="quantity" />
         <BooleanInput label="Selected" source="selected" />
         <ReferenceInput

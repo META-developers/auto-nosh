@@ -16,7 +16,7 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
-import { ProductCartOptionListRelationFilter } from "../../productCartOption/base/ProductCartOptionListRelationFilter";
+import { ProductCartOptionWhereUniqueInput } from "../../productCartOption/base/ProductCartOptionWhereUniqueInput";
 import { IntFilter } from "../../util/IntFilter";
 import { BooleanFilter } from "../../util/BooleanFilter";
 import { SuboptionWhereUniqueInput } from "../../suboption/base/SuboptionWhereUniqueInput";
@@ -58,15 +58,15 @@ class ProductCartSuboptionWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductCartOptionListRelationFilter,
+    type: () => ProductCartOptionWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ProductCartOptionListRelationFilter)
+  @Type(() => ProductCartOptionWhereUniqueInput)
   @IsOptional()
-  @Field(() => ProductCartOptionListRelationFilter, {
+  @Field(() => ProductCartOptionWhereUniqueInput, {
     nullable: true,
   })
-  productCartOptions?: ProductCartOptionListRelationFilter;
+  productCartOptions?: ProductCartOptionWhereUniqueInput;
 
   @ApiProperty({
     required: false,

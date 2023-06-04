@@ -9,5 +9,5 @@ export type ProductCartOptionWhereInput = {
   id?: StringFilter;
   option?: OptionWhereUniqueInput;
   productCart?: ProductCartWhereUniqueInput;
-  productCartSuboption?: ProductCartSuboptionListRelationFilter;
+  productCartSuboptions?: ProductCartSuboptionListRelationFilter;
 };

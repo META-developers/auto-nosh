@@ -65,13 +65,12 @@ class ProductCartSuboption {
   price!: number | null;
 
   @ApiProperty({
-    required: false,
-    type: () => [ProductCartOption],
+    required: true,
+    type: () => ProductCartOption,
   })
   @ValidateNested()
   @Type(() => ProductCartOption)
-  @IsOptional()
-  productCartOptions?: Array<ProductCartOption>;
+  productCartOptions?: ProductCartOption;
 
   @ApiProperty({
     required: true,

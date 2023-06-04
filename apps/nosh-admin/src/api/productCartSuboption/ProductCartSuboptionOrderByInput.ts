@@ -5,6 +5,7 @@ export type ProductCartSuboptionOrderByInput = {
   id?: SortOrder;
   position?: SortOrder;
   price?: SortOrder;
+  productCartOptionsId?: SortOrder;
   quantity?: SortOrder;
   selected?: SortOrder;
   suboptionId?: SortOrder;

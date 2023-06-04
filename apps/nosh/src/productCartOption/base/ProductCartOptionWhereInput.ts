@@ -77,7 +77,7 @@ class ProductCartOptionWhereInput {
   @Field(() => ProductCartSuboptionListRelationFilter, {
     nullable: true,
   })
-  productCartSuboption?: ProductCartSuboptionListRelationFilter;
+  productCartSuboptions?: ProductCartSuboptionListRelationFilter;
 }
 
 export { ProductCartOptionWhereInput as ProductCartOptionWhereInput };
