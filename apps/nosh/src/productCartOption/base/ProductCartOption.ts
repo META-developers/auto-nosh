@@ -20,6 +20,8 @@ import {
 } from "class-validator";
 import { Type } from "class-transformer";
 import { Option } from "../../option/base/Option";
+import { ProductCart } from "../../productCart/base/ProductCart";
+import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
 
 @ObjectType()
 class ProductCartOption {
@@ -58,6 +60,24 @@ class ProductCartOption {
   @Type(() => Option)
   @IsOptional()
   option?: Option | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ProductCart,
+  })
+  @ValidateNested()
+  @Type(() => ProductCart)
+  @IsOptional()
+  productCart?: ProductCart | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => [ProductCartSuboption],
+  })
+  @ValidateNested()
+  @Type(() => ProductCartSuboption)
+  @IsOptional()
+  productCartSuboption?: Array<ProductCartSuboption>;
 
   @ApiProperty({
     required: true,

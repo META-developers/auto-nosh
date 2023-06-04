@@ -27,6 +27,9 @@ import { ProductCartOptionWhereUniqueInput } from "./ProductCartOptionWhereUniqu
 import { ProductCartOptionFindManyArgs } from "./ProductCartOptionFindManyArgs";
 import { ProductCartOptionUpdateInput } from "./ProductCartOptionUpdateInput";
 import { ProductCartOption } from "./ProductCartOption";
+import { ProductCartSuboptionFindManyArgs } from "../../productCartSuboption/base/ProductCartSuboptionFindManyArgs";
+import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
+import { ProductCartSuboptionWhereUniqueInput } from "../../productCartSuboption/base/ProductCartSuboptionWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -58,6 +61,12 @@ export class ProductCartOptionControllerBase {
               connect: data.option,
             }
           : undefined,
+
+        productCart: data.productCart
+          ? {
+              connect: data.productCart,
+            }
+          : undefined,
       },
       select: {
         balance: true,
@@ -65,6 +74,12 @@ export class ProductCartOptionControllerBase {
         id: true,
 
         option: {
+          select: {
+            id: true,
+          },
+        },
+
+        productCart: {
           select: {
             id: true,
           },
@@ -102,6 +117,12 @@ export class ProductCartOptionControllerBase {
           },
         },
 
+        productCart: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -130,6 +151,12 @@ export class ProductCartOptionControllerBase {
         id: true,
 
         option: {
+          select: {
+            id: true,
+          },
+        },
+
+        productCart: {
           select: {
             id: true,
           },
@@ -173,6 +200,12 @@ export class ProductCartOptionControllerBase {
                 connect: data.option,
               }
             : undefined,
+
+          productCart: data.productCart
+            ? {
+                connect: data.productCart,
+              }
+            : undefined,
         },
         select: {
           balance: true,
@@ -180,6 +213,12 @@ export class ProductCartOptionControllerBase {
           id: true,
 
           option: {
+            select: {
+              id: true,
+            },
+          },
+
+          productCart: {
             select: {
               id: true,
             },
@@ -226,6 +265,12 @@ export class ProductCartOptionControllerBase {
             },
           },
 
+          productCart: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -237,5 +282,112 @@ export class ProductCartOptionControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/productCartSuboption")
+  @ApiNestedQuery(ProductCartSuboptionFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "ProductCartSuboption",
+    action: "read",
+    possession: "any",
+  })
+  async findManyProductCartSuboption(
+    @common.Req() request: Request,
+    @common.Param() params: ProductCartOptionWhereUniqueInput
+  ): Promise<ProductCartSuboption[]> {
+    const query = plainToClass(ProductCartSuboptionFindManyArgs, request.query);
+    const results = await this.service.findProductCartSuboption(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        id: true,
+        position: true,
+        price: true,
+        quantity: true,
+        selected: true,
+
+        suboption: {
+          select: {
+            id: true,
+          },
+        },
+
+        total: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/productCartSuboption")
+  @nestAccessControl.UseRoles({
+    resource: "ProductCartOption",
+    action: "update",
+    possession: "any",
+  })
+  async connectProductCartSuboption(
+    @common.Param() params: ProductCartOptionWhereUniqueInput,
+    @common.Body() body: ProductCartSuboptionWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      productCartSuboption: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/productCartSuboption")
+  @nestAccessControl.UseRoles({
+    resource: "ProductCartOption",
+    action: "update",
+    possession: "any",
+  })
+  async updateProductCartSuboption(
+    @common.Param() params: ProductCartOptionWhereUniqueInput,
+    @common.Body() body: ProductCartSuboptionWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      productCartSuboption: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/productCartSuboption")
+  @nestAccessControl.UseRoles({
+    resource: "ProductCartOption",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectProductCartSuboption(
+    @common.Param() params: ProductCartOptionWhereUniqueInput,
+    @common.Body() body: ProductCartSuboptionWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      productCartSuboption: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { ProductCartSuboptionCreateNestedManyWithoutProductCartsInput } from "./ProductCartSuboptionCreateNestedManyWithoutProductCartsInput";
+import { ProductCartOptionCreateNestedManyWithoutProductCartsInput } from "./ProductCartOptionCreateNestedManyWithoutProductCartsInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
@@ -20,15 +20,15 @@ import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueIn
 class ProductCartCreateInput {
   @ApiProperty({
     required: false,
-    type: () => ProductCartSuboptionCreateNestedManyWithoutProductCartsInput,
+    type: () => ProductCartOptionCreateNestedManyWithoutProductCartsInput,
   })
   @ValidateNested()
-  @Type(() => ProductCartSuboptionCreateNestedManyWithoutProductCartsInput)
+  @Type(() => ProductCartOptionCreateNestedManyWithoutProductCartsInput)
   @IsOptional()
-  @Field(() => ProductCartSuboptionCreateNestedManyWithoutProductCartsInput, {
+  @Field(() => ProductCartOptionCreateNestedManyWithoutProductCartsInput, {
     nullable: true,
   })
-  productCartSuboptions?: ProductCartSuboptionCreateNestedManyWithoutProductCartsInput;
+  productCartOptions?: ProductCartOptionCreateNestedManyWithoutProductCartsInput;
 
   @ApiProperty({
     required: false,

@@ -264,6 +264,12 @@ export class OptionControllerBase {
           },
         },
 
+        productCart: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });

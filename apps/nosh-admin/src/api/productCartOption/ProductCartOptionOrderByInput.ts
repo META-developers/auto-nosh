@@ -5,5 +5,6 @@ export type ProductCartOptionOrderByInput = {
   createdAt?: SortOrder;
   id?: SortOrder;
   optionId?: SortOrder;
+  productCartId?: SortOrder;
   updatedAt?: SortOrder;
 };

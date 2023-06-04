@@ -19,7 +19,7 @@ import {
   IsInt,
   IsBoolean,
 } from "class-validator";
-import { ProductCartWhereUniqueInput } from "../../productCart/base/ProductCartWhereUniqueInput";
+import { ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput } from "./ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput";
 import { Type } from "class-transformer";
 import { SuboptionWhereUniqueInput } from "../../suboption/base/SuboptionWhereUniqueInput";
 
@@ -49,15 +49,15 @@ class ProductCartSuboptionUpdateInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductCartWhereUniqueInput,
+    type: () => ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput,
   })
   @ValidateNested()
-  @Type(() => ProductCartWhereUniqueInput)
+  @Type(() => ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput)
   @IsOptional()
-  @Field(() => ProductCartWhereUniqueInput, {
+  @Field(() => ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput, {
     nullable: true,
   })
-  productCart?: ProductCartWhereUniqueInput | null;
+  productCartOptions?: ProductCartOptionUpdateManyWithoutProductCartSuboptionsInput;
 
   @ApiProperty({
     required: false,

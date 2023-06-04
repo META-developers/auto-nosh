@@ -1,10 +1,10 @@
-import { ProductCartSuboption } from "../productCartSuboption/ProductCartSuboption";
+import { ProductCartOption } from "../productCartOption/ProductCartOption";
 import { Product } from "../product/Product";
 
 export type ProductCart = {
   createdAt: Date;
   id: string;
-  productCartSuboptions?: Array<ProductCartSuboption>;
+  productCartOptions?: Array<ProductCartOption>;
   products?: Product | null;
   updatedAt: Date;
 };

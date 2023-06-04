@@ -21,7 +21,7 @@ import {
   IsBoolean,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { ProductCart } from "../../productCart/base/ProductCart";
+import { ProductCartOption } from "../../productCartOption/base/ProductCartOption";
 import { Suboption } from "../../suboption/base/Suboption";
 
 @ObjectType()
@@ -66,12 +66,12 @@ class ProductCartSuboption {
 
   @ApiProperty({
     required: false,
-    type: () => ProductCart,
+    type: () => [ProductCartOption],
   })
   @ValidateNested()
-  @Type(() => ProductCart)
+  @Type(() => ProductCartOption)
   @IsOptional()
-  productCart?: ProductCart | null;
+  productCartOptions?: Array<ProductCartOption>;
 
   @ApiProperty({
     required: true,

@@ -25,7 +25,10 @@ import { DeleteProductCartOptionArgs } from "./DeleteProductCartOptionArgs";
 import { ProductCartOptionFindManyArgs } from "./ProductCartOptionFindManyArgs";
 import { ProductCartOptionFindUniqueArgs } from "./ProductCartOptionFindUniqueArgs";
 import { ProductCartOption } from "./ProductCartOption";
+import { ProductCartSuboptionFindManyArgs } from "../../productCartSuboption/base/ProductCartSuboptionFindManyArgs";
+import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
 import { Option } from "../../option/base/Option";
+import { ProductCart } from "../../productCart/base/ProductCart";
 import { ProductCartOptionService } from "../productCartOption.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => ProductCartOption)
@@ -104,6 +107,12 @@ export class ProductCartOptionResolverBase {
               connect: args.data.option,
             }
           : undefined,
+
+        productCart: args.data.productCart
+          ? {
+              connect: args.data.productCart,
+            }
+          : undefined,
       },
     });
   }
@@ -127,6 +136,12 @@ export class ProductCartOptionResolverBase {
           option: args.data.option
             ? {
                 connect: args.data.option,
+              }
+            : undefined,
+
+          productCart: args.data.productCart
+            ? {
+                connect: args.data.productCart,
               }
             : undefined,
         },
@@ -163,6 +178,31 @@ export class ProductCartOptionResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [ProductCartSuboption], {
+    name: "productCartSuboption",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "ProductCartSuboption",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldProductCartSuboption(
+    @graphql.Parent() parent: ProductCartOption,
+    @graphql.Args() args: ProductCartSuboptionFindManyArgs
+  ): Promise<ProductCartSuboption[]> {
+    const results = await this.service.findProductCartSuboption(
+      parent.id,
+      args
+    );
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => Option, {
     nullable: true,
     name: "option",
@@ -176,6 +216,27 @@ export class ProductCartOptionResolverBase {
     @graphql.Parent() parent: ProductCartOption
   ): Promise<Option | null> {
     const result = await this.service.getOption(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => ProductCart, {
+    nullable: true,
+    name: "productCart",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "ProductCart",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldProductCart(
+    @graphql.Parent() parent: ProductCartOption
+  ): Promise<ProductCart | null> {
+    const result = await this.service.getProductCart(parent.id);
 
     if (!result) {
       return null;

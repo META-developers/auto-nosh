@@ -13,7 +13,7 @@ import { PrismaService } from "../../prisma/prisma.service";
 import {
   Prisma,
   ProductCart,
-  ProductCartSuboption,
+  ProductCartOption,
   Product,
 } from "@prisma/client";
 
@@ -52,15 +52,15 @@ export class ProductCartServiceBase {
     return this.prisma.productCart.delete(args);
   }
 
-  async findProductCartSuboptions(
+  async findProductCartOptions(
     parentId: string,
-    args: Prisma.ProductCartSuboptionFindManyArgs
-  ): Promise<ProductCartSuboption[]> {
+    args: Prisma.ProductCartOptionFindManyArgs
+  ): Promise<ProductCartOption[]> {
     return this.prisma.productCart
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .productCartSuboptions(args);
+      .productCartOptions(args);
   }
 
   async getProducts(parentId: string): Promise<Product | null> {

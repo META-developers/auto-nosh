@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { ProductCartSuboptionListRelationFilter } from "../../productCartSuboption/base/ProductCartSuboptionListRelationFilter";
+import { ProductCartOptionListRelationFilter } from "../../productCartOption/base/ProductCartOptionListRelationFilter";
 import { ProductWhereUniqueInput } from "../../product/base/ProductWhereUniqueInput";
 
 @InputType()
@@ -32,15 +32,15 @@ class ProductCartWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => ProductCartSuboptionListRelationFilter,
+    type: () => ProductCartOptionListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => ProductCartSuboptionListRelationFilter)
+  @Type(() => ProductCartOptionListRelationFilter)
   @IsOptional()
-  @Field(() => ProductCartSuboptionListRelationFilter, {
+  @Field(() => ProductCartOptionListRelationFilter, {
     nullable: true,
   })
-  productCartSuboptions?: ProductCartSuboptionListRelationFilter;
+  productCartOptions?: ProductCartOptionListRelationFilter;
 
   @ApiProperty({
     required: false,

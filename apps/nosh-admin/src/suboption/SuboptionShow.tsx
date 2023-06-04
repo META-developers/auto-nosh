@@ -12,7 +12,6 @@ import {
   BooleanField,
 } from "react-admin";
 
-import { PRODUCTCART_TITLE_FIELD } from "../productCart/ProductCartTitle";
 import { SUBOPTION_TITLE_FIELD } from "./SuboptionTitle";
 import { OPTION_TITLE_FIELD } from "../option/OptionTitle";
 
@@ -36,13 +35,6 @@ export const SuboptionShow = (props: ShowProps): React.ReactElement => {
             <TextField label="ID" source="id" />
             <TextField label="Position" source="position" />
             <TextField label="Price" source="price" />
-            <ReferenceField
-              label="ProductCart"
-              source="productcart.id"
-              reference="ProductCart"
-            >
-              <TextField source={PRODUCTCART_TITLE_FIELD} />
-            </ReferenceField>
             <TextField label="Quantity" source="quantity" />
             <BooleanField label="Selected" source="selected" />
             <ReferenceField

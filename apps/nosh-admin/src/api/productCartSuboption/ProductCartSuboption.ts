@@ -1,4 +1,4 @@
-import { ProductCart } from "../productCart/ProductCart";
+import { ProductCartOption } from "../productCartOption/ProductCartOption";
 import { Suboption } from "../suboption/Suboption";
 
 export type ProductCartSuboption = {
@@ -6,7 +6,7 @@ export type ProductCartSuboption = {
   id: string;
   position: string | null;
   price: number | null;
-  productCart?: ProductCart | null;
+  productCartOptions?: Array<ProductCartOption>;
   quantity: number;
   selected: boolean;
   suboption?: Suboption | null;

@@ -13,7 +13,7 @@ import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { IsDate, IsString, ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
+import { ProductCartOption } from "../../productCartOption/base/ProductCartOption";
 import { Product } from "../../product/base/Product";
 
 @ObjectType()
@@ -36,12 +36,12 @@ class ProductCart {
 
   @ApiProperty({
     required: false,
-    type: () => [ProductCartSuboption],
+    type: () => [ProductCartOption],
   })
   @ValidateNested()
-  @Type(() => ProductCartSuboption)
+  @Type(() => ProductCartOption)
   @IsOptional()
-  productCartSuboptions?: Array<ProductCartSuboption>;
+  productCartOptions?: Array<ProductCartOption>;
 
   @ApiProperty({
     required: false,

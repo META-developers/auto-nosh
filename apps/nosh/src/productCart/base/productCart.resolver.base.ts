@@ -25,8 +25,8 @@ import { DeleteProductCartArgs } from "./DeleteProductCartArgs";
 import { ProductCartFindManyArgs } from "./ProductCartFindManyArgs";
 import { ProductCartFindUniqueArgs } from "./ProductCartFindUniqueArgs";
 import { ProductCart } from "./ProductCart";
-import { ProductCartSuboptionFindManyArgs } from "../../productCartSuboption/base/ProductCartSuboptionFindManyArgs";
-import { ProductCartSuboption } from "../../productCartSuboption/base/ProductCartSuboption";
+import { ProductCartOptionFindManyArgs } from "../../productCartOption/base/ProductCartOptionFindManyArgs";
+import { ProductCartOption } from "../../productCartOption/base/ProductCartOption";
 import { Product } from "../../product/base/Product";
 import { ProductCartService } from "../productCart.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -165,22 +165,19 @@ export class ProductCartResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [ProductCartSuboption], {
-    name: "productCartSuboptions",
+  @graphql.ResolveField(() => [ProductCartOption], {
+    name: "productCartOptions",
   })
   @nestAccessControl.UseRoles({
-    resource: "ProductCartSuboption",
+    resource: "ProductCartOption",
     action: "read",
     possession: "any",
   })
-  async resolveFieldProductCartSuboptions(
+  async resolveFieldProductCartOptions(
     @graphql.Parent() parent: ProductCart,
-    @graphql.Args() args: ProductCartSuboptionFindManyArgs
-  ): Promise<ProductCartSuboption[]> {
-    const results = await this.service.findProductCartSuboptions(
-      parent.id,
-      args
-    );
+    @graphql.Args() args: ProductCartOptionFindManyArgs
+  ): Promise<ProductCartOption[]> {
+    const results = await this.service.findProductCartOptions(parent.id, args);
 
     if (!results) {
       return [];
