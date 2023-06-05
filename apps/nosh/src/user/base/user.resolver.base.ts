@@ -25,6 +25,8 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
+import { DriverFindManyArgs } from "../../driver/base/DriverFindManyArgs";
+import { Driver } from "../../driver/base/Driver";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -133,5 +135,25 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => [Driver], { name: "drivers" })
+  @nestAccessControl.UseRoles({
+    resource: "Driver",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldDrivers(
+    @graphql.Parent() parent: User,
+    @graphql.Args() args: DriverFindManyArgs
+  ): Promise<Driver[]> {
+    const results = await this.service.findDrivers(parent.id, args);
+
+    if (!results) {
+      return [];
+    }
+
+    return results;
   }
 }

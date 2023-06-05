@@ -31,181 +31,91 @@
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Driver",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Driver",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Driver",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Driver",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Product",
+    "resource": "Driver",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ProductCart",
+    "resource": "Location",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ProductCart",
+    "resource": "Location",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ProductCart",
+    "resource": "Location",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ProductCart",
+    "resource": "Location",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "ProductCart",
+    "resource": "Location",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Option",
+    "resource": "Order",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Option",
+    "resource": "Order",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Option",
+    "resource": "Order",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Option",
+    "resource": "Order",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Option",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Suboption",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Suboption",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Suboption",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Suboption",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Suboption",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartSuboption",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartSuboption",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartSuboption",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartSuboption",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartSuboption",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartOption",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartOption",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartOption",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartOption",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "ProductCartOption",
+    "resource": "Order",
     "action": "read:any",
     "attributes": "*"
   }
