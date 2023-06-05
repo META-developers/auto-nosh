@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DriverListRelationFilter } from "../../driver/base/DriverListRelationFilter";
+import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { StringFilter } from "../../util/StringFilter";
@@ -21,15 +21,15 @@ import { FloatFilter } from "../../util/FloatFilter";
 class LocationWhereInput {
   @ApiProperty({
     required: false,
-    type: () => DriverListRelationFilter,
+    type: () => DriverWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => DriverListRelationFilter)
+  @Type(() => DriverWhereUniqueInput)
   @IsOptional()
-  @Field(() => DriverListRelationFilter, {
+  @Field(() => DriverWhereUniqueInput, {
     nullable: true,
   })
-  drivers?: DriverListRelationFilter;
+  driver?: DriverWhereUniqueInput;
 
   @ApiProperty({
     required: false,

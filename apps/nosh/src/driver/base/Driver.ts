@@ -97,7 +97,7 @@ class Driver {
   })
   @ValidateNested()
   @Type(() => User)
-  user?: User;
+  user?: User | null;
 }
 
 export { Driver as Driver };

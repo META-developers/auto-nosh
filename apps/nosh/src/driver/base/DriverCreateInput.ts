@@ -74,7 +74,7 @@ class DriverCreateInput {
   @ValidateNested()
   @Type(() => UserWhereUniqueInput)
   @Field(() => UserWhereUniqueInput)
-  user!: UserWhereUniqueInput;
+  user!: UserWhereUniqueInput | null;
 }
 
 export { DriverCreateInput as DriverCreateInput };

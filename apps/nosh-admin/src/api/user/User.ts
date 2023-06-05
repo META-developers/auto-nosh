@@ -3,7 +3,7 @@ import { JsonValue } from "type-fest";
 
 export type User = {
   createdAt: Date;
-  drivers?: Array<Driver>;
+  driver?: Driver | null;
   firstName: string | null;
   id: string;
   lastName: string | null;

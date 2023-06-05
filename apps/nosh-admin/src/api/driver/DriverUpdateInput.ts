@@ -8,5 +8,5 @@ export type DriverUpdateInput = {
   enabled?: boolean;
   location?: LocationWhereUniqueInput | null;
   orders?: OrderUpdateManyWithoutDriversInput;
-  user?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput | null;
 };

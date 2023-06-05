@@ -86,7 +86,7 @@ class DriverUpdateInput {
   @Field(() => UserWhereUniqueInput, {
     nullable: true,
   })
-  user?: UserWhereUniqueInput;
+  user?: UserWhereUniqueInput | null;
 }
 
 export { DriverUpdateInput as DriverUpdateInput };

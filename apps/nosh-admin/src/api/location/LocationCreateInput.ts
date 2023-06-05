@@ -1,7 +1,7 @@
-import { DriverCreateNestedManyWithoutLocationsInput } from "./DriverCreateNestedManyWithoutLocationsInput";
+import { DriverWhereUniqueInput } from "../driver/DriverWhereUniqueInput";
 
 export type LocationCreateInput = {
-  drivers?: DriverCreateNestedManyWithoutLocationsInput;
+  driver?: DriverWhereUniqueInput | null;
   lat: number;
   lng: number;
 };

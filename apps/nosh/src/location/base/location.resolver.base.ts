@@ -25,7 +25,6 @@ import { DeleteLocationArgs } from "./DeleteLocationArgs";
 import { LocationFindManyArgs } from "./LocationFindManyArgs";
 import { LocationFindUniqueArgs } from "./LocationFindUniqueArgs";
 import { Location } from "./Location";
-import { DriverFindManyArgs } from "../../driver/base/DriverFindManyArgs";
 import { Driver } from "../../driver/base/Driver";
 import { LocationService } from "../location.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
@@ -97,7 +96,15 @@ export class LocationResolverBase {
   ): Promise<Location> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        driver: args.data.driver
+          ? {
+              connect: args.data.driver,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -114,7 +121,15 @@ export class LocationResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          driver: args.data.driver
+            ? {
+                connect: args.data.driver,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -148,22 +163,23 @@ export class LocationResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [Driver], { name: "drivers" })
+  @graphql.ResolveField(() => Driver, {
+    nullable: true,
+    name: "driver",
+  })
   @nestAccessControl.UseRoles({
     resource: "Driver",
     action: "read",
     possession: "any",
   })
-  async resolveFieldDrivers(
-    @graphql.Parent() parent: Location,
-    @graphql.Args() args: DriverFindManyArgs
-  ): Promise<Driver[]> {
-    const results = await this.service.findDrivers(parent.id, args);
+  async resolveFieldDriver(
+    @graphql.Parent() parent: Location
+  ): Promise<Driver | null> {
+    const result = await this.service.getDriver(parent.id);
 
-    if (!results) {
-      return [];
+    if (!result) {
+      return null;
     }
-
-    return results;
+    return result;
   }
 }

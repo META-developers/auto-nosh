@@ -27,9 +27,6 @@ import { LocationWhereUniqueInput } from "./LocationWhereUniqueInput";
 import { LocationFindManyArgs } from "./LocationFindManyArgs";
 import { LocationUpdateInput } from "./LocationUpdateInput";
 import { Location } from "./Location";
-import { DriverFindManyArgs } from "../../driver/base/DriverFindManyArgs";
-import { Driver } from "../../driver/base/Driver";
-import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -51,9 +48,24 @@ export class LocationControllerBase {
   })
   async create(@common.Body() data: LocationCreateInput): Promise<Location> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        driver: data.driver
+          ? {
+              connect: data.driver,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
+
+        driver: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         lat: true,
         lng: true,
@@ -80,6 +92,13 @@ export class LocationControllerBase {
       ...args,
       select: {
         createdAt: true,
+
+        driver: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         lat: true,
         lng: true,
@@ -107,6 +126,13 @@ export class LocationControllerBase {
       where: params,
       select: {
         createdAt: true,
+
+        driver: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         lat: true,
         lng: true,
@@ -140,9 +166,24 @@ export class LocationControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          driver: data.driver
+            ? {
+                connect: data.driver,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
+
+          driver: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
           lat: true,
           lng: true,
@@ -178,6 +219,13 @@ export class LocationControllerBase {
         where: params,
         select: {
           createdAt: true,
+
+          driver: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
           lat: true,
           lng: true,
@@ -192,116 +240,5 @@ export class LocationControllerBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/drivers")
-  @ApiNestedQuery(DriverFindManyArgs)
-  @nestAccessControl.UseRoles({
-    resource: "Driver",
-    action: "read",
-    possession: "any",
-  })
-  async findManyDrivers(
-    @common.Req() request: Request,
-    @common.Param() params: LocationWhereUniqueInput
-  ): Promise<Driver[]> {
-    const query = plainToClass(DriverFindManyArgs, request.query);
-    const results = await this.service.findDrivers(params.id, {
-      ...query,
-      select: {
-        available: true,
-        busy: true,
-        createdAt: true,
-        enabled: true,
-        id: true,
-
-        location: {
-          select: {
-            id: true,
-          },
-        },
-
-        updatedAt: true,
-
-        user: {
-          select: {
-            id: true,
-          },
-        },
-      },
-    });
-    if (results === null) {
-      throw new errors.NotFoundException(
-        `No resource was found for ${JSON.stringify(params)}`
-      );
-    }
-    return results;
-  }
-
-  @common.Post("/:id/drivers")
-  @nestAccessControl.UseRoles({
-    resource: "Location",
-    action: "update",
-    possession: "any",
-  })
-  async connectDrivers(
-    @common.Param() params: LocationWhereUniqueInput,
-    @common.Body() body: DriverWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      drivers: {
-        connect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Patch("/:id/drivers")
-  @nestAccessControl.UseRoles({
-    resource: "Location",
-    action: "update",
-    possession: "any",
-  })
-  async updateDrivers(
-    @common.Param() params: LocationWhereUniqueInput,
-    @common.Body() body: DriverWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      drivers: {
-        set: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
-  }
-
-  @common.Delete("/:id/drivers")
-  @nestAccessControl.UseRoles({
-    resource: "Location",
-    action: "update",
-    possession: "any",
-  })
-  async disconnectDrivers(
-    @common.Param() params: LocationWhereUniqueInput,
-    @common.Body() body: DriverWhereUniqueInput[]
-  ): Promise<void> {
-    const data = {
-      drivers: {
-        disconnect: body,
-      },
-    };
-    await this.service.update({
-      where: params,
-      data,
-      select: { id: true },
-    });
   }
 }

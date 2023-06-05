@@ -47,14 +47,11 @@ export class LocationServiceBase {
     return this.prisma.location.delete(args);
   }
 
-  async findDrivers(
-    parentId: string,
-    args: Prisma.DriverFindManyArgs
-  ): Promise<Driver[]> {
+  async getDriver(parentId: string): Promise<Driver | null> {
     return this.prisma.location
-      .findUniqueOrThrow({
+      .findUnique({
         where: { id: parentId },
       })
-      .drivers(args);
+      .driver();
   }
 }
