@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DriverUpdateManyWithoutLocationsInput } from "./DriverUpdateManyWithoutLocationsInput";
+import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
 import { ValidateNested, IsOptional, IsNumber } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -19,15 +19,15 @@ import { Type } from "class-transformer";
 class LocationUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => DriverUpdateManyWithoutLocationsInput,
+    type: () => DriverWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => DriverUpdateManyWithoutLocationsInput)
+  @Type(() => DriverWhereUniqueInput)
   @IsOptional()
-  @Field(() => DriverUpdateManyWithoutLocationsInput, {
+  @Field(() => DriverWhereUniqueInput, {
     nullable: true,
   })
-  drivers?: DriverUpdateManyWithoutLocationsInput;
+  driver?: DriverWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

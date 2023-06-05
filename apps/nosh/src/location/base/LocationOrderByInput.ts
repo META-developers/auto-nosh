@@ -34,6 +34,15 @@ class LocationOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
+  driverId?: SortOrder;
+
+  @ApiProperty({
+    required: false,
+    enum: ["asc", "desc"],
+  })
+  @Field(() => SortOrder, {
+    nullable: true,
+  })
   id?: SortOrder;
 
   @ApiProperty({

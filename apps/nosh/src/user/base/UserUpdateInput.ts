@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { DriverUpdateManyWithoutUsersInput } from "./DriverUpdateManyWithoutUsersInput";
+import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
 import { ValidateNested, IsOptional, IsString } from "class-validator";
 import { Type } from "class-transformer";
 import { IsJSONValue } from "@app/custom-validators";
@@ -22,15 +22,15 @@ import { InputJsonValue } from "../../types";
 class UserUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => DriverUpdateManyWithoutUsersInput,
+    type: () => DriverWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => DriverUpdateManyWithoutUsersInput)
+  @Type(() => DriverWhereUniqueInput)
   @IsOptional()
-  @Field(() => DriverUpdateManyWithoutUsersInput, {
+  @Field(() => DriverWhereUniqueInput, {
     nullable: true,
   })
-  drivers?: DriverUpdateManyWithoutUsersInput;
+  driver?: DriverWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

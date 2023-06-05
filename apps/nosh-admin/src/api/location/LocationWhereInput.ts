@@ -1,9 +1,9 @@
-import { DriverListRelationFilter } from "../driver/DriverListRelationFilter";
+import { DriverWhereUniqueInput } from "../driver/DriverWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
 import { FloatFilter } from "../../util/FloatFilter";
 
 export type LocationWhereInput = {
-  drivers?: DriverListRelationFilter;
+  driver?: DriverWhereUniqueInput;
   id?: StringFilter;
   lat?: FloatFilter;
   lng?: FloatFilter;

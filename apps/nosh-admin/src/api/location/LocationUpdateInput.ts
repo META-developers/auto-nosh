@@ -1,7 +1,7 @@
-import { DriverUpdateManyWithoutLocationsInput } from "./DriverUpdateManyWithoutLocationsInput";
+import { DriverWhereUniqueInput } from "../driver/DriverWhereUniqueInput";
 
 export type LocationUpdateInput = {
-  drivers?: DriverUpdateManyWithoutLocationsInput;
+  driver?: DriverWhereUniqueInput | null;
   lat?: number;
   lng?: number;
 };
