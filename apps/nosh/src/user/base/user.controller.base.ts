@@ -27,6 +27,9 @@ import { UserWhereUniqueInput } from "./UserWhereUniqueInput";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserUpdateInput } from "./UserUpdateInput";
 import { User } from "./User";
+import { DriverFindManyArgs } from "../../driver/base/DriverFindManyArgs";
+import { Driver } from "../../driver/base/Driver";
+import { DriverWhereUniqueInput } from "../../driver/base/DriverWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -199,5 +202,116 @@ export class UserControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/drivers")
+  @ApiNestedQuery(DriverFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "Driver",
+    action: "read",
+    possession: "any",
+  })
+  async findManyDrivers(
+    @common.Req() request: Request,
+    @common.Param() params: UserWhereUniqueInput
+  ): Promise<Driver[]> {
+    const query = plainToClass(DriverFindManyArgs, request.query);
+    const results = await this.service.findDrivers(params.id, {
+      ...query,
+      select: {
+        available: true,
+        busy: true,
+        createdAt: true,
+        enabled: true,
+        id: true,
+
+        location: {
+          select: {
+            id: true,
+          },
+        },
+
+        updatedAt: true,
+
+        user: {
+          select: {
+            id: true,
+          },
+        },
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/drivers")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async connectDrivers(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: DriverWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      drivers: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/drivers")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async updateDrivers(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: DriverWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      drivers: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/drivers")
+  @nestAccessControl.UseRoles({
+    resource: "User",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectDrivers(
+    @common.Param() params: UserWhereUniqueInput,
+    @common.Body() body: DriverWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      drivers: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }

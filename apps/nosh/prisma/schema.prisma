@@ -9,6 +9,7 @@ generator client {
 
 model User {
   createdAt DateTime @default(now())
+  drivers   Driver[]
   firstName String?
   id        String   @id @default(cuid())
   lastName  String?
@@ -18,65 +19,33 @@ model User {
   username  String   @unique
 }
 
-model Product {
-  createdAt    DateTime      @default(now())
-  id           String        @id @default(cuid())
-  option       Option[]
-  productCarts ProductCart[]
-  updatedAt    DateTime      @updatedAt
+model Driver {
+  available  Boolean
+  busy       Boolean
+  createdAt  DateTime  @default(now())
+  enabled    Boolean
+  id         String    @id @default(cuid())
+  location   Location? @relation(fields: [locationId], references: [id])
+  locationId String?
+  orders     Order[]
+  updatedAt  DateTime  @updatedAt
+  user       User      @relation(fields: [userId], references: [id])
+  userId     String
 }
 
-model ProductCart {
-  createdAt          DateTime            @default(now())
-  id                 String              @id @default(cuid())
-  product            Product             @relation(fields: [productId], references: [id])
-  productId          String
-  productCartOptions ProductCartOption[]
-  updatedAt          DateTime            @updatedAt
+model Location {
+  createdAt DateTime @default(now())
+  drivers   Driver[]
+  id        String   @id @default(cuid())
+  lat       Float
+  lng       Float
+  updatedAt DateTime @updatedAt
 }
 
-model Option {
-  createdAt          DateTime            @default(now())
-  id                 String              @id @default(cuid())
-  product            Product?            @relation(fields: [productId], references: [id])
-  productId          String?
-  productCartOptions ProductCartOption[]
-  suboptions         Suboption[]
-  updatedAt          DateTime            @updatedAt
-}
-
-model Suboption {
-  createdAt             DateTime               @default(now())
-  id                    String                 @id @default(cuid())
-  option                Option?                @relation(fields: [optionId], references: [id])
-  optionId              String?
-  productCartSuboptions ProductCartSuboption[]
-  updatedAt             DateTime               @updatedAt
-}
-
-model ProductCartSuboption {
-  createdAt            DateTime          @default(now())
-  id                   String            @id @default(cuid())
-  position             String?
-  price                Float?
-  productCartOptions   ProductCartOption @relation(fields: [productCartOptionsId], references: [id])
-  productCartOptionsId String
-  quantity             Int
-  selected             Boolean
-  suboption            Suboption         @relation(fields: [suboptionId], references: [id])
-  suboptionId          String
-  total                String?
-  updatedAt            DateTime          @updatedAt
-}
-
-model ProductCartOption {
-  balance               Int?
-  createdAt             DateTime               @default(now())
-  id                    String                 @id @default(cuid())
-  option                Option                 @relation(fields: [optionId], references: [id])
-  optionId              String
-  productCart           ProductCart            @relation(fields: [productCartId], references: [id])
-  productCartId         String
-  productCartSuboptions ProductCartSuboption[]
-  updatedAt             DateTime               @updatedAt
+model Order {
+  createdAt DateTime @default(now())
+  driver    Driver?  @relation(fields: [driverId], references: [id])
+  driverId  String?
+  id        String   @id @default(cuid())
+  updatedAt DateTime @updatedAt
 }

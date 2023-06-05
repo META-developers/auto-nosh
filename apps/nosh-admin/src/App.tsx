@@ -9,30 +9,18 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { ProductList } from "./product/ProductList";
-import { ProductCreate } from "./product/ProductCreate";
-import { ProductEdit } from "./product/ProductEdit";
-import { ProductShow } from "./product/ProductShow";
-import { ProductCartList } from "./productCart/ProductCartList";
-import { ProductCartCreate } from "./productCart/ProductCartCreate";
-import { ProductCartEdit } from "./productCart/ProductCartEdit";
-import { ProductCartShow } from "./productCart/ProductCartShow";
-import { OptionList } from "./option/OptionList";
-import { OptionCreate } from "./option/OptionCreate";
-import { OptionEdit } from "./option/OptionEdit";
-import { OptionShow } from "./option/OptionShow";
-import { SuboptionList } from "./suboption/SuboptionList";
-import { SuboptionCreate } from "./suboption/SuboptionCreate";
-import { SuboptionEdit } from "./suboption/SuboptionEdit";
-import { SuboptionShow } from "./suboption/SuboptionShow";
-import { ProductCartSuboptionList } from "./productCartSuboption/ProductCartSuboptionList";
-import { ProductCartSuboptionCreate } from "./productCartSuboption/ProductCartSuboptionCreate";
-import { ProductCartSuboptionEdit } from "./productCartSuboption/ProductCartSuboptionEdit";
-import { ProductCartSuboptionShow } from "./productCartSuboption/ProductCartSuboptionShow";
-import { ProductCartOptionList } from "./productCartOption/ProductCartOptionList";
-import { ProductCartOptionCreate } from "./productCartOption/ProductCartOptionCreate";
-import { ProductCartOptionEdit } from "./productCartOption/ProductCartOptionEdit";
-import { ProductCartOptionShow } from "./productCartOption/ProductCartOptionShow";
+import { DriverList } from "./driver/DriverList";
+import { DriverCreate } from "./driver/DriverCreate";
+import { DriverEdit } from "./driver/DriverEdit";
+import { DriverShow } from "./driver/DriverShow";
+import { LocationList } from "./location/LocationList";
+import { LocationCreate } from "./location/LocationCreate";
+import { LocationEdit } from "./location/LocationEdit";
+import { LocationShow } from "./location/LocationShow";
+import { OrderList } from "./order/OrderList";
+import { OrderCreate } from "./order/OrderCreate";
+import { OrderEdit } from "./order/OrderEdit";
+import { OrderShow } from "./order/OrderShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -67,46 +55,25 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="Product"
-          list={ProductList}
-          edit={ProductEdit}
-          create={ProductCreate}
-          show={ProductShow}
+          name="Driver"
+          list={DriverList}
+          edit={DriverEdit}
+          create={DriverCreate}
+          show={DriverShow}
         />
         <Resource
-          name="ProductCart"
-          list={ProductCartList}
-          edit={ProductCartEdit}
-          create={ProductCartCreate}
-          show={ProductCartShow}
+          name="Location"
+          list={LocationList}
+          edit={LocationEdit}
+          create={LocationCreate}
+          show={LocationShow}
         />
         <Resource
-          name="Option"
-          list={OptionList}
-          edit={OptionEdit}
-          create={OptionCreate}
-          show={OptionShow}
-        />
-        <Resource
-          name="Suboption"
-          list={SuboptionList}
-          edit={SuboptionEdit}
-          create={SuboptionCreate}
-          show={SuboptionShow}
-        />
-        <Resource
-          name="ProductCartSuboption"
-          list={ProductCartSuboptionList}
-          edit={ProductCartSuboptionEdit}
-          create={ProductCartSuboptionCreate}
-          show={ProductCartSuboptionShow}
-        />
-        <Resource
-          name="ProductCartOption"
-          list={ProductCartOptionList}
-          edit={ProductCartOptionEdit}
-          create={ProductCartOptionCreate}
-          show={ProductCartOptionShow}
+          name="Order"
+          list={OrderList}
+          edit={OrderEdit}
+          create={OrderCreate}
+          show={OrderShow}
         />
       </Admin>
     </div>
