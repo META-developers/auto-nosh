@@ -13,7 +13,8 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, ValidateNested } from "class-validator";
+import { OrderSummaryWhereUniqueInput } from "../../orderSummary/base/OrderSummaryWhereUniqueInput";
 
 @InputType()
 class OrderWhereInput {
@@ -27,6 +28,18 @@ class OrderWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    type: () => OrderSummaryWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => OrderSummaryWhereUniqueInput)
+  @IsOptional()
+  @Field(() => OrderSummaryWhereUniqueInput, {
+    nullable: true,
+  })
+  orderSummary?: OrderSummaryWhereUniqueInput;
 }
 
 export { OrderWhereInput as OrderWhereInput };

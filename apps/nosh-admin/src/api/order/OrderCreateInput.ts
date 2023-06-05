@@ -1,1 +1,5 @@
-export type OrderCreateInput = {};
+import { OrderSummaryWhereUniqueInput } from "../orderSummary/OrderSummaryWhereUniqueInput";
+
+export type OrderCreateInput = {
+  orderSummary: OrderSummaryWhereUniqueInput | null;
+};

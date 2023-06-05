@@ -8,6 +8,7 @@ export type OrderSummaryOrderByInput = {
   driverTip?: SortOrder;
   driverTipRate?: SortOrder;
   id?: SortOrder;
+  orderId?: SortOrder;
   serviceFee?: SortOrder;
   serviceFeeRate?: SortOrder;
   serviceFeeWithDiscount?: SortOrder;

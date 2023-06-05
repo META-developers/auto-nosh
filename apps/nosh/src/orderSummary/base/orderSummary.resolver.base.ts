@@ -25,6 +25,7 @@ import { DeleteOrderSummaryArgs } from "./DeleteOrderSummaryArgs";
 import { OrderSummaryFindManyArgs } from "./OrderSummaryFindManyArgs";
 import { OrderSummaryFindUniqueArgs } from "./OrderSummaryFindUniqueArgs";
 import { OrderSummary } from "./OrderSummary";
+import { Order } from "../../order/base/Order";
 import { OrderSummaryService } from "../orderSummary.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => OrderSummary)
@@ -95,7 +96,13 @@ export class OrderSummaryResolverBase {
   ): Promise<OrderSummary> {
     return await this.service.create({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        order: {
+          connect: args.data.order,
+        },
+      },
     });
   }
 
@@ -112,7 +119,13 @@ export class OrderSummaryResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          order: {
+            connect: args.data.order,
+          },
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -143,5 +156,26 @@ export class OrderSummaryResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Order, {
+    nullable: true,
+    name: "order",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldOrder(
+    @graphql.Parent() parent: OrderSummary
+  ): Promise<Order | null> {
+    const result = await this.service.getOrder(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

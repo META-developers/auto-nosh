@@ -48,10 +48,23 @@ export class OrderControllerBase {
   })
   async create(@common.Body() data: OrderCreateInput): Promise<Order> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        orderSummary: {
+          connect: data.orderSummary,
+        },
+      },
       select: {
         createdAt: true,
         id: true,
+
+        orderSummary: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -76,6 +89,13 @@ export class OrderControllerBase {
       select: {
         createdAt: true,
         id: true,
+
+        orderSummary: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -101,6 +121,13 @@ export class OrderControllerBase {
       select: {
         createdAt: true,
         id: true,
+
+        orderSummary: {
+          select: {
+            id: true,
+          },
+        },
+
         updatedAt: true,
       },
     });
@@ -131,10 +158,23 @@ export class OrderControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          orderSummary: {
+            connect: data.orderSummary,
+          },
+        },
         select: {
           createdAt: true,
           id: true,
+
+          orderSummary: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
@@ -168,6 +208,13 @@ export class OrderControllerBase {
         select: {
           createdAt: true,
           id: true,
+
+          orderSummary: {
+            select: {
+              id: true,
+            },
+          },
+
           updatedAt: true,
         },
       });
