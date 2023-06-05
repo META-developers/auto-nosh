@@ -1,9 +1,9 @@
-import { DriverListRelationFilter } from "../driver/DriverListRelationFilter";
+import { DriverWhereUniqueInput } from "../driver/DriverWhereUniqueInput";
 import { StringNullableFilter } from "../../util/StringNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 
 export type UserWhereInput = {
-  drivers?: DriverListRelationFilter;
+  driver?: DriverWhereUniqueInput;
   firstName?: StringNullableFilter;
   id?: StringFilter;
   lastName?: StringNullableFilter;

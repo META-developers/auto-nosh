@@ -72,14 +72,11 @@ export class UserServiceBase {
     return this.prisma.user.delete(args);
   }
 
-  async findDrivers(
-    parentId: string,
-    args: Prisma.DriverFindManyArgs
-  ): Promise<Driver[]> {
+  async getDriver(parentId: string): Promise<Driver | null> {
     return this.prisma.user
-      .findUniqueOrThrow({
+      .findUnique({
         where: { id: parentId },
       })
-      .drivers(args);
+      .driver();
   }
 }

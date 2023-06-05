@@ -30,12 +30,12 @@ class User {
 
   @ApiProperty({
     required: false,
-    type: () => [Driver],
+    type: () => Driver,
   })
   @ValidateNested()
   @Type(() => Driver)
   @IsOptional()
-  drivers?: Array<Driver>;
+  driver?: Driver | null;
 
   @ApiProperty({
     required: false,
