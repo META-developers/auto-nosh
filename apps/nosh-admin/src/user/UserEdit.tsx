@@ -4,10 +4,11 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceArrayInput,
-  SelectArrayInput,
+  ReferenceInput,
+  SelectInput,
   TextInput,
   PasswordInput,
+  SelectArrayInput,
 } from "react-admin";
 
 import { DriverTitle } from "../driver/DriverTitle";
@@ -17,14 +18,9 @@ export const UserEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceArrayInput
-          source="drivers"
-          reference="Driver"
-          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
-          format={(value: any) => value && value.map((v: any) => v.id)}
-        >
-          <SelectArrayInput optionText={DriverTitle} />
-        </ReferenceArrayInput>
+        <ReferenceInput source="driver.id" reference="Driver" label="Driver">
+          <SelectInput optionText={DriverTitle} />
+        </ReferenceInput>
         <TextInput label="First Name" source="firstName" />
         <TextInput label="Last Name" source="lastName" />
         <PasswordInput label="Password" source="password" />

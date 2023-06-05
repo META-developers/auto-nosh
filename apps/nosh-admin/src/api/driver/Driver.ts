@@ -11,5 +11,5 @@ export type Driver = {
   location?: Location | null;
   orders?: Array<Order>;
   updatedAt: Date;
-  user?: User;
+  user?: User | null;
 };

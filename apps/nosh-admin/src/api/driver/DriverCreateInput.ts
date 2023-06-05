@@ -8,5 +8,5 @@ export type DriverCreateInput = {
   enabled: boolean;
   location?: LocationWhereUniqueInput | null;
   orders?: OrderCreateNestedManyWithoutDriversInput;
-  user: UserWhereUniqueInput;
+  user: UserWhereUniqueInput | null;
 };
