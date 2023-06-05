@@ -1,5 +1,6 @@
 import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
+import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 import { FloatFilter } from "../../util/FloatFilter";
 
 export type OrderSummaryWhereInput = {
@@ -9,6 +10,7 @@ export type OrderSummaryWhereInput = {
   driverTip?: FloatNullableFilter;
   driverTipRate?: FloatNullableFilter;
   id?: StringFilter;
+  order?: OrderWhereUniqueInput;
   serviceFee?: FloatNullableFilter;
   serviceFeeRate?: FloatNullableFilter;
   serviceFeeWithDiscount?: FloatNullableFilter;

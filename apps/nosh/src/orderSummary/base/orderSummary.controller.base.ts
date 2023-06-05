@@ -50,7 +50,13 @@ export class OrderSummaryControllerBase {
     @common.Body() data: OrderSummaryCreateInput
   ): Promise<OrderSummary> {
     return await this.service.create({
-      data: data,
+      data: {
+        ...data,
+
+        order: {
+          connect: data.order,
+        },
+      },
       select: {
         createdAt: true,
         deliveryPrice: true,
@@ -59,6 +65,13 @@ export class OrderSummaryControllerBase {
         driverTip: true,
         driverTipRate: true,
         id: true,
+
+        order: {
+          select: {
+            id: true,
+          },
+        },
+
         serviceFee: true,
         serviceFeeRate: true,
         serviceFeeWithDiscount: true,
@@ -97,6 +110,13 @@ export class OrderSummaryControllerBase {
         driverTip: true,
         driverTipRate: true,
         id: true,
+
+        order: {
+          select: {
+            id: true,
+          },
+        },
+
         serviceFee: true,
         serviceFeeRate: true,
         serviceFeeWithDiscount: true,
@@ -136,6 +156,13 @@ export class OrderSummaryControllerBase {
         driverTip: true,
         driverTipRate: true,
         id: true,
+
+        order: {
+          select: {
+            id: true,
+          },
+        },
+
         serviceFee: true,
         serviceFeeRate: true,
         serviceFeeWithDiscount: true,
@@ -175,7 +202,13 @@ export class OrderSummaryControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          order: {
+            connect: data.order,
+          },
+        },
         select: {
           createdAt: true,
           deliveryPrice: true,
@@ -184,6 +217,13 @@ export class OrderSummaryControllerBase {
           driverTip: true,
           driverTipRate: true,
           id: true,
+
+          order: {
+            select: {
+              id: true,
+            },
+          },
+
           serviceFee: true,
           serviceFeeRate: true,
           serviceFeeWithDiscount: true,
@@ -231,6 +271,13 @@ export class OrderSummaryControllerBase {
           driverTip: true,
           driverTipRate: true,
           id: true,
+
+          order: {
+            select: {
+              id: true,
+            },
+          },
+
           serviceFee: true,
           serviceFeeRate: true,
           serviceFeeWithDiscount: true,

@@ -5,7 +5,9 @@ import {
   ShowProps,
   DateField,
   TextField,
+  ReferenceField,
 } from "react-admin";
+import { ORDER_TITLE_FIELD } from "../order/OrderTitle";
 
 export const OrderSummaryShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -21,6 +23,9 @@ export const OrderSummaryShow = (props: ShowProps): React.ReactElement => {
         <TextField label="Driver Tip" source="driverTip" />
         <TextField label="Driver Tip Rate" source="driverTipRate" />
         <TextField label="ID" source="id" />
+        <ReferenceField label="Order" source="order.id" reference="Order">
+          <TextField source={ORDER_TITLE_FIELD} />
+        </ReferenceField>
         <TextField label="Service Fee" source="serviceFee" />
         <TextField label="Service Fee Rate" source="serviceFeeRate" />
         <TextField

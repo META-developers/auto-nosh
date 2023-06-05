@@ -11,7 +11,9 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, IsOptional } from "class-validator";
+import { IsNumber, IsOptional, ValidateNested } from "class-validator";
+import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
+import { Type } from "class-transformer";
 
 @InputType()
 class OrderSummaryCreateInput {
@@ -69,6 +71,15 @@ class OrderSummaryCreateInput {
     nullable: true,
   })
   driverTipRate?: number | null;
+
+  @ApiProperty({
+    required: true,
+    type: () => OrderWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => OrderWhereUniqueInput)
+  @Field(() => OrderWhereUniqueInput)
+  order!: OrderWhereUniqueInput;
 
   @ApiProperty({
     required: false,

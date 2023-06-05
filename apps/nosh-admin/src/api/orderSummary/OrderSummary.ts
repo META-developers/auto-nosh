@@ -1,3 +1,5 @@
+import { Order } from "../order/Order";
+
 export type OrderSummary = {
   createdAt: Date;
   deliveryPrice: number | null;
@@ -6,6 +8,7 @@ export type OrderSummary = {
   driverTip: number | null;
   driverTipRate: number | null;
   id: string;
+  order?: Order;
   serviceFee: number | null;
   serviceFeeRate: number | null;
   serviceFeeWithDiscount: number | null;

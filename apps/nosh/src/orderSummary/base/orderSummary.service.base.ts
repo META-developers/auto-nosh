@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, OrderSummary } from "@prisma/client";
+import { Prisma, OrderSummary, Order } from "@prisma/client";
 
 export class OrderSummaryServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -45,5 +45,13 @@ export class OrderSummaryServiceBase {
     args: Prisma.SelectSubset<T, Prisma.OrderSummaryDeleteArgs>
   ): Promise<OrderSummary> {
     return this.prisma.orderSummary.delete(args);
+  }
+
+  async getOrder(parentId: string): Promise<Order | null> {
+    return this.prisma.orderSummary
+      .findUnique({
+        where: { id: parentId },
+      })
+      .order();
   }
 }
