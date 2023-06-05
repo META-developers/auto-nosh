@@ -48,24 +48,9 @@ export class OrderControllerBase {
   })
   async create(@common.Body() data: OrderCreateInput): Promise<Order> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        driver: data.driver
-          ? {
-              connect: data.driver,
-            }
-          : undefined,
-      },
+      data: data,
       select: {
         createdAt: true,
-
-        driver: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         updatedAt: true,
       },
@@ -90,13 +75,6 @@ export class OrderControllerBase {
       ...args,
       select: {
         createdAt: true,
-
-        driver: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         updatedAt: true,
       },
@@ -122,13 +100,6 @@ export class OrderControllerBase {
       where: params,
       select: {
         createdAt: true,
-
-        driver: {
-          select: {
-            id: true,
-          },
-        },
-
         id: true,
         updatedAt: true,
       },
@@ -160,24 +131,9 @@ export class OrderControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          driver: data.driver
-            ? {
-                connect: data.driver,
-              }
-            : undefined,
-        },
+        data: data,
         select: {
           createdAt: true,
-
-          driver: {
-            select: {
-              id: true,
-            },
-          },
-
           id: true,
           updatedAt: true,
         },
@@ -211,13 +167,6 @@ export class OrderControllerBase {
         where: params,
         select: {
           createdAt: true,
-
-          driver: {
-            select: {
-              id: true,
-            },
-          },
-
           id: true,
           updatedAt: true,
         },

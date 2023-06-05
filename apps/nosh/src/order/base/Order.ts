@@ -11,9 +11,8 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, ValidateNested, IsOptional, IsString } from "class-validator";
+import { IsDate, IsString } from "class-validator";
 import { Type } from "class-transformer";
-import { Driver } from "../../driver/base/Driver";
 
 @ObjectType()
 class Order {
@@ -24,15 +23,6 @@ class Order {
   @Type(() => Date)
   @Field(() => Date)
   createdAt!: Date;
-
-  @ApiProperty({
-    required: false,
-    type: () => Driver,
-  })
-  @ValidateNested()
-  @Type(() => Driver)
-  @IsOptional()
-  driver?: Driver | null;
 
   @ApiProperty({
     required: true,

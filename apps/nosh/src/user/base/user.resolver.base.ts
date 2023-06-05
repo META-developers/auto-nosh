@@ -25,7 +25,6 @@ import { DeleteUserArgs } from "./DeleteUserArgs";
 import { UserFindManyArgs } from "./UserFindManyArgs";
 import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { User } from "./User";
-import { Driver } from "../../driver/base/Driver";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -90,15 +89,7 @@ export class UserResolverBase {
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        driver: args.data.driver
-          ? {
-              connect: args.data.driver,
-            }
-          : undefined,
-      },
+      data: args.data,
     });
   }
 
@@ -113,15 +104,7 @@ export class UserResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          driver: args.data.driver
-            ? {
-                connect: args.data.driver,
-              }
-            : undefined,
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -150,26 +133,5 @@ export class UserResolverBase {
       }
       throw error;
     }
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Driver, {
-    nullable: true,
-    name: "driver",
-  })
-  @nestAccessControl.UseRoles({
-    resource: "Driver",
-    action: "read",
-    possession: "any",
-  })
-  async resolveFieldDriver(
-    @graphql.Parent() parent: User
-  ): Promise<Driver | null> {
-    const result = await this.service.getDriver(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
   }
 }

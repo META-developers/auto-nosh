@@ -9,8 +9,6 @@ generator client {
 
 model User {
   createdAt DateTime @default(now())
-  driver    Driver?  @relation(fields: [driverId], references: [id])
-  driverId  String?  @unique
   firstName String?
   id        String   @id @default(cuid())
   lastName  String?
@@ -20,32 +18,28 @@ model User {
   username  String   @unique
 }
 
-model Driver {
-  available Boolean
-  busy      Boolean
-  createdAt DateTime  @default(now())
-  enabled   Boolean
-  id        String    @id @default(cuid())
-  location  Location?
-  orders    Order[]
-  updatedAt DateTime  @updatedAt
-  user      User?
-}
-
-model Location {
-  createdAt DateTime @default(now())
-  driver    Driver?  @relation(fields: [driverId], references: [id])
-  driverId  String?  @unique
-  id        String   @id @default(cuid())
-  lat       Float
-  lng       Float
-  updatedAt DateTime @updatedAt
-}
-
 model Order {
   createdAt DateTime @default(now())
-  driver    Driver?  @relation(fields: [driverId], references: [id])
-  driverId  String?
   id        String   @id @default(cuid())
   updatedAt DateTime @updatedAt
+}
+
+model OrderSummary {
+  createdAt                 DateTime @default(now())
+  deliveryPrice             Float?
+  deliveryPriceWithDiscount Float?
+  discount                  Float?
+  driverTip                 Float?
+  driverTipRate             Float?
+  id                        String   @id @default(cuid())
+  serviceFee                Float?
+  serviceFeeRate            Float?
+  serviceFeeWithDiscount    Float?
+  subtotal                  Float
+  subtotalWithDiscount      Float?
+  taxAfterDiscount          Float?
+  taxRate                   Float?
+  taxWithDiscount           Float?
+  total                     Float
+  updatedAt                 DateTime @updatedAt
 }
