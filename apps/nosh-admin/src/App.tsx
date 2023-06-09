@@ -9,14 +9,6 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { OrderList } from "./order/OrderList";
-import { OrderCreate } from "./order/OrderCreate";
-import { OrderEdit } from "./order/OrderEdit";
-import { OrderShow } from "./order/OrderShow";
-import { OrderSummaryList } from "./orderSummary/OrderSummaryList";
-import { OrderSummaryCreate } from "./orderSummary/OrderSummaryCreate";
-import { OrderSummaryEdit } from "./orderSummary/OrderSummaryEdit";
-import { OrderSummaryShow } from "./orderSummary/OrderSummaryShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -49,20 +41,6 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
-        />
-        <Resource
-          name="Order"
-          list={OrderList}
-          edit={OrderEdit}
-          create={OrderCreate}
-          show={OrderShow}
-        />
-        <Resource
-          name="OrderSummary"
-          list={OrderSummaryList}
-          edit={OrderSummaryEdit}
-          create={OrderSummaryCreate}
-          show={OrderSummaryShow}
         />
       </Admin>
     </div>
