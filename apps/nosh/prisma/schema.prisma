@@ -9,40 +9,14 @@ generator client {
 
 model User {
   createdAt DateTime @default(now())
+  email     String?
   firstName String?
   id        String   @id @default(cuid())
   lastName  String?
+  name      String?
   password  String
+  photo     String?
   roles     Json
   updatedAt DateTime @updatedAt
   username  String   @unique
-}
-
-model Order {
-  createdAt    DateTime      @default(now())
-  id           String        @id @default(cuid())
-  orderSummary OrderSummary?
-  updatedAt    DateTime      @updatedAt
-}
-
-model OrderSummary {
-  createdAt                 DateTime @default(now())
-  deliveryPrice             Float?
-  deliveryPriceWithDiscount Float?
-  discount                  Float?
-  driverTip                 Float?
-  driverTipRate             Float?
-  id                        String   @id @default(cuid())
-  order                     Order    @relation(fields: [orderId], references: [id])
-  orderId                   String   @unique
-  serviceFee                Float?
-  serviceFeeRate            Float?
-  serviceFeeWithDiscount    Float?
-  subtotal                  Float
-  subtotalWithDiscount      Float?
-  taxAfterDiscount          Float?
-  taxRate                   Float?
-  taxWithDiscount           Float?
-  total                     Float
-  updatedAt                 DateTime @updatedAt
 }
