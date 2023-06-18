@@ -40,7 +40,7 @@ class CloseTimeCreateInput {
   @ValidateNested()
   @Type(() => TimeLapseWhereUniqueInput)
   @Field(() => TimeLapseWhereUniqueInput)
-  timeLapses!: TimeLapseWhereUniqueInput;
+  timeLapse!: TimeLapseWhereUniqueInput;
 }
 
 export { CloseTimeCreateInput as CloseTimeCreateInput };

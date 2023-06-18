@@ -62,7 +62,7 @@ class OpenTimeWhereInput {
   @Field(() => TimeLapseWhereUniqueInput, {
     nullable: true,
   })
-  timeLapses?: TimeLapseWhereUniqueInput;
+  timeLapse?: TimeLapseWhereUniqueInput;
 }
 
 export { OpenTimeWhereInput as OpenTimeWhereInput };

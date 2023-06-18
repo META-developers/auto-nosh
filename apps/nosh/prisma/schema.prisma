@@ -22,19 +22,19 @@ model User {
 }
 
 model OpenTime {
-  hour         Int
-  id           String    @id @default(cuid())
-  minute       Int
-  timeLapses   TimeLapse @relation(fields: [timeLapsesId], references: [id])
-  timeLapsesId String    @unique
+  hour        Int
+  id          String    @id @default(cuid())
+  minute      Int
+  timeLapse   TimeLapse @relation(fields: [timeLapseId], references: [id])
+  timeLapseId String    @unique
 }
 
 model CloseTime {
-  hour         Int
-  id           String    @id @default(cuid())
-  minute       Int
-  timeLapses   TimeLapse @relation(fields: [timeLapsesId], references: [id])
-  timeLapsesId String    @unique
+  hour        Int
+  id          String    @id @default(cuid())
+  minute      Int
+  timeLapse   TimeLapse @relation(fields: [timeLapseId], references: [id])
+  timeLapseId String    @unique
 }
 
 model TimeLapse {

@@ -47,7 +47,7 @@ class CloseTime {
   })
   @ValidateNested()
   @Type(() => TimeLapse)
-  timeLapses?: TimeLapse;
+  timeLapse?: TimeLapse;
 }
 
 export { CloseTime as CloseTime };

@@ -4,5 +4,5 @@ export type OpenTimeOrderByInput = {
   hour?: SortOrder;
   id?: SortOrder;
   minute?: SortOrder;
-  timeLapsesId?: SortOrder;
+  timeLapseId?: SortOrder;
 };

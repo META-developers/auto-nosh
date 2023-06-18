@@ -61,7 +61,7 @@ class CloseTimeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  timeLapsesId?: SortOrder;
+  timeLapseId?: SortOrder;
 }
 
 export { CloseTimeOrderByInput as CloseTimeOrderByInput };
