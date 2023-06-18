@@ -8,6 +8,7 @@ import {
 } from "react-admin";
 import { CloseTimeTitle } from "../closeTime/CloseTimeTitle";
 import { OpenTimeTitle } from "../openTime/OpenTimeTitle";
+import { ScheduleTitle } from "../schedule/ScheduleTitle";
 
 export const TimeLapseEdit = (props: EditProps): React.ReactElement => {
   return (
@@ -18,6 +19,13 @@ export const TimeLapseEdit = (props: EditProps): React.ReactElement => {
         </ReferenceInput>
         <ReferenceInput source="open.id" reference="OpenTime" label="Open">
           <SelectInput optionText={OpenTimeTitle} />
+        </ReferenceInput>
+        <ReferenceInput
+          source="schedule.id"
+          reference="Schedule"
+          label="Schedule"
+        >
+          <SelectInput optionText={ScheduleTitle} />
         </ReferenceInput>
       </SimpleForm>
     </Edit>

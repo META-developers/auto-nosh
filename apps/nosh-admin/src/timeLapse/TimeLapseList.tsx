@@ -9,6 +9,7 @@ import {
 import Pagination from "../Components/Pagination";
 import { CLOSETIME_TITLE_FIELD } from "../closeTime/CloseTimeTitle";
 import { OPENTIME_TITLE_FIELD } from "../openTime/OpenTimeTitle";
+import { SCHEDULE_TITLE_FIELD } from "../schedule/ScheduleTitle";
 
 export const TimeLapseList = (props: ListProps): React.ReactElement => {
   return (
@@ -30,6 +31,13 @@ export const TimeLapseList = (props: ListProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <ReferenceField label="Open" source="opentime.id" reference="OpenTime">
           <TextField source={OPENTIME_TITLE_FIELD} />
+        </ReferenceField>
+        <ReferenceField
+          label="Schedule"
+          source="schedule.id"
+          reference="Schedule"
+        >
+          <TextField source={SCHEDULE_TITLE_FIELD} />
         </ReferenceField>
       </Datagrid>
     </List>

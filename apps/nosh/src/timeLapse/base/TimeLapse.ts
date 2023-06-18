@@ -12,9 +12,10 @@ https://docs.amplication.com/how-to/custom-code
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { CloseTime } from "../../closeTime/base/CloseTime";
-import { ValidateNested, IsString } from "class-validator";
+import { ValidateNested, IsString, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { OpenTime } from "../../openTime/base/OpenTime";
+import { Schedule } from "../../schedule/base/Schedule";
 
 @ObjectType()
 class TimeLapse {
@@ -41,6 +42,15 @@ class TimeLapse {
   @ValidateNested()
   @Type(() => OpenTime)
   open?: OpenTime | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => Schedule,
+  })
+  @ValidateNested()
+  @Type(() => Schedule)
+  @IsOptional()
+  schedule?: Schedule | null;
 }
 
 export { TimeLapse as TimeLapse };

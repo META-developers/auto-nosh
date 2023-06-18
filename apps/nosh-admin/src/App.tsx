@@ -21,6 +21,10 @@ import { TimeLapseList } from "./timeLapse/TimeLapseList";
 import { TimeLapseCreate } from "./timeLapse/TimeLapseCreate";
 import { TimeLapseEdit } from "./timeLapse/TimeLapseEdit";
 import { TimeLapseShow } from "./timeLapse/TimeLapseShow";
+import { ScheduleList } from "./schedule/ScheduleList";
+import { ScheduleCreate } from "./schedule/ScheduleCreate";
+import { ScheduleEdit } from "./schedule/ScheduleEdit";
+import { ScheduleShow } from "./schedule/ScheduleShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -74,6 +78,13 @@ const App = (): React.ReactElement => {
           edit={TimeLapseEdit}
           create={TimeLapseCreate}
           show={TimeLapseShow}
+        />
+        <Resource
+          name="Schedule"
+          list={ScheduleList}
+          edit={ScheduleEdit}
+          create={ScheduleCreate}
+          show={ScheduleShow}
         />
       </Admin>
     </div>

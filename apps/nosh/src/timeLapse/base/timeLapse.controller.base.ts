@@ -58,6 +58,12 @@ export class TimeLapseControllerBase {
         open: {
           connect: data.open,
         },
+
+        schedule: data.schedule
+          ? {
+              connect: data.schedule,
+            }
+          : undefined,
       },
       select: {
         close: {
@@ -69,6 +75,12 @@ export class TimeLapseControllerBase {
         id: true,
 
         open: {
+          select: {
+            id: true,
+          },
+        },
+
+        schedule: {
           select: {
             id: true,
           },
@@ -107,6 +119,12 @@ export class TimeLapseControllerBase {
             id: true,
           },
         },
+
+        schedule: {
+          select: {
+            id: true,
+          },
+        },
       },
     });
   }
@@ -138,6 +156,12 @@ export class TimeLapseControllerBase {
         id: true,
 
         open: {
+          select: {
+            id: true,
+          },
+        },
+
+        schedule: {
           select: {
             id: true,
           },
@@ -181,6 +205,12 @@ export class TimeLapseControllerBase {
           open: {
             connect: data.open,
           },
+
+          schedule: data.schedule
+            ? {
+                connect: data.schedule,
+              }
+            : undefined,
         },
         select: {
           close: {
@@ -192,6 +222,12 @@ export class TimeLapseControllerBase {
           id: true,
 
           open: {
+            select: {
+              id: true,
+            },
+          },
+
+          schedule: {
             select: {
               id: true,
             },
@@ -235,6 +271,12 @@ export class TimeLapseControllerBase {
           id: true,
 
           open: {
+            select: {
+              id: true,
+            },
+          },
+
+          schedule: {
             select: {
               id: true,
             },
