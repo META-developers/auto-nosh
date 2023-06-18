@@ -23,7 +23,7 @@ export const OpenTimeList = (props: ListProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <TextField label="Minute" source="minute" />
         <ReferenceField
-          label="TimeLapses"
+          label="TimeLapse"
           source="timelapse.id"
           reference="TimeLapse"
         >

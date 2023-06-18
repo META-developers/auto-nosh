@@ -51,8 +51,8 @@ export class CloseTimeControllerBase {
       data: {
         ...data,
 
-        timeLapses: {
-          connect: data.timeLapses,
+        timeLapse: {
+          connect: data.timeLapse,
         },
       },
       select: {
@@ -60,7 +60,7 @@ export class CloseTimeControllerBase {
         id: true,
         minute: true,
 
-        timeLapses: {
+        timeLapse: {
           select: {
             id: true,
           },
@@ -90,7 +90,7 @@ export class CloseTimeControllerBase {
         id: true,
         minute: true,
 
-        timeLapses: {
+        timeLapse: {
           select: {
             id: true,
           },
@@ -121,7 +121,7 @@ export class CloseTimeControllerBase {
         id: true,
         minute: true,
 
-        timeLapses: {
+        timeLapse: {
           select: {
             id: true,
           },
@@ -158,8 +158,8 @@ export class CloseTimeControllerBase {
         data: {
           ...data,
 
-          timeLapses: {
-            connect: data.timeLapses,
+          timeLapse: {
+            connect: data.timeLapse,
           },
         },
         select: {
@@ -167,7 +167,7 @@ export class CloseTimeControllerBase {
           id: true,
           minute: true,
 
-          timeLapses: {
+          timeLapse: {
             select: {
               id: true,
             },
@@ -206,7 +206,7 @@ export class CloseTimeControllerBase {
           id: true,
           minute: true,
 
-          timeLapses: {
+          timeLapse: {
             select: {
               id: true,
             },

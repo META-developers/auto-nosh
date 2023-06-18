@@ -47,11 +47,11 @@ export class CloseTimeServiceBase {
     return this.prisma.closeTime.delete(args);
   }
 
-  async getTimeLapses(parentId: string): Promise<TimeLapse | null> {
+  async getTimeLapse(parentId: string): Promise<TimeLapse | null> {
     return this.prisma.closeTime
       .findUnique({
         where: { id: parentId },
       })
-      .timeLapses();
+      .timeLapse();
   }
 }

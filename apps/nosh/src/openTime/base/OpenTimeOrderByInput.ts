@@ -61,7 +61,7 @@ class OpenTimeOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  timeLapsesId?: SortOrder;
+  timeLapseId?: SortOrder;
 }
 
 export { OpenTimeOrderByInput as OpenTimeOrderByInput };

@@ -47,7 +47,7 @@ class OpenTime {
   })
   @ValidateNested()
   @Type(() => TimeLapse)
-  timeLapses?: TimeLapse;
+  timeLapse?: TimeLapse;
 }
 
 export { OpenTime as OpenTime };

@@ -96,8 +96,8 @@ export class CloseTimeResolverBase {
       data: {
         ...args.data,
 
-        timeLapses: {
-          connect: args.data.timeLapses,
+        timeLapse: {
+          connect: args.data.timeLapse,
         },
       },
     });
@@ -119,8 +119,8 @@ export class CloseTimeResolverBase {
         data: {
           ...args.data,
 
-          timeLapses: {
-            connect: args.data.timeLapses,
+          timeLapse: {
+            connect: args.data.timeLapse,
           },
         },
       });
@@ -158,17 +158,17 @@ export class CloseTimeResolverBase {
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @graphql.ResolveField(() => TimeLapse, {
     nullable: true,
-    name: "timeLapses",
+    name: "timeLapse",
   })
   @nestAccessControl.UseRoles({
     resource: "TimeLapse",
     action: "read",
     possession: "any",
   })
-  async resolveFieldTimeLapses(
+  async resolveFieldTimeLapse(
     @graphql.Parent() parent: CloseTime
   ): Promise<TimeLapse | null> {
-    const result = await this.service.getTimeLapses(parent.id);
+    const result = await this.service.getTimeLapse(parent.id);
 
     if (!result) {
       return null;

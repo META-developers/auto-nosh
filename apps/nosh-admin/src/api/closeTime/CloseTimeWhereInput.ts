@@ -6,5 +6,5 @@ export type CloseTimeWhereInput = {
   hour?: IntFilter;
   id?: StringFilter;
   minute?: IntFilter;
-  timeLapses?: TimeLapseWhereUniqueInput;
+  timeLapse?: TimeLapseWhereUniqueInput;
 };

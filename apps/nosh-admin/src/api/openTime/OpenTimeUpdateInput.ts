@@ -3,5 +3,5 @@ import { TimeLapseWhereUniqueInput } from "../timeLapse/TimeLapseWhereUniqueInpu
 export type OpenTimeUpdateInput = {
   hour?: number;
   minute?: number;
-  timeLapses?: TimeLapseWhereUniqueInput;
+  timeLapse?: TimeLapseWhereUniqueInput;
 };

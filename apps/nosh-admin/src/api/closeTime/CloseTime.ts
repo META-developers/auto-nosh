@@ -4,5 +4,5 @@ export type CloseTime = {
   hour: number;
   id: string;
   minute: number;
-  timeLapses?: TimeLapse;
+  timeLapse?: TimeLapse;
 };

@@ -16,9 +16,9 @@ export const OpenTimeCreate = (props: CreateProps): React.ReactElement => {
         <NumberInput step={1} label="Hour" source="hour" />
         <NumberInput step={1} label="Minute" source="minute" />
         <ReferenceInput
-          source="timeLapses.id"
+          source="timeLapse.id"
           reference="TimeLapse"
-          label="TimeLapses"
+          label="TimeLapse"
         >
           <SelectInput optionText={TimeLapseTitle} />
         </ReferenceInput>

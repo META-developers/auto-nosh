@@ -40,7 +40,7 @@ class OpenTimeCreateInput {
   @ValidateNested()
   @Type(() => TimeLapseWhereUniqueInput)
   @Field(() => TimeLapseWhereUniqueInput)
-  timeLapses!: TimeLapseWhereUniqueInput;
+  timeLapse!: TimeLapseWhereUniqueInput;
 }
 
 export { OpenTimeCreateInput as OpenTimeCreateInput };
