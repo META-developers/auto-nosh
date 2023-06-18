@@ -9,6 +9,18 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
+import { OpenTimeList } from "./openTime/OpenTimeList";
+import { OpenTimeCreate } from "./openTime/OpenTimeCreate";
+import { OpenTimeEdit } from "./openTime/OpenTimeEdit";
+import { OpenTimeShow } from "./openTime/OpenTimeShow";
+import { CloseTimeList } from "./closeTime/CloseTimeList";
+import { CloseTimeCreate } from "./closeTime/CloseTimeCreate";
+import { CloseTimeEdit } from "./closeTime/CloseTimeEdit";
+import { CloseTimeShow } from "./closeTime/CloseTimeShow";
+import { TimeLapseList } from "./timeLapse/TimeLapseList";
+import { TimeLapseCreate } from "./timeLapse/TimeLapseCreate";
+import { TimeLapseEdit } from "./timeLapse/TimeLapseEdit";
+import { TimeLapseShow } from "./timeLapse/TimeLapseShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -41,6 +53,27 @@ const App = (): React.ReactElement => {
           edit={UserEdit}
           create={UserCreate}
           show={UserShow}
+        />
+        <Resource
+          name="OpenTime"
+          list={OpenTimeList}
+          edit={OpenTimeEdit}
+          create={OpenTimeCreate}
+          show={OpenTimeShow}
+        />
+        <Resource
+          name="CloseTime"
+          list={CloseTimeList}
+          edit={CloseTimeEdit}
+          create={CloseTimeCreate}
+          show={CloseTimeShow}
+        />
+        <Resource
+          name="TimeLapse"
+          list={TimeLapseList}
+          edit={TimeLapseEdit}
+          create={TimeLapseCreate}
+          show={TimeLapseShow}
         />
       </Admin>
     </div>

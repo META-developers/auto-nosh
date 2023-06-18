@@ -20,3 +20,25 @@ model User {
   updatedAt DateTime @updatedAt
   username  String   @unique
 }
+
+model OpenTime {
+  hour         Int
+  id           String    @id @default(cuid())
+  minute       Int
+  timeLapses   TimeLapse @relation(fields: [timeLapsesId], references: [id])
+  timeLapsesId String    @unique
+}
+
+model CloseTime {
+  hour         Int
+  id           String    @id @default(cuid())
+  minute       Int
+  timeLapses   TimeLapse @relation(fields: [timeLapsesId], references: [id])
+  timeLapsesId String    @unique
+}
+
+model TimeLapse {
+  close CloseTime?
+  id    String     @id @default(cuid())
+  open  OpenTime?
+}
