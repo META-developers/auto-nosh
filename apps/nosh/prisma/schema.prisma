@@ -38,7 +38,16 @@ model CloseTime {
 }
 
 model TimeLapse {
-  close CloseTime?
-  id    String     @id @default(cuid())
-  open  OpenTime?
+  close      CloseTime?
+  id         String     @id @default(cuid())
+  open       OpenTime?
+  schedule   Schedule?  @relation(fields: [scheduleId], references: [id])
+  scheduleId String?
+}
+
+model Schedule {
+  createdAt DateTime    @default(now())
+  id        String      @id @default(cuid())
+  lapses    TimeLapse[]
+  updatedAt DateTime    @updatedAt
 }

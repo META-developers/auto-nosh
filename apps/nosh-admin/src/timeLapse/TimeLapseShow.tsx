@@ -8,6 +8,7 @@ import {
 } from "react-admin";
 import { CLOSETIME_TITLE_FIELD } from "../closeTime/CloseTimeTitle";
 import { OPENTIME_TITLE_FIELD } from "../openTime/OpenTimeTitle";
+import { SCHEDULE_TITLE_FIELD } from "../schedule/ScheduleTitle";
 
 export const TimeLapseShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -23,6 +24,13 @@ export const TimeLapseShow = (props: ShowProps): React.ReactElement => {
         <TextField label="ID" source="id" />
         <ReferenceField label="Open" source="opentime.id" reference="OpenTime">
           <TextField source={OPENTIME_TITLE_FIELD} />
+        </ReferenceField>
+        <ReferenceField
+          label="Schedule"
+          source="schedule.id"
+          reference="Schedule"
+        >
+          <TextField source={SCHEDULE_TITLE_FIELD} />
         </ReferenceField>
       </SimpleShowLayout>
     </Show>

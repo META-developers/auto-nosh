@@ -15,6 +15,7 @@ import { CloseTimeWhereUniqueInput } from "../../closeTime/base/CloseTimeWhereUn
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { OpenTimeWhereUniqueInput } from "../../openTime/base/OpenTimeWhereUniqueInput";
+import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
 
 @InputType()
 class TimeLapseUpdateInput {
@@ -41,6 +42,18 @@ class TimeLapseUpdateInput {
     nullable: true,
   })
   open?: OpenTimeWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ScheduleWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ScheduleWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ScheduleWhereUniqueInput, {
+    nullable: true,
+  })
+  schedule?: ScheduleWhereUniqueInput | null;
 }
 
 export { TimeLapseUpdateInput as TimeLapseUpdateInput };

@@ -12,9 +12,10 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { CloseTimeWhereUniqueInput } from "../../closeTime/base/CloseTimeWhereUniqueInput";
-import { ValidateNested } from "class-validator";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 import { OpenTimeWhereUniqueInput } from "../../openTime/base/OpenTimeWhereUniqueInput";
+import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
 
 @InputType()
 class TimeLapseCreateInput {
@@ -35,6 +36,18 @@ class TimeLapseCreateInput {
   @Type(() => OpenTimeWhereUniqueInput)
   @Field(() => OpenTimeWhereUniqueInput)
   open!: OpenTimeWhereUniqueInput | null;
+
+  @ApiProperty({
+    required: false,
+    type: () => ScheduleWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => ScheduleWhereUniqueInput)
+  @IsOptional()
+  @Field(() => ScheduleWhereUniqueInput, {
+    nullable: true,
+  })
+  schedule?: ScheduleWhereUniqueInput | null;
 }
 
 export { TimeLapseCreateInput as TimeLapseCreateInput };

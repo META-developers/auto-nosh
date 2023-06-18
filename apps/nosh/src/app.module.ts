@@ -5,6 +5,7 @@ import { UserModule } from "./user/user.module";
 import { OpenTimeModule } from "./openTime/openTime.module";
 import { CloseTimeModule } from "./closeTime/closeTime.module";
 import { TimeLapseModule } from "./timeLapse/timeLapse.module";
+import { ScheduleModule } from "./schedule/schedule.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -25,6 +26,7 @@ import { AuthModule } from "./auth/auth.module";
     OpenTimeModule,
     CloseTimeModule,
     TimeLapseModule,
+    ScheduleModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,

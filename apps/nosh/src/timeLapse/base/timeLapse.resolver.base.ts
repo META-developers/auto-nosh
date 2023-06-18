@@ -28,6 +28,7 @@ import { TimeLapseFindUniqueArgs } from "./TimeLapseFindUniqueArgs";
 import { TimeLapse } from "./TimeLapse";
 import { CloseTime } from "../../closeTime/base/CloseTime";
 import { OpenTime } from "../../openTime/base/OpenTime";
+import { Schedule } from "../../schedule/base/Schedule";
 import { TimeLapseService } from "../timeLapse.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => TimeLapse)
@@ -104,6 +105,12 @@ export class TimeLapseResolverBase {
         open: {
           connect: args.data.open,
         },
+
+        schedule: args.data.schedule
+          ? {
+              connect: args.data.schedule,
+            }
+          : undefined,
       },
     });
   }
@@ -131,6 +138,12 @@ export class TimeLapseResolverBase {
           open: {
             connect: args.data.open,
           },
+
+          schedule: args.data.schedule
+            ? {
+                connect: args.data.schedule,
+              }
+            : undefined,
         },
       });
     } catch (error) {
@@ -199,6 +212,27 @@ export class TimeLapseResolverBase {
     @graphql.Parent() parent: TimeLapse
   ): Promise<OpenTime | null> {
     const result = await this.service.getOpen(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Schedule, {
+    nullable: true,
+    name: "schedule",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Schedule",
+    action: "read",
+    possession: "any",
+  })
+  async resolveFieldSchedule(
+    @graphql.Parent() parent: TimeLapse
+  ): Promise<Schedule | null> {
+    const result = await this.service.getSchedule(parent.id);
 
     if (!result) {
       return null;
