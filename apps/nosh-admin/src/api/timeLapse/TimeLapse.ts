@@ -1,10 +1,9 @@
-import { CloseTime } from "../closeTime/CloseTime";
-import { OpenTime } from "../openTime/OpenTime";
+import { TimeLapseInterval } from "../timeLapseInterval/TimeLapseInterval";
 import { Schedule } from "../schedule/Schedule";
 
 export type TimeLapse = {
-  close?: CloseTime | null;
+  close?: TimeLapseInterval | null;
   id: string;
-  open?: OpenTime | null;
+  open?: TimeLapseInterval | null;
   schedule?: Schedule | null;
 };

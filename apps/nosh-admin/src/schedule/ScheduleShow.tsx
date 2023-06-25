@@ -11,8 +11,7 @@ import {
   ReferenceField,
 } from "react-admin";
 
-import { CLOSETIME_TITLE_FIELD } from "../closeTime/CloseTimeTitle";
-import { OPENTIME_TITLE_FIELD } from "../openTime/OpenTimeTitle";
+import { TIMELAPSEINTERVAL_TITLE_FIELD } from "../timeLapseInterval/TimeLapseIntervalTitle";
 import { SCHEDULE_TITLE_FIELD } from "./ScheduleTitle";
 
 export const ScheduleShow = (props: ShowProps): React.ReactElement => {
@@ -30,18 +29,18 @@ export const ScheduleShow = (props: ShowProps): React.ReactElement => {
           <Datagrid rowClick="show">
             <ReferenceField
               label="Close"
-              source="closetime.id"
-              reference="CloseTime"
+              source="timelapseinterval.id"
+              reference="TimeLapseInterval"
             >
-              <TextField source={CLOSETIME_TITLE_FIELD} />
+              <TextField source={TIMELAPSEINTERVAL_TITLE_FIELD} />
             </ReferenceField>
             <TextField label="ID" source="id" />
             <ReferenceField
               label="Open"
-              source="opentime.id"
-              reference="OpenTime"
+              source="timelapseinterval.id"
+              reference="TimeLapseInterval"
             >
-              <TextField source={OPENTIME_TITLE_FIELD} />
+              <TextField source={TIMELAPSEINTERVAL_TITLE_FIELD} />
             </ReferenceField>
             <ReferenceField
               label="Schedule"

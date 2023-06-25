@@ -1,9 +1,8 @@
-import { CloseTimeWhereUniqueInput } from "../closeTime/CloseTimeWhereUniqueInput";
-import { OpenTimeWhereUniqueInput } from "../openTime/OpenTimeWhereUniqueInput";
+import { TimeLapseIntervalWhereUniqueInput } from "../timeLapseInterval/TimeLapseIntervalWhereUniqueInput";
 import { ScheduleWhereUniqueInput } from "../schedule/ScheduleWhereUniqueInput";
 
 export type TimeLapseUpdateInput = {
-  close?: CloseTimeWhereUniqueInput | null;
-  open?: OpenTimeWhereUniqueInput | null;
+  close?: TimeLapseIntervalWhereUniqueInput | null;
+  open?: TimeLapseIntervalWhereUniqueInput | null;
   schedule?: ScheduleWhereUniqueInput | null;
 };

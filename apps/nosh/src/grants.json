@@ -31,61 +31,31 @@
   },
   {
     "role": "user",
-    "resource": "OpenTime",
+    "resource": "TimeLapseInterval",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OpenTime",
+    "resource": "TimeLapseInterval",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OpenTime",
+    "resource": "TimeLapseInterval",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OpenTime",
+    "resource": "TimeLapseInterval",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OpenTime",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CloseTime",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CloseTime",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CloseTime",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CloseTime",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "CloseTime",
+    "resource": "TimeLapseInterval",
     "action": "read:any",
     "attributes": "*"
   },

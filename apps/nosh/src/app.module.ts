@@ -2,8 +2,7 @@ import { Module, Scope } from "@nestjs/common";
 import { APP_INTERCEPTOR } from "@nestjs/core";
 import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
-import { OpenTimeModule } from "./openTime/openTime.module";
-import { CloseTimeModule } from "./closeTime/closeTime.module";
+import { TimeLapseIntervalModule } from "./timeLapseInterval/timeLapseInterval.module";
 import { TimeLapseModule } from "./timeLapse/timeLapse.module";
 import { ScheduleModule } from "./schedule/schedule.module";
 import { HealthModule } from "./health/health.module";
@@ -23,8 +22,7 @@ import { AuthModule } from "./auth/auth.module";
     ACLModule,
     AuthModule,
     UserModule,
-    OpenTimeModule,
-    CloseTimeModule,
+    TimeLapseIntervalModule,
     TimeLapseModule,
     ScheduleModule,
     HealthModule,

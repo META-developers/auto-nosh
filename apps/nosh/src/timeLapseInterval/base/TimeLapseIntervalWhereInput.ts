@@ -11,25 +11,24 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { TimeLapseIntervalWhereUniqueInput } from "../../timeLapseInterval/base/TimeLapseIntervalWhereUniqueInput";
-import { ValidateNested, IsOptional } from "class-validator";
+import { IntFilter } from "../../util/IntFilter";
 import { Type } from "class-transformer";
+import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
-import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
+import { TimeLapseWhereUniqueInput } from "../../timeLapse/base/TimeLapseWhereUniqueInput";
 
 @InputType()
-class TimeLapseWhereInput {
+class TimeLapseIntervalWhereInput {
   @ApiProperty({
     required: false,
-    type: () => TimeLapseIntervalWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => TimeLapseIntervalWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => TimeLapseIntervalWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  close?: TimeLapseIntervalWhereUniqueInput;
+  hour?: IntFilter;
 
   @ApiProperty({
     required: false,
@@ -44,27 +43,38 @@ class TimeLapseWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => TimeLapseIntervalWhereUniqueInput,
+    type: IntFilter,
   })
-  @ValidateNested()
-  @Type(() => TimeLapseIntervalWhereUniqueInput)
+  @Type(() => IntFilter)
   @IsOptional()
-  @Field(() => TimeLapseIntervalWhereUniqueInput, {
+  @Field(() => IntFilter, {
     nullable: true,
   })
-  open?: TimeLapseIntervalWhereUniqueInput;
+  minute?: IntFilter;
 
   @ApiProperty({
     required: false,
-    type: () => ScheduleWhereUniqueInput,
+    type: () => TimeLapseWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => ScheduleWhereUniqueInput)
+  @Type(() => TimeLapseWhereUniqueInput)
   @IsOptional()
-  @Field(() => ScheduleWhereUniqueInput, {
+  @Field(() => TimeLapseWhereUniqueInput, {
     nullable: true,
   })
-  schedule?: ScheduleWhereUniqueInput;
+  timeLapseClose?: TimeLapseWhereUniqueInput;
+
+  @ApiProperty({
+    required: false,
+    type: () => TimeLapseWhereUniqueInput,
+  })
+  @ValidateNested()
+  @Type(() => TimeLapseWhereUniqueInput)
+  @IsOptional()
+  @Field(() => TimeLapseWhereUniqueInput, {
+    nullable: true,
+  })
+  timeLapsesOpen?: TimeLapseWhereUniqueInput;
 }
 
-export { TimeLapseWhereInput as TimeLapseWhereInput };
+export { TimeLapseIntervalWhereInput as TimeLapseIntervalWhereInput };

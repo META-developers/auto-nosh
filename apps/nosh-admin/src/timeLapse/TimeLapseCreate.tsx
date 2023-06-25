@@ -6,19 +6,26 @@ import {
   ReferenceInput,
   SelectInput,
 } from "react-admin";
-import { CloseTimeTitle } from "../closeTime/CloseTimeTitle";
-import { OpenTimeTitle } from "../openTime/OpenTimeTitle";
+import { TimeLapseIntervalTitle } from "../timeLapseInterval/TimeLapseIntervalTitle";
 import { ScheduleTitle } from "../schedule/ScheduleTitle";
 
 export const TimeLapseCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <ReferenceInput source="close.id" reference="CloseTime" label="Close">
-          <SelectInput optionText={CloseTimeTitle} />
+        <ReferenceInput
+          source="close.id"
+          reference="TimeLapseInterval"
+          label="Close"
+        >
+          <SelectInput optionText={TimeLapseIntervalTitle} />
         </ReferenceInput>
-        <ReferenceInput source="open.id" reference="OpenTime" label="Open">
-          <SelectInput optionText={OpenTimeTitle} />
+        <ReferenceInput
+          source="open.id"
+          reference="TimeLapseInterval"
+          label="Open"
+        >
+          <SelectInput optionText={TimeLapseIntervalTitle} />
         </ReferenceInput>
         <ReferenceInput
           source="schedule.id"

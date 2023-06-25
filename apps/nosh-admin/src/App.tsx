@@ -9,14 +9,10 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { OpenTimeList } from "./openTime/OpenTimeList";
-import { OpenTimeCreate } from "./openTime/OpenTimeCreate";
-import { OpenTimeEdit } from "./openTime/OpenTimeEdit";
-import { OpenTimeShow } from "./openTime/OpenTimeShow";
-import { CloseTimeList } from "./closeTime/CloseTimeList";
-import { CloseTimeCreate } from "./closeTime/CloseTimeCreate";
-import { CloseTimeEdit } from "./closeTime/CloseTimeEdit";
-import { CloseTimeShow } from "./closeTime/CloseTimeShow";
+import { TimeLapseIntervalList } from "./timeLapseInterval/TimeLapseIntervalList";
+import { TimeLapseIntervalCreate } from "./timeLapseInterval/TimeLapseIntervalCreate";
+import { TimeLapseIntervalEdit } from "./timeLapseInterval/TimeLapseIntervalEdit";
+import { TimeLapseIntervalShow } from "./timeLapseInterval/TimeLapseIntervalShow";
 import { TimeLapseList } from "./timeLapse/TimeLapseList";
 import { TimeLapseCreate } from "./timeLapse/TimeLapseCreate";
 import { TimeLapseEdit } from "./timeLapse/TimeLapseEdit";
@@ -59,18 +55,11 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="OpenTime"
-          list={OpenTimeList}
-          edit={OpenTimeEdit}
-          create={OpenTimeCreate}
-          show={OpenTimeShow}
-        />
-        <Resource
-          name="CloseTime"
-          list={CloseTimeList}
-          edit={CloseTimeEdit}
-          create={CloseTimeCreate}
-          show={CloseTimeShow}
+          name="TimeLapseInterval"
+          list={TimeLapseIntervalList}
+          edit={TimeLapseIntervalEdit}
+          create={TimeLapseIntervalCreate}
+          show={TimeLapseIntervalShow}
         />
         <Resource
           name="TimeLapse"
