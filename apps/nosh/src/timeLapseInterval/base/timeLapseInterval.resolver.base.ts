@@ -19,32 +19,31 @@ import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateTimeLapseArgs } from "./CreateTimeLapseArgs";
-import { UpdateTimeLapseArgs } from "./UpdateTimeLapseArgs";
-import { DeleteTimeLapseArgs } from "./DeleteTimeLapseArgs";
-import { TimeLapseCountArgs } from "./TimeLapseCountArgs";
-import { TimeLapseFindManyArgs } from "./TimeLapseFindManyArgs";
-import { TimeLapseFindUniqueArgs } from "./TimeLapseFindUniqueArgs";
-import { TimeLapse } from "./TimeLapse";
-import { TimeLapseInterval } from "../../timeLapseInterval/base/TimeLapseInterval";
-import { Schedule } from "../../schedule/base/Schedule";
-import { TimeLapseService } from "../timeLapse.service";
+import { CreateTimeLapseIntervalArgs } from "./CreateTimeLapseIntervalArgs";
+import { UpdateTimeLapseIntervalArgs } from "./UpdateTimeLapseIntervalArgs";
+import { DeleteTimeLapseIntervalArgs } from "./DeleteTimeLapseIntervalArgs";
+import { TimeLapseIntervalCountArgs } from "./TimeLapseIntervalCountArgs";
+import { TimeLapseIntervalFindManyArgs } from "./TimeLapseIntervalFindManyArgs";
+import { TimeLapseIntervalFindUniqueArgs } from "./TimeLapseIntervalFindUniqueArgs";
+import { TimeLapseInterval } from "./TimeLapseInterval";
+import { TimeLapse } from "../../timeLapse/base/TimeLapse";
+import { TimeLapseIntervalService } from "../timeLapseInterval.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-@graphql.Resolver(() => TimeLapse)
-export class TimeLapseResolverBase {
+@graphql.Resolver(() => TimeLapseInterval)
+export class TimeLapseIntervalResolverBase {
   constructor(
-    protected readonly service: TimeLapseService,
+    protected readonly service: TimeLapseIntervalService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "TimeLapse",
+    resource: "TimeLapseInterval",
     action: "read",
     possession: "any",
   })
-  async _timeLapsesMeta(
-    @graphql.Args() args: TimeLapseCountArgs
+  async _timeLapseIntervalsMeta(
+    @graphql.Args() args: TimeLapseIntervalCountArgs
   ): Promise<MetaQueryPayload> {
     const result = await this.service.count(args);
     return {
@@ -53,28 +52,28 @@ export class TimeLapseResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [TimeLapse])
+  @graphql.Query(() => [TimeLapseInterval])
   @nestAccessControl.UseRoles({
-    resource: "TimeLapse",
+    resource: "TimeLapseInterval",
     action: "read",
     possession: "any",
   })
-  async timeLapses(
-    @graphql.Args() args: TimeLapseFindManyArgs
-  ): Promise<TimeLapse[]> {
+  async timeLapseIntervals(
+    @graphql.Args() args: TimeLapseIntervalFindManyArgs
+  ): Promise<TimeLapseInterval[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => TimeLapse, { nullable: true })
+  @graphql.Query(() => TimeLapseInterval, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "TimeLapse",
+    resource: "TimeLapseInterval",
     action: "read",
     possession: "own",
   })
-  async timeLapse(
-    @graphql.Args() args: TimeLapseFindUniqueArgs
-  ): Promise<TimeLapse | null> {
+  async timeLapseInterval(
+    @graphql.Args() args: TimeLapseIntervalFindUniqueArgs
+  ): Promise<TimeLapseInterval | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -83,66 +82,54 @@ export class TimeLapseResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => TimeLapse)
+  @graphql.Mutation(() => TimeLapseInterval)
   @nestAccessControl.UseRoles({
-    resource: "TimeLapse",
+    resource: "TimeLapseInterval",
     action: "create",
     possession: "any",
   })
-  async createTimeLapse(
-    @graphql.Args() args: CreateTimeLapseArgs
-  ): Promise<TimeLapse> {
+  async createTimeLapseInterval(
+    @graphql.Args() args: CreateTimeLapseIntervalArgs
+  ): Promise<TimeLapseInterval> {
     return await this.service.create({
       ...args,
       data: {
         ...args.data,
 
-        close: {
-          connect: args.data.close,
+        timeLapseClose: {
+          connect: args.data.timeLapseClose,
         },
 
-        open: {
-          connect: args.data.open,
+        timeLapsesOpen: {
+          connect: args.data.timeLapsesOpen,
         },
-
-        schedule: args.data.schedule
-          ? {
-              connect: args.data.schedule,
-            }
-          : undefined,
       },
     });
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => TimeLapse)
+  @graphql.Mutation(() => TimeLapseInterval)
   @nestAccessControl.UseRoles({
-    resource: "TimeLapse",
+    resource: "TimeLapseInterval",
     action: "update",
     possession: "any",
   })
-  async updateTimeLapse(
-    @graphql.Args() args: UpdateTimeLapseArgs
-  ): Promise<TimeLapse | null> {
+  async updateTimeLapseInterval(
+    @graphql.Args() args: UpdateTimeLapseIntervalArgs
+  ): Promise<TimeLapseInterval | null> {
     try {
       return await this.service.update({
         ...args,
         data: {
           ...args.data,
 
-          close: {
-            connect: args.data.close,
+          timeLapseClose: {
+            connect: args.data.timeLapseClose,
           },
 
-          open: {
-            connect: args.data.open,
+          timeLapsesOpen: {
+            connect: args.data.timeLapsesOpen,
           },
-
-          schedule: args.data.schedule
-            ? {
-                connect: args.data.schedule,
-              }
-            : undefined,
         },
       });
     } catch (error) {
@@ -155,15 +142,15 @@ export class TimeLapseResolverBase {
     }
   }
 
-  @graphql.Mutation(() => TimeLapse)
+  @graphql.Mutation(() => TimeLapseInterval)
   @nestAccessControl.UseRoles({
-    resource: "TimeLapse",
+    resource: "TimeLapseInterval",
     action: "delete",
     possession: "any",
   })
-  async deleteTimeLapse(
-    @graphql.Args() args: DeleteTimeLapseArgs
-  ): Promise<TimeLapse | null> {
+  async deleteTimeLapseInterval(
+    @graphql.Args() args: DeleteTimeLapseIntervalArgs
+  ): Promise<TimeLapseInterval | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
@@ -177,19 +164,19 @@ export class TimeLapseResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => TimeLapseInterval, {
+  @graphql.ResolveField(() => TimeLapse, {
     nullable: true,
-    name: "close",
+    name: "timeLapseClose",
   })
   @nestAccessControl.UseRoles({
-    resource: "TimeLapseInterval",
+    resource: "TimeLapse",
     action: "read",
     possession: "any",
   })
-  async resolveFieldClose(
-    @graphql.Parent() parent: TimeLapse
-  ): Promise<TimeLapseInterval | null> {
-    const result = await this.service.getClose(parent.id);
+  async resolveFieldTimeLapseClose(
+    @graphql.Parent() parent: TimeLapseInterval
+  ): Promise<TimeLapse | null> {
+    const result = await this.service.getTimeLapseClose(parent.id);
 
     if (!result) {
       return null;
@@ -198,40 +185,19 @@ export class TimeLapseResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => TimeLapseInterval, {
+  @graphql.ResolveField(() => TimeLapse, {
     nullable: true,
-    name: "open",
+    name: "timeLapsesOpen",
   })
   @nestAccessControl.UseRoles({
-    resource: "TimeLapseInterval",
+    resource: "TimeLapse",
     action: "read",
     possession: "any",
   })
-  async resolveFieldOpen(
-    @graphql.Parent() parent: TimeLapse
-  ): Promise<TimeLapseInterval | null> {
-    const result = await this.service.getOpen(parent.id);
-
-    if (!result) {
-      return null;
-    }
-    return result;
-  }
-
-  @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => Schedule, {
-    nullable: true,
-    name: "schedule",
-  })
-  @nestAccessControl.UseRoles({
-    resource: "Schedule",
-    action: "read",
-    possession: "any",
-  })
-  async resolveFieldSchedule(
-    @graphql.Parent() parent: TimeLapse
-  ): Promise<Schedule | null> {
-    const result = await this.service.getSchedule(parent.id);
+  async resolveFieldTimeLapsesOpen(
+    @graphql.Parent() parent: TimeLapseInterval
+  ): Promise<TimeLapse | null> {
+    const result = await this.service.getTimeLapsesOpen(parent.id);
 
     if (!result) {
       return null;

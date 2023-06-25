@@ -10,13 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import {
-  Prisma,
-  TimeLapse,
-  CloseTime,
-  OpenTime,
-  Schedule,
-} from "@prisma/client";
+import { Prisma, TimeLapse, TimeLapseInterval, Schedule } from "@prisma/client";
 
 export class TimeLapseServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -53,7 +47,7 @@ export class TimeLapseServiceBase {
     return this.prisma.timeLapse.delete(args);
   }
 
-  async getClose(parentId: string): Promise<CloseTime | null> {
+  async getClose(parentId: string): Promise<TimeLapseInterval | null> {
     return this.prisma.timeLapse
       .findUnique({
         where: { id: parentId },
@@ -61,7 +55,7 @@ export class TimeLapseServiceBase {
       .close();
   }
 
-  async getOpen(parentId: string): Promise<OpenTime | null> {
+  async getOpen(parentId: string): Promise<TimeLapseInterval | null> {
     return this.prisma.timeLapse
       .findUnique({
         where: { id: parentId },

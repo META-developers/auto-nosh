@@ -21,27 +21,21 @@ model User {
   username  String   @unique
 }
 
-model OpenTime {
-  hour        Int
-  id          String    @id @default(cuid())
-  minute      Int
-  timeLapse   TimeLapse @relation(fields: [timeLapseId], references: [id])
-  timeLapseId String    @unique
-}
-
-model CloseTime {
-  hour        Int
-  id          String    @id @default(cuid())
-  minute      Int
-  timeLapse   TimeLapse @relation(fields: [timeLapseId], references: [id])
-  timeLapseId String    @unique
+model TimeLapseInterval {
+  hour             Int
+  id               String    @id @default(cuid())
+  minute           Int
+  timeLapseClose   TimeLapse @relation(name: "open", fields: [timeLapseCloseId], references: [id])
+  timeLapseCloseId String    @unique
+  timeLapsesOpen   TimeLapse @relation(name: "close", fields: [timeLapsesOpenId], references: [id])
+  timeLapsesOpenId String    @unique
 }
 
 model TimeLapse {
-  close      CloseTime?
-  id         String     @id @default(cuid())
-  open       OpenTime?
-  schedule   Schedule?  @relation(fields: [scheduleId], references: [id])
+  close      TimeLapseInterval? @relation(name: "close")
+  id         String             @id @default(cuid())
+  open       TimeLapseInterval? @relation(name: "open")
+  schedule   Schedule?          @relation(fields: [scheduleId], references: [id])
   scheduleId String?
 }
 

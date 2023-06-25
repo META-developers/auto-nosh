@@ -11,31 +11,30 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CloseTimeWhereUniqueInput } from "../../closeTime/base/CloseTimeWhereUniqueInput";
+import { TimeLapseIntervalWhereUniqueInput } from "../../timeLapseInterval/base/TimeLapseIntervalWhereUniqueInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { OpenTimeWhereUniqueInput } from "../../openTime/base/OpenTimeWhereUniqueInput";
 import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
 
 @InputType()
 class TimeLapseCreateInput {
   @ApiProperty({
     required: true,
-    type: () => CloseTimeWhereUniqueInput,
+    type: () => TimeLapseIntervalWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => CloseTimeWhereUniqueInput)
-  @Field(() => CloseTimeWhereUniqueInput)
-  close!: CloseTimeWhereUniqueInput | null;
+  @Type(() => TimeLapseIntervalWhereUniqueInput)
+  @Field(() => TimeLapseIntervalWhereUniqueInput)
+  close!: TimeLapseIntervalWhereUniqueInput | null;
 
   @ApiProperty({
     required: true,
-    type: () => OpenTimeWhereUniqueInput,
+    type: () => TimeLapseIntervalWhereUniqueInput,
   })
   @ValidateNested()
-  @Type(() => OpenTimeWhereUniqueInput)
-  @Field(() => OpenTimeWhereUniqueInput)
-  open!: OpenTimeWhereUniqueInput | null;
+  @Type(() => TimeLapseIntervalWhereUniqueInput)
+  @Field(() => TimeLapseIntervalWhereUniqueInput)
+  open!: TimeLapseIntervalWhereUniqueInput | null;
 
   @ApiProperty({
     required: false,

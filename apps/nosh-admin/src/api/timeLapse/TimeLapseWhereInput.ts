@@ -1,11 +1,10 @@
-import { CloseTimeWhereUniqueInput } from "../closeTime/CloseTimeWhereUniqueInput";
+import { TimeLapseIntervalWhereUniqueInput } from "../timeLapseInterval/TimeLapseIntervalWhereUniqueInput";
 import { StringFilter } from "../../util/StringFilter";
-import { OpenTimeWhereUniqueInput } from "../openTime/OpenTimeWhereUniqueInput";
 import { ScheduleWhereUniqueInput } from "../schedule/ScheduleWhereUniqueInput";
 
 export type TimeLapseWhereInput = {
-  close?: CloseTimeWhereUniqueInput;
+  close?: TimeLapseIntervalWhereUniqueInput;
   id?: StringFilter;
-  open?: OpenTimeWhereUniqueInput;
+  open?: TimeLapseIntervalWhereUniqueInput;
   schedule?: ScheduleWhereUniqueInput;
 };

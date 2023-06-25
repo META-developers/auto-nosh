@@ -11,48 +11,46 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { TimeLapseIntervalWhereUniqueInput } from "../../timeLapseInterval/base/TimeLapseIntervalWhereUniqueInput";
+import { TimeLapseIntervalWhereInput } from "./TimeLapseIntervalWhereInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { ScheduleWhereUniqueInput } from "../../schedule/base/ScheduleWhereUniqueInput";
 
 @InputType()
-class TimeLapseUpdateInput {
+class TimeLapseIntervalListRelationFilter {
   @ApiProperty({
     required: false,
-    type: () => TimeLapseIntervalWhereUniqueInput,
+    type: () => TimeLapseIntervalWhereInput,
   })
   @ValidateNested()
-  @Type(() => TimeLapseIntervalWhereUniqueInput)
+  @Type(() => TimeLapseIntervalWhereInput)
   @IsOptional()
-  @Field(() => TimeLapseIntervalWhereUniqueInput, {
+  @Field(() => TimeLapseIntervalWhereInput, {
     nullable: true,
   })
-  close?: TimeLapseIntervalWhereUniqueInput | null;
+  every?: TimeLapseIntervalWhereInput;
 
   @ApiProperty({
     required: false,
-    type: () => TimeLapseIntervalWhereUniqueInput,
+    type: () => TimeLapseIntervalWhereInput,
   })
   @ValidateNested()
-  @Type(() => TimeLapseIntervalWhereUniqueInput)
+  @Type(() => TimeLapseIntervalWhereInput)
   @IsOptional()
-  @Field(() => TimeLapseIntervalWhereUniqueInput, {
+  @Field(() => TimeLapseIntervalWhereInput, {
     nullable: true,
   })
-  open?: TimeLapseIntervalWhereUniqueInput | null;
+  some?: TimeLapseIntervalWhereInput;
 
   @ApiProperty({
     required: false,
-    type: () => ScheduleWhereUniqueInput,
+    type: () => TimeLapseIntervalWhereInput,
   })
   @ValidateNested()
-  @Type(() => ScheduleWhereUniqueInput)
+  @Type(() => TimeLapseIntervalWhereInput)
   @IsOptional()
-  @Field(() => ScheduleWhereUniqueInput, {
+  @Field(() => TimeLapseIntervalWhereInput, {
     nullable: true,
   })
-  schedule?: ScheduleWhereUniqueInput | null;
+  none?: TimeLapseIntervalWhereInput;
 }
-
-export { TimeLapseUpdateInput as TimeLapseUpdateInput };
+export { TimeLapseIntervalListRelationFilter as TimeLapseIntervalListRelationFilter };

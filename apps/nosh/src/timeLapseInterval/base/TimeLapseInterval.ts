@@ -11,20 +11,19 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { TimeLapseInterval } from "../../timeLapseInterval/base/TimeLapseInterval";
-import { ValidateNested, IsString, IsOptional } from "class-validator";
+import { IsInt, IsString, ValidateNested } from "class-validator";
+import { TimeLapse } from "../../timeLapse/base/TimeLapse";
 import { Type } from "class-transformer";
-import { Schedule } from "../../schedule/base/Schedule";
 
 @ObjectType()
-class TimeLapse {
+class TimeLapseInterval {
   @ApiProperty({
     required: true,
-    type: () => TimeLapseInterval,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => TimeLapseInterval)
-  close?: TimeLapseInterval | null;
+  @IsInt()
+  @Field(() => Number)
+  hour!: number;
 
   @ApiProperty({
     required: true,
@@ -36,20 +35,27 @@ class TimeLapse {
 
   @ApiProperty({
     required: true,
-    type: () => TimeLapseInterval,
+    type: Number,
   })
-  @ValidateNested()
-  @Type(() => TimeLapseInterval)
-  open?: TimeLapseInterval | null;
+  @IsInt()
+  @Field(() => Number)
+  minute!: number;
 
   @ApiProperty({
-    required: false,
-    type: () => Schedule,
+    required: true,
+    type: () => TimeLapse,
   })
   @ValidateNested()
-  @Type(() => Schedule)
-  @IsOptional()
-  schedule?: Schedule | null;
+  @Type(() => TimeLapse)
+  timeLapseClose?: TimeLapse;
+
+  @ApiProperty({
+    required: true,
+    type: () => TimeLapse,
+  })
+  @ValidateNested()
+  @Type(() => TimeLapse)
+  timeLapsesOpen?: TimeLapse;
 }
 
-export { TimeLapse as TimeLapse };
+export { TimeLapseInterval as TimeLapseInterval };
