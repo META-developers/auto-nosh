@@ -9,18 +9,18 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { TimeLapseIntervalList } from "./timeLapseInterval/TimeLapseIntervalList";
-import { TimeLapseIntervalCreate } from "./timeLapseInterval/TimeLapseIntervalCreate";
-import { TimeLapseIntervalEdit } from "./timeLapseInterval/TimeLapseIntervalEdit";
-import { TimeLapseIntervalShow } from "./timeLapseInterval/TimeLapseIntervalShow";
-import { TimeLapseList } from "./timeLapse/TimeLapseList";
-import { TimeLapseCreate } from "./timeLapse/TimeLapseCreate";
-import { TimeLapseEdit } from "./timeLapse/TimeLapseEdit";
-import { TimeLapseShow } from "./timeLapse/TimeLapseShow";
-import { ScheduleList } from "./schedule/ScheduleList";
-import { ScheduleCreate } from "./schedule/ScheduleCreate";
-import { ScheduleEdit } from "./schedule/ScheduleEdit";
-import { ScheduleShow } from "./schedule/ScheduleShow";
+import { LocationList } from "./location/LocationList";
+import { LocationCreate } from "./location/LocationCreate";
+import { LocationEdit } from "./location/LocationEdit";
+import { LocationShow } from "./location/LocationShow";
+import { AddressList } from "./address/AddressList";
+import { AddressCreate } from "./address/AddressCreate";
+import { AddressEdit } from "./address/AddressEdit";
+import { AddressShow } from "./address/AddressShow";
+import { BusinessList } from "./business/BusinessList";
+import { BusinessCreate } from "./business/BusinessCreate";
+import { BusinessEdit } from "./business/BusinessEdit";
+import { BusinessShow } from "./business/BusinessShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -55,25 +55,25 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="TimeLapseInterval"
-          list={TimeLapseIntervalList}
-          edit={TimeLapseIntervalEdit}
-          create={TimeLapseIntervalCreate}
-          show={TimeLapseIntervalShow}
+          name="Location"
+          list={LocationList}
+          edit={LocationEdit}
+          create={LocationCreate}
+          show={LocationShow}
         />
         <Resource
-          name="TimeLapse"
-          list={TimeLapseList}
-          edit={TimeLapseEdit}
-          create={TimeLapseCreate}
-          show={TimeLapseShow}
+          name="Address"
+          list={AddressList}
+          edit={AddressEdit}
+          create={AddressCreate}
+          show={AddressShow}
         />
         <Resource
-          name="Schedule"
-          list={ScheduleList}
-          edit={ScheduleEdit}
-          create={ScheduleCreate}
-          show={ScheduleShow}
+          name="Business"
+          list={BusinessList}
+          edit={BusinessEdit}
+          create={BusinessCreate}
+          show={BusinessShow}
         />
       </Admin>
     </div>
