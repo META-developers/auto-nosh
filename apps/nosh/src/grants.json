@@ -31,91 +31,91 @@
   },
   {
     "role": "user",
-    "resource": "TimeLapseInterval",
+    "resource": "Location",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapseInterval",
+    "resource": "Location",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapseInterval",
+    "resource": "Location",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapseInterval",
+    "resource": "Location",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapseInterval",
+    "resource": "Location",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapse",
+    "resource": "Address",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapse",
+    "resource": "Address",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapse",
+    "resource": "Address",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapse",
+    "resource": "Address",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "TimeLapse",
+    "resource": "Address",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Schedule",
+    "resource": "Business",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Schedule",
+    "resource": "Business",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Schedule",
+    "resource": "Business",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Schedule",
+    "resource": "Business",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Schedule",
+    "resource": "Business",
     "action": "read:any",
     "attributes": "*"
   }
