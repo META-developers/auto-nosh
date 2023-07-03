@@ -13,7 +13,8 @@ import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
-import { IsOptional } from "class-validator";
+import { IsOptional, IsEnum } from "class-validator";
+import { EnumBusinessMenuProvider } from "./EnumBusinessMenuProvider";
 
 @InputType()
 class BusinessWhereInput {
@@ -27,6 +28,24 @@ class BusinessWhereInput {
     nullable: true,
   })
   id?: StringFilter;
+
+  @ApiProperty({
+    required: false,
+    enum: EnumBusinessMenuProvider,
+  })
+  @IsEnum(EnumBusinessMenuProvider)
+  @IsOptional()
+  @Field(() => EnumBusinessMenuProvider, {
+    nullable: true,
+  })
+  menuProvider?:
+    | "Nosh"
+    | "Chowly"
+    | "Toast"
+    | "Deliverect"
+    | "Square"
+    | "Checkmate"
+    | "Otter";
 }
 
 export { BusinessWhereInput as BusinessWhereInput };

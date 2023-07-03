@@ -1,12 +1,10 @@
 export type BusinessUpdateInput = {
-  menuProvider?: Array<
+  menuProvider?:
     | "Nosh"
     | "Chowly"
-    | "Deliverect"
     | "Toast"
-    | "Checkmate"
-    | "Otter"
+    | "Deliverect"
     | "Square"
-    | "Clover"
-  >;
+    | "Checkmate"
+    | "Otter";
 };

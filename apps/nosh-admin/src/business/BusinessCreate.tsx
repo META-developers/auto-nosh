@@ -1,22 +1,21 @@
 import * as React from "react";
-import { Create, SimpleForm, CreateProps, SelectArrayInput } from "react-admin";
+import { Create, SimpleForm, CreateProps, SelectInput } from "react-admin";
 
 export const BusinessCreate = (props: CreateProps): React.ReactElement => {
   return (
     <Create {...props}>
       <SimpleForm>
-        <SelectArrayInput
-          label="MenuProvider"
+        <SelectInput
           source="menuProvider"
+          label="MenuProvider"
           choices={[
             { label: "nosh", value: "Nosh" },
             { label: "chowly", value: "Chowly" },
-            { label: "deliverect", value: "Deliverect" },
             { label: "toast", value: "Toast" },
+            { label: "deliverect", value: "Deliverect" },
+            { label: "square", value: "Square" },
             { label: "checkmate", value: "Checkmate" },
             { label: "otter", value: "Otter" },
-            { label: "square", value: "Square" },
-            { label: "clover", value: "Clover" },
           ]}
           optionText="label"
           optionValue="value"

@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsEnum, IsOptional } from "class-validator";
+import { IsDate, IsString, IsEnum } from "class-validator";
 import { Type } from "class-transformer";
 import { EnumBusinessMenuProvider } from "./EnumBusinessMenuProvider";
 
@@ -36,25 +36,19 @@ class Business {
   @ApiProperty({
     required: true,
     enum: EnumBusinessMenuProvider,
-    isArray: true,
   })
-  @IsEnum(EnumBusinessMenuProvider, {
-    each: true,
-  })
-  @IsOptional()
-  @Field(() => [EnumBusinessMenuProvider], {
+  @IsEnum(EnumBusinessMenuProvider)
+  @Field(() => EnumBusinessMenuProvider, {
     nullable: true,
   })
-  menuProvider?: Array<
+  menuProvider?:
     | "Nosh"
     | "Chowly"
-    | "Deliverect"
     | "Toast"
-    | "Checkmate"
-    | "Otter"
+    | "Deliverect"
     | "Square"
-    | "Clover"
-  >;
+    | "Checkmate"
+    | "Otter";
 
   @ApiProperty({
     required: true,

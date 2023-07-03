@@ -52,19 +52,18 @@ model Order {
 }
 
 model Business {
-  createdAt    DateTime                   @default(now())
-  id           String                     @id @default(cuid())
-  menuProvider EnumBusinessMenuProvider[]
-  updatedAt    DateTime                   @updatedAt
+  createdAt    DateTime                 @default(now())
+  id           String                   @id @default(cuid())
+  menuProvider EnumBusinessMenuProvider
+  updatedAt    DateTime                 @updatedAt
 }
 
 enum EnumBusinessMenuProvider {
   Nosh
   Chowly
-  Deliverect
   Toast
+  Deliverect
+  Square
   Checkmate
   Otter
-  Square
-  Clover
 }
