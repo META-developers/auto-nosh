@@ -31,91 +31,61 @@
   },
   {
     "role": "user",
-    "resource": "Location",
+    "resource": "OrderSummary",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Location",
+    "resource": "OrderSummary",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Location",
+    "resource": "OrderSummary",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Location",
+    "resource": "OrderSummary",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Location",
+    "resource": "OrderSummary",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Order",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Order",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Order",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
+    "resource": "Order",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Address",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Business",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Business",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Business",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Business",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "Business",
+    "resource": "Order",
     "action": "read:any",
     "attributes": "*"
   }

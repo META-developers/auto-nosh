@@ -9,18 +9,14 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { LocationList } from "./location/LocationList";
-import { LocationCreate } from "./location/LocationCreate";
-import { LocationEdit } from "./location/LocationEdit";
-import { LocationShow } from "./location/LocationShow";
-import { AddressList } from "./address/AddressList";
-import { AddressCreate } from "./address/AddressCreate";
-import { AddressEdit } from "./address/AddressEdit";
-import { AddressShow } from "./address/AddressShow";
-import { BusinessList } from "./business/BusinessList";
-import { BusinessCreate } from "./business/BusinessCreate";
-import { BusinessEdit } from "./business/BusinessEdit";
-import { BusinessShow } from "./business/BusinessShow";
+import { OrderSummaryList } from "./orderSummary/OrderSummaryList";
+import { OrderSummaryCreate } from "./orderSummary/OrderSummaryCreate";
+import { OrderSummaryEdit } from "./orderSummary/OrderSummaryEdit";
+import { OrderSummaryShow } from "./orderSummary/OrderSummaryShow";
+import { OrderList } from "./order/OrderList";
+import { OrderCreate } from "./order/OrderCreate";
+import { OrderEdit } from "./order/OrderEdit";
+import { OrderShow } from "./order/OrderShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -55,25 +51,18 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="Location"
-          list={LocationList}
-          edit={LocationEdit}
-          create={LocationCreate}
-          show={LocationShow}
+          name="OrderSummary"
+          list={OrderSummaryList}
+          edit={OrderSummaryEdit}
+          create={OrderSummaryCreate}
+          show={OrderSummaryShow}
         />
         <Resource
-          name="Address"
-          list={AddressList}
-          edit={AddressEdit}
-          create={AddressCreate}
-          show={AddressShow}
-        />
-        <Resource
-          name="Business"
-          list={BusinessList}
-          edit={BusinessEdit}
-          create={BusinessCreate}
-          show={BusinessShow}
+          name="Order"
+          list={OrderList}
+          edit={OrderEdit}
+          create={OrderCreate}
+          show={OrderShow}
         />
       </Admin>
     </div>
