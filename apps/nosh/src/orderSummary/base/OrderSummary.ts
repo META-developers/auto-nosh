@@ -11,7 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsNumber, IsString, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsNumber,
+  IsOptional,
+  IsString,
+  ValidateNested,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { Order } from "../../order/base/Order";
 
@@ -34,12 +40,15 @@ class OrderSummary {
   deliveryPrice!: number;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsNumber()
-  @Field(() => Number)
-  deliveryPriceWithDiscount!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  deliveryPriceWithDiscount!: number | null;
 
   @ApiProperty({
     required: true,

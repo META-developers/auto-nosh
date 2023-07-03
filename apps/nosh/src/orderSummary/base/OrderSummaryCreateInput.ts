@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNumber, ValidateNested } from "class-validator";
+import { IsNumber, IsOptional, ValidateNested } from "class-validator";
 import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
 import { Type } from "class-transformer";
 
@@ -26,12 +26,15 @@ class OrderSummaryCreateInput {
   deliveryPrice!: number;
 
   @ApiProperty({
-    required: true,
+    required: false,
     type: Number,
   })
   @IsNumber()
-  @Field(() => Number)
-  deliveryPriceWithDiscount!: number;
+  @IsOptional()
+  @Field(() => Number, {
+    nullable: true,
+  })
+  deliveryPriceWithDiscount?: number | null;
 
   @ApiProperty({
     required: true,

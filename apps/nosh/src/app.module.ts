@@ -4,6 +4,7 @@ import { MorganInterceptor, MorganModule } from "nest-morgan";
 import { UserModule } from "./user/user.module";
 import { OrderSummaryModule } from "./orderSummary/orderSummary.module";
 import { OrderModule } from "./order/order.module";
+import { BusinessModule } from "./business/business.module";
 import { HealthModule } from "./health/health.module";
 import { PrismaModule } from "./prisma/prisma.module";
 import { SecretsManagerModule } from "./providers/secrets/secretsManager.module";
@@ -23,6 +24,7 @@ import { AuthModule } from "./auth/auth.module";
     UserModule,
     OrderSummaryModule,
     OrderModule,
+    BusinessModule,
     HealthModule,
     PrismaModule,
     SecretsManagerModule,
