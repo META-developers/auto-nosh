@@ -24,7 +24,7 @@ model User {
 model OrderSummary {
   createdAt                 DateTime @default(now())
   deliveryPrice             Float
-  deliveryPriceWithDiscount Float
+  deliveryPriceWithDiscount Float?
   discount                  Float
   driverTip                 Float
   driverTipRate             Float
@@ -49,4 +49,22 @@ model Order {
   id           String        @id @default(uuid())
   orderSummary OrderSummary?
   updatedAt    DateTime      @updatedAt
+}
+
+model Business {
+  createdAt    DateTime                   @default(now())
+  id           String                     @id @default(cuid())
+  menuProvider EnumBusinessMenuProvider[]
+  updatedAt    DateTime                   @updatedAt
+}
+
+enum EnumBusinessMenuProvider {
+  Nosh
+  Chowly
+  Deliverect
+  Toast
+  Checkmate
+  Otter
+  Square
+  Clover
 }

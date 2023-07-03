@@ -3,7 +3,7 @@ import { Order } from "../order/Order";
 export type OrderSummary = {
   createdAt: Date;
   deliveryPrice: number;
-  deliveryPriceWithDiscount: number;
+  deliveryPriceWithDiscount: number | null;
   discount: number;
   driverTip: number;
   driverTipRate: number;

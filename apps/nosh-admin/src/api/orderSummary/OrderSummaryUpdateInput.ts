@@ -2,7 +2,7 @@ import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 
 export type OrderSummaryUpdateInput = {
   deliveryPrice?: number;
-  deliveryPriceWithDiscount?: number;
+  deliveryPriceWithDiscount?: number | null;
   discount?: number;
   driverTip?: number;
   driverTipRate?: number;

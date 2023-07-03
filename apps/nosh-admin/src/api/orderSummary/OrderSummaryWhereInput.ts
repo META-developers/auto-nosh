@@ -1,10 +1,11 @@
 import { FloatFilter } from "../../util/FloatFilter";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
 
 export type OrderSummaryWhereInput = {
   deliveryPrice?: FloatFilter;
-  deliveryPriceWithDiscount?: FloatFilter;
+  deliveryPriceWithDiscount?: FloatNullableFilter;
   discount?: FloatFilter;
   driverTip?: FloatFilter;
   driverTipRate?: FloatFilter;

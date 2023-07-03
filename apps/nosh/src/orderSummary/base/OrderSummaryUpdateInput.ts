@@ -37,7 +37,7 @@ class OrderSummaryUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  deliveryPriceWithDiscount?: number;
+  deliveryPriceWithDiscount?: number | null;
 
   @ApiProperty({
     required: false,

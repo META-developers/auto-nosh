@@ -14,6 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { FloatFilter } from "../../util/FloatFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
+import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
 
@@ -32,14 +33,14 @@ class OrderSummaryWhereInput {
 
   @ApiProperty({
     required: false,
-    type: FloatFilter,
+    type: FloatNullableFilter,
   })
-  @Type(() => FloatFilter)
+  @Type(() => FloatNullableFilter)
   @IsOptional()
-  @Field(() => FloatFilter, {
+  @Field(() => FloatNullableFilter, {
     nullable: true,
   })
-  deliveryPriceWithDiscount?: FloatFilter;
+  deliveryPriceWithDiscount?: FloatNullableFilter;
 
   @ApiProperty({
     required: false,
