@@ -1,7 +1,6 @@
 import { FloatFilter } from "../../util/FloatFilter";
 import { StringFilter } from "../../util/StringFilter";
 import { OrderWhereUniqueInput } from "../order/OrderWhereUniqueInput";
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 
 export type OrderSummaryWhereInput = {
   deliveryPrice?: FloatFilter;
@@ -20,5 +19,5 @@ export type OrderSummaryWhereInput = {
   taxAfterDiscount?: FloatFilter;
   taxRate?: FloatFilter;
   taxWithDiscount?: FloatFilter;
-  total?: FloatNullableFilter;
+  total?: FloatFilter;
 };

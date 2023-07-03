@@ -192,7 +192,7 @@ class OrderSummaryUpdateInput {
   @Field(() => Number, {
     nullable: true,
   })
-  total?: number | null;
+  total?: number;
 }
 
 export { OrderSummaryUpdateInput as OrderSummaryUpdateInput };

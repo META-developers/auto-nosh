@@ -40,13 +40,13 @@ model OrderSummary {
   taxAfterDiscount          Float
   taxRate                   Float
   taxWithDiscount           Float
-  total                     Float?
+  total                     Float
   updatedAt                 DateTime @updatedAt
 }
 
 model Order {
   createdAt    DateTime      @default(now())
-  id           String        @id @default(cuid())
+  id           String        @id @default(uuid())
   orderSummary OrderSummary?
   updatedAt    DateTime      @updatedAt
 }
