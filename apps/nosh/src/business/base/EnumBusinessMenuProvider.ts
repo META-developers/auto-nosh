@@ -14,12 +14,11 @@ import { registerEnumType } from "@nestjs/graphql";
 export enum EnumBusinessMenuProvider {
   Nosh = "Nosh",
   Chowly = "Chowly",
-  Deliverect = "Deliverect",
   Toast = "Toast",
+  Deliverect = "Deliverect",
+  Square = "Square",
   Checkmate = "Checkmate",
   Otter = "Otter",
-  Square = "Square",
-  Clover = "Clover",
 }
 
 registerEnumType(EnumBusinessMenuProvider, {

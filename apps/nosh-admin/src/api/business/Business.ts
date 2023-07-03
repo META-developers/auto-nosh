@@ -1,15 +1,13 @@
 export type Business = {
   createdAt: Date;
   id: string;
-  menuProvider?: Array<
+  menuProvider?:
     | "Nosh"
     | "Chowly"
-    | "Deliverect"
     | "Toast"
-    | "Checkmate"
-    | "Otter"
+    | "Deliverect"
     | "Square"
-    | "Clover"
-  >;
+    | "Checkmate"
+    | "Otter";
   updatedAt: Date;
 };

@@ -19,25 +19,20 @@ class BusinessUpdateInput {
   @ApiProperty({
     required: false,
     enum: EnumBusinessMenuProvider,
-    isArray: true,
   })
-  @IsEnum(EnumBusinessMenuProvider, {
-    each: true,
-  })
+  @IsEnum(EnumBusinessMenuProvider)
   @IsOptional()
-  @Field(() => [EnumBusinessMenuProvider], {
+  @Field(() => EnumBusinessMenuProvider, {
     nullable: true,
   })
-  menuProvider?: Array<
+  menuProvider?:
     | "Nosh"
     | "Chowly"
-    | "Deliverect"
     | "Toast"
-    | "Checkmate"
-    | "Otter"
+    | "Deliverect"
     | "Square"
-    | "Clover"
-  >;
+    | "Checkmate"
+    | "Otter";
 }
 
 export { BusinessUpdateInput as BusinessUpdateInput };

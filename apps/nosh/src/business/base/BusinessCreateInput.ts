@@ -12,32 +12,24 @@ https://docs.amplication.com/how-to/custom-code
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
 import { EnumBusinessMenuProvider } from "./EnumBusinessMenuProvider";
-import { IsEnum, IsOptional } from "class-validator";
+import { IsEnum } from "class-validator";
 
 @InputType()
 class BusinessCreateInput {
   @ApiProperty({
     required: true,
     enum: EnumBusinessMenuProvider,
-    isArray: true,
   })
-  @IsEnum(EnumBusinessMenuProvider, {
-    each: true,
-  })
-  @IsOptional()
-  @Field(() => [EnumBusinessMenuProvider], {
-    nullable: true,
-  })
-  menuProvider?: Array<
+  @IsEnum(EnumBusinessMenuProvider)
+  @Field(() => EnumBusinessMenuProvider)
+  menuProvider!:
     | "Nosh"
     | "Chowly"
-    | "Deliverect"
     | "Toast"
-    | "Checkmate"
-    | "Otter"
+    | "Deliverect"
     | "Square"
-    | "Clover"
-  >;
+    | "Checkmate"
+    | "Otter";
 }
 
 export { BusinessCreateInput as BusinessCreateInput };
