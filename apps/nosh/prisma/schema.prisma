@@ -21,28 +21,32 @@ model User {
   username  String   @unique
 }
 
-model Location {
-  addresses  Address[]
-  businesses Business[]
-  id         String     @id @default(cuid())
-  lat        Float
-  lng        Float
+model OrderSummary {
+  createdAt                 DateTime @default(now())
+  deliveryPrice             Float
+  deliveryPriceWithDiscount Float
+  discount                  Float
+  driverTip                 Float
+  driverTipRate             Float
+  id                        String   @id @default(cuid())
+  order                     Order    @relation(fields: [orderId], references: [id])
+  orderId                   String   @unique
+  serviceFee                Float
+  serviceFeeRate            Float
+  serviceFeeWithDiscount    Float
+  subtotal                  Float
+  subtotalWithDiscount      Float
+  tax                       Float
+  taxAfterDiscount          Float
+  taxRate                   Float
+  taxWithDiscount           Float
+  total                     Float?
+  updatedAt                 DateTime @updatedAt
 }
 
-model Address {
-  createdAt  DateTime @default(now())
-  id         String   @id @default(cuid())
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId String
-  street     String?
-  updatedAt  DateTime @updatedAt
-}
-
-model Business {
-  createdAt  DateTime @default(now())
-  id         String   @id @default(cuid())
-  location   Location @relation(fields: [locationId], references: [id])
-  locationId String
-  name       String
-  updatedAt  DateTime @updatedAt
+model Order {
+  createdAt    DateTime      @default(now())
+  id           String        @id @default(cuid())
+  orderSummary OrderSummary?
+  updatedAt    DateTime      @updatedAt
 }
