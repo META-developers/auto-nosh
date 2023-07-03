@@ -18,6 +18,6 @@ export type OrderSummary = {
   taxAfterDiscount: number;
   taxRate: number;
   taxWithDiscount: number;
-  total: number | null;
+  total: number;
   updatedAt: Date;
 };

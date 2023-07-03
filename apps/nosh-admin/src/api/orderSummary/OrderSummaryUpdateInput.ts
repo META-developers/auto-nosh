@@ -16,5 +16,5 @@ export type OrderSummaryUpdateInput = {
   taxAfterDiscount?: number;
   taxRate?: number;
   taxWithDiscount?: number;
-  total?: number | null;
+  total?: number;
 };

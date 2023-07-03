@@ -16,7 +16,6 @@ import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
 import { StringFilter } from "../../util/StringFilter";
 import { OrderWhereUniqueInput } from "../../order/base/OrderWhereUniqueInput";
-import { FloatNullableFilter } from "../../util/FloatNullableFilter";
 
 @InputType()
 class OrderSummaryWhereInput {
@@ -199,14 +198,14 @@ class OrderSummaryWhereInput {
 
   @ApiProperty({
     required: false,
-    type: FloatNullableFilter,
+    type: FloatFilter,
   })
-  @Type(() => FloatNullableFilter)
+  @Type(() => FloatFilter)
   @IsOptional()
-  @Field(() => FloatNullableFilter, {
+  @Field(() => FloatFilter, {
     nullable: true,
   })
-  total?: FloatNullableFilter;
+  total?: FloatFilter;
 }
 
 export { OrderSummaryWhereInput as OrderSummaryWhereInput };
