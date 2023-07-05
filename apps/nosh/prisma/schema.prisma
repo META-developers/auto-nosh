@@ -30,8 +30,8 @@ model OrderEvent {
   createdAt   DateTime                   @default(now())
   eventSource EnumOrderEventEventSource?
   id          String                     @id @default(cuid())
-  order       Order?                     @relation(fields: [orderId], references: [id])
-  orderId     String?
+  order       Order                      @relation(fields: [orderId], references: [id])
+  orderId     String
   status      Int
   updatedAt   DateTime                   @updatedAt
 }

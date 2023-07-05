@@ -53,13 +53,12 @@ class OrderEvent {
   id!: string;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => Order,
   })
   @ValidateNested()
   @Type(() => Order)
-  @IsOptional()
-  order?: Order | null;
+  order?: Order;
 
   @ApiProperty({
     required: true,

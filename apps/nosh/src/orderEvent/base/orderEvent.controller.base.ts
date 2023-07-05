@@ -53,11 +53,9 @@ export class OrderEventControllerBase {
       data: {
         ...data,
 
-        order: data.order
-          ? {
-              connect: data.order,
-            }
-          : undefined,
+        order: {
+          connect: data.order,
+        },
       },
       select: {
         createdAt: true,
@@ -171,11 +169,9 @@ export class OrderEventControllerBase {
         data: {
           ...data,
 
-          order: data.order
-            ? {
-                connect: data.order,
-              }
-            : undefined,
+          order: {
+            connect: data.order,
+          },
         },
         select: {
           createdAt: true,

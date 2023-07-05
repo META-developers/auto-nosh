@@ -30,16 +30,13 @@ class OrderEventCreateInput {
   eventSource?: "Nosh" | "Chowly" | "Checkmate" | "Shipday" | null;
 
   @ApiProperty({
-    required: false,
+    required: true,
     type: () => OrderWhereUniqueInput,
   })
   @ValidateNested()
   @Type(() => OrderWhereUniqueInput)
-  @IsOptional()
-  @Field(() => OrderWhereUniqueInput, {
-    nullable: true,
-  })
-  order?: OrderWhereUniqueInput | null;
+  @Field(() => OrderWhereUniqueInput)
+  order!: OrderWhereUniqueInput;
 
   @ApiProperty({
     required: true,
