@@ -21,49 +21,24 @@ model User {
   username  String   @unique
 }
 
-model OrderSummary {
-  createdAt                 DateTime @default(now())
-  deliveryPrice             Float
-  deliveryPriceWithDiscount Float?
-  discount                  Float
-  driverTip                 Float
-  driverTipRate             Float
-  id                        String   @id @default(cuid())
-  order                     Order    @relation(fields: [orderId], references: [id])
-  orderId                   String   @unique
-  serviceFee                Float
-  serviceFeeRate            Float
-  serviceFeeWithDiscount    Float
-  subtotal                  Float
-  subtotalWithDiscount      Float
-  tax                       Float
-  taxAfterDiscount          Float
-  taxRate                   Float
-  taxWithDiscount           Float
-  total                     Float
-  updatedAt                 DateTime @updatedAt
-}
-
 model Order {
-  createdAt    DateTime      @default(now())
-  id           String        @id @default(uuid())
-  orderSummary OrderSummary?
-  updatedAt    DateTime      @updatedAt
+  id          String       @id @default(uuid())
+  orderEvents OrderEvent[]
 }
 
-model Business {
-  createdAt    DateTime                 @default(now())
-  id           String                   @id @default(cuid())
-  menuProvider EnumBusinessMenuProvider
-  updatedAt    DateTime                 @updatedAt
+model OrderEvent {
+  createdAt   DateTime                   @default(now())
+  eventSource EnumOrderEventEventSource?
+  id          String                     @id @default(cuid())
+  order       Order?                     @relation(fields: [orderId], references: [id])
+  orderId     String?
+  status      Int
+  updatedAt   DateTime                   @updatedAt
 }
 
-enum EnumBusinessMenuProvider {
+enum EnumOrderEventEventSource {
   Nosh
   Chowly
-  Toast
-  Deliverect
-  Square
   Checkmate
-  Otter
+  Shipday
 }

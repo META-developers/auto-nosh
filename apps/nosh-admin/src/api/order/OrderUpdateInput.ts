@@ -1,5 +1,5 @@
-import { OrderSummaryWhereUniqueInput } from "../orderSummary/OrderSummaryWhereUniqueInput";
+import { OrderEventUpdateManyWithoutOrdersInput } from "./OrderEventUpdateManyWithoutOrdersInput";
 
 export type OrderUpdateInput = {
-  orderSummary?: OrderSummaryWhereUniqueInput | null;
+  orderEvents?: OrderEventUpdateManyWithoutOrdersInput;
 };

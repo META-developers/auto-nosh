@@ -11,20 +11,23 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { OrderSummaryWhereUniqueInput } from "../../orderSummary/base/OrderSummaryWhereUniqueInput";
-import { ValidateNested } from "class-validator";
+import { OrderEventCreateNestedManyWithoutOrdersInput } from "./OrderEventCreateNestedManyWithoutOrdersInput";
+import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
 @InputType()
 class OrderCreateInput {
   @ApiProperty({
-    required: true,
-    type: () => OrderSummaryWhereUniqueInput,
+    required: false,
+    type: () => OrderEventCreateNestedManyWithoutOrdersInput,
   })
   @ValidateNested()
-  @Type(() => OrderSummaryWhereUniqueInput)
-  @Field(() => OrderSummaryWhereUniqueInput)
-  orderSummary!: OrderSummaryWhereUniqueInput | null;
+  @Type(() => OrderEventCreateNestedManyWithoutOrdersInput)
+  @IsOptional()
+  @Field(() => OrderEventCreateNestedManyWithoutOrdersInput, {
+    nullable: true,
+  })
+  orderEvents?: OrderEventCreateNestedManyWithoutOrdersInput;
 }
 
 export { OrderCreateInput as OrderCreateInput };

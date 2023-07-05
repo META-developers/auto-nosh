@@ -9,18 +9,14 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { OrderSummaryList } from "./orderSummary/OrderSummaryList";
-import { OrderSummaryCreate } from "./orderSummary/OrderSummaryCreate";
-import { OrderSummaryEdit } from "./orderSummary/OrderSummaryEdit";
-import { OrderSummaryShow } from "./orderSummary/OrderSummaryShow";
 import { OrderList } from "./order/OrderList";
 import { OrderCreate } from "./order/OrderCreate";
 import { OrderEdit } from "./order/OrderEdit";
 import { OrderShow } from "./order/OrderShow";
-import { BusinessList } from "./business/BusinessList";
-import { BusinessCreate } from "./business/BusinessCreate";
-import { BusinessEdit } from "./business/BusinessEdit";
-import { BusinessShow } from "./business/BusinessShow";
+import { OrderEventList } from "./orderEvent/OrderEventList";
+import { OrderEventCreate } from "./orderEvent/OrderEventCreate";
+import { OrderEventEdit } from "./orderEvent/OrderEventEdit";
+import { OrderEventShow } from "./orderEvent/OrderEventShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -55,13 +51,6 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="OrderSummary"
-          list={OrderSummaryList}
-          edit={OrderSummaryEdit}
-          create={OrderSummaryCreate}
-          show={OrderSummaryShow}
-        />
-        <Resource
           name="Order"
           list={OrderList}
           edit={OrderEdit}
@@ -69,11 +58,11 @@ const App = (): React.ReactElement => {
           show={OrderShow}
         />
         <Resource
-          name="Business"
-          list={BusinessList}
-          edit={BusinessEdit}
-          create={BusinessCreate}
-          show={BusinessShow}
+          name="OrderEvent"
+          list={OrderEventList}
+          edit={OrderEventEdit}
+          create={OrderEventCreate}
+          show={OrderEventShow}
         />
       </Admin>
     </div>

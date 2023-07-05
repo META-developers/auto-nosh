@@ -11,20 +11,12 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, ValidateNested } from "class-validator";
+import { IsString, ValidateNested, IsOptional } from "class-validator";
+import { OrderEvent } from "../../orderEvent/base/OrderEvent";
 import { Type } from "class-transformer";
-import { OrderSummary } from "../../orderSummary/base/OrderSummary";
 
 @ObjectType()
 class Order {
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  createdAt!: Date;
-
   @ApiProperty({
     required: true,
     type: String,
@@ -34,20 +26,13 @@ class Order {
   id!: string;
 
   @ApiProperty({
-    required: true,
-    type: () => OrderSummary,
+    required: false,
+    type: () => [OrderEvent],
   })
   @ValidateNested()
-  @Type(() => OrderSummary)
-  orderSummary?: OrderSummary | null;
-
-  @ApiProperty({
-    required: true,
-  })
-  @IsDate()
-  @Type(() => Date)
-  @Field(() => Date)
-  updatedAt!: Date;
+  @Type(() => OrderEvent)
+  @IsOptional()
+  orderEvents?: Array<OrderEvent>;
 }
 
 export { Order as Order };

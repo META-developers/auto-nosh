@@ -1,5 +1,5 @@
-import { OrderSummaryWhereUniqueInput } from "../orderSummary/OrderSummaryWhereUniqueInput";
+import { OrderEventCreateNestedManyWithoutOrdersInput } from "./OrderEventCreateNestedManyWithoutOrdersInput";
 
 export type OrderCreateInput = {
-  orderSummary: OrderSummaryWhereUniqueInput | null;
+  orderEvents?: OrderEventCreateNestedManyWithoutOrdersInput;
 };

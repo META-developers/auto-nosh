@@ -3,22 +3,23 @@ import {
   Edit,
   SimpleForm,
   EditProps,
-  ReferenceInput,
-  SelectInput,
+  ReferenceArrayInput,
+  SelectArrayInput,
 } from "react-admin";
-import { OrderSummaryTitle } from "../orderSummary/OrderSummaryTitle";
+import { OrderEventTitle } from "../orderEvent/OrderEventTitle";
 
 export const OrderEdit = (props: EditProps): React.ReactElement => {
   return (
     <Edit {...props}>
       <SimpleForm>
-        <ReferenceInput
-          source="orderSummary.id"
-          reference="OrderSummary"
-          label="OrderSummary"
+        <ReferenceArrayInput
+          source="orderEvents"
+          reference="OrderEvent"
+          parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
+          format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectInput optionText={OrderSummaryTitle} />
-        </ReferenceInput>
+          <SelectArrayInput optionText={OrderEventTitle} />
+        </ReferenceArrayInput>
       </SimpleForm>
     </Edit>
   );

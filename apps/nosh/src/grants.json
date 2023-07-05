@@ -31,36 +31,6 @@
   },
   {
     "role": "user",
-    "resource": "OrderSummary",
-    "action": "read:own",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "OrderSummary",
-    "action": "create:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "OrderSummary",
-    "action": "update:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "OrderSummary",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
-    "resource": "OrderSummary",
-    "action": "read:any",
-    "attributes": "*"
-  },
-  {
-    "role": "user",
     "resource": "Order",
     "action": "read:own",
     "attributes": "*"
@@ -91,31 +61,31 @@
   },
   {
     "role": "user",
-    "resource": "Business",
+    "resource": "OrderEvent",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Business",
+    "resource": "OrderEvent",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Business",
+    "resource": "OrderEvent",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Business",
+    "resource": "OrderEvent",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Business",
+    "resource": "OrderEvent",
     "action": "read:any",
     "attributes": "*"
   }

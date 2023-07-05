@@ -1,7 +1,7 @@
 import { StringFilter } from "../../util/StringFilter";
-import { OrderSummaryWhereUniqueInput } from "../orderSummary/OrderSummaryWhereUniqueInput";
+import { OrderEventListRelationFilter } from "../orderEvent/OrderEventListRelationFilter";
 
 export type OrderWhereInput = {
   id?: StringFilter;
-  orderSummary?: OrderSummaryWhereUniqueInput;
+  orderEvents?: OrderEventListRelationFilter;
 };

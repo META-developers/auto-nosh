@@ -26,7 +26,8 @@ import { OrderCountArgs } from "./OrderCountArgs";
 import { OrderFindManyArgs } from "./OrderFindManyArgs";
 import { OrderFindUniqueArgs } from "./OrderFindUniqueArgs";
 import { Order } from "./Order";
-import { OrderSummary } from "../../orderSummary/base/OrderSummary";
+import { OrderEventFindManyArgs } from "../../orderEvent/base/OrderEventFindManyArgs";
+import { OrderEvent } from "../../orderEvent/base/OrderEvent";
 import { OrderService } from "../order.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => Order)
@@ -89,13 +90,7 @@ export class OrderResolverBase {
   async createOrder(@graphql.Args() args: CreateOrderArgs): Promise<Order> {
     return await this.service.create({
       ...args,
-      data: {
-        ...args.data,
-
-        orderSummary: {
-          connect: args.data.orderSummary,
-        },
-      },
+      data: args.data,
     });
   }
 
@@ -112,13 +107,7 @@ export class OrderResolverBase {
     try {
       return await this.service.update({
         ...args,
-        data: {
-          ...args.data,
-
-          orderSummary: {
-            connect: args.data.orderSummary,
-          },
-        },
+        data: args.data,
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -152,23 +141,22 @@ export class OrderResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => OrderSummary, {
-    nullable: true,
-    name: "orderSummary",
-  })
+  @graphql.ResolveField(() => [OrderEvent], { name: "orderEvents" })
   @nestAccessControl.UseRoles({
-    resource: "OrderSummary",
+    resource: "OrderEvent",
     action: "read",
     possession: "any",
   })
-  async resolveFieldOrderSummary(
-    @graphql.Parent() parent: Order
-  ): Promise<OrderSummary | null> {
-    const result = await this.service.getOrderSummary(parent.id);
+  async resolveFieldOrderEvents(
+    @graphql.Parent() parent: Order,
+    @graphql.Args() args: OrderEventFindManyArgs
+  ): Promise<OrderEvent[]> {
+    const results = await this.service.findOrderEvents(parent.id, args);
 
-    if (!result) {
-      return null;
+    if (!results) {
+      return [];
     }
-    return result;
+
+    return results;
   }
 }
