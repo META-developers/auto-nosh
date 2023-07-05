@@ -1,28 +1,39 @@
 import * as React from "react";
+
 import {
   Show,
   SimpleShowLayout,
   ShowProps,
-  DateField,
   TextField,
+  ReferenceManyField,
+  Datagrid,
+  DateField,
   ReferenceField,
 } from "react-admin";
-import { ORDERSUMMARY_TITLE_FIELD } from "../orderSummary/OrderSummaryTitle";
+
+import { ORDER_TITLE_FIELD } from "./OrderTitle";
 
 export const OrderShow = (props: ShowProps): React.ReactElement => {
   return (
     <Show {...props}>
       <SimpleShowLayout>
-        <DateField source="createdAt" label="Created At" />
         <TextField label="ID" source="id" />
-        <ReferenceField
-          label="OrderSummary"
-          source="ordersummary.id"
-          reference="OrderSummary"
+        <ReferenceManyField
+          reference="OrderEvent"
+          target="orderId"
+          label="OrderEvents"
         >
-          <TextField source={ORDERSUMMARY_TITLE_FIELD} />
-        </ReferenceField>
-        <DateField source="updatedAt" label="Updated At" />
+          <Datagrid rowClick="show">
+            <DateField source="createdAt" label="Created At" />
+            <TextField label="Event Source" source="eventSource" />
+            <TextField label="ID" source="id" />
+            <ReferenceField label="Order" source="order.id" reference="Order">
+              <TextField source={ORDER_TITLE_FIELD} />
+            </ReferenceField>
+            <TextField label="Status" source="status" />
+            <DateField source="updatedAt" label="Updated At" />
+          </Datagrid>
+        </ReferenceManyField>
       </SimpleShowLayout>
     </Show>
   );

@@ -1,8 +1,6 @@
-import { OrderSummary } from "../orderSummary/OrderSummary";
+import { OrderEvent } from "../orderEvent/OrderEvent";
 
 export type Order = {
-  createdAt: Date;
   id: string;
-  orderSummary?: OrderSummary | null;
-  updatedAt: Date;
+  orderEvents?: Array<OrderEvent>;
 };

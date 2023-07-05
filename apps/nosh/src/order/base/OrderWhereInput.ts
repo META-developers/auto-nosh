@@ -14,7 +14,7 @@ import { ApiProperty } from "@nestjs/swagger";
 import { StringFilter } from "../../util/StringFilter";
 import { Type } from "class-transformer";
 import { IsOptional, ValidateNested } from "class-validator";
-import { OrderSummaryWhereUniqueInput } from "../../orderSummary/base/OrderSummaryWhereUniqueInput";
+import { OrderEventListRelationFilter } from "../../orderEvent/base/OrderEventListRelationFilter";
 
 @InputType()
 class OrderWhereInput {
@@ -31,15 +31,15 @@ class OrderWhereInput {
 
   @ApiProperty({
     required: false,
-    type: () => OrderSummaryWhereUniqueInput,
+    type: () => OrderEventListRelationFilter,
   })
   @ValidateNested()
-  @Type(() => OrderSummaryWhereUniqueInput)
+  @Type(() => OrderEventListRelationFilter)
   @IsOptional()
-  @Field(() => OrderSummaryWhereUniqueInput, {
+  @Field(() => OrderEventListRelationFilter, {
     nullable: true,
   })
-  orderSummary?: OrderSummaryWhereUniqueInput;
+  orderEvents?: OrderEventListRelationFilter;
 }
 
 export { OrderWhereInput as OrderWhereInput };

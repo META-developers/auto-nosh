@@ -27,6 +27,9 @@ import { OrderWhereUniqueInput } from "./OrderWhereUniqueInput";
 import { OrderFindManyArgs } from "./OrderFindManyArgs";
 import { OrderUpdateInput } from "./OrderUpdateInput";
 import { Order } from "./Order";
+import { OrderEventFindManyArgs } from "../../orderEvent/base/OrderEventFindManyArgs";
+import { OrderEvent } from "../../orderEvent/base/OrderEvent";
+import { OrderEventWhereUniqueInput } from "../../orderEvent/base/OrderEventWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
@@ -48,24 +51,9 @@ export class OrderControllerBase {
   })
   async create(@common.Body() data: OrderCreateInput): Promise<Order> {
     return await this.service.create({
-      data: {
-        ...data,
-
-        orderSummary: {
-          connect: data.orderSummary,
-        },
-      },
+      data: data,
       select: {
-        createdAt: true,
         id: true,
-
-        orderSummary: {
-          select: {
-            id: true,
-          },
-        },
-
-        updatedAt: true,
       },
     });
   }
@@ -87,16 +75,7 @@ export class OrderControllerBase {
     return this.service.findMany({
       ...args,
       select: {
-        createdAt: true,
         id: true,
-
-        orderSummary: {
-          select: {
-            id: true,
-          },
-        },
-
-        updatedAt: true,
       },
     });
   }
@@ -119,16 +98,7 @@ export class OrderControllerBase {
     const result = await this.service.findOne({
       where: params,
       select: {
-        createdAt: true,
         id: true,
-
-        orderSummary: {
-          select: {
-            id: true,
-          },
-        },
-
-        updatedAt: true,
       },
     });
     if (result === null) {
@@ -158,24 +128,9 @@ export class OrderControllerBase {
     try {
       return await this.service.update({
         where: params,
-        data: {
-          ...data,
-
-          orderSummary: {
-            connect: data.orderSummary,
-          },
-        },
+        data: data,
         select: {
-          createdAt: true,
           id: true,
-
-          orderSummary: {
-            select: {
-              id: true,
-            },
-          },
-
-          updatedAt: true,
         },
       });
     } catch (error) {
@@ -206,16 +161,7 @@ export class OrderControllerBase {
       return await this.service.delete({
         where: params,
         select: {
-          createdAt: true,
           id: true,
-
-          orderSummary: {
-            select: {
-              id: true,
-            },
-          },
-
-          updatedAt: true,
         },
       });
     } catch (error) {
@@ -226,5 +172,109 @@ export class OrderControllerBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @common.Get("/:id/orderEvents")
+  @ApiNestedQuery(OrderEventFindManyArgs)
+  @nestAccessControl.UseRoles({
+    resource: "OrderEvent",
+    action: "read",
+    possession: "any",
+  })
+  async findManyOrderEvents(
+    @common.Req() request: Request,
+    @common.Param() params: OrderWhereUniqueInput
+  ): Promise<OrderEvent[]> {
+    const query = plainToClass(OrderEventFindManyArgs, request.query);
+    const results = await this.service.findOrderEvents(params.id, {
+      ...query,
+      select: {
+        createdAt: true,
+        eventSource: true,
+        id: true,
+
+        order: {
+          select: {
+            id: true,
+          },
+        },
+
+        status: true,
+        updatedAt: true,
+      },
+    });
+    if (results === null) {
+      throw new errors.NotFoundException(
+        `No resource was found for ${JSON.stringify(params)}`
+      );
+    }
+    return results;
+  }
+
+  @common.Post("/:id/orderEvents")
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "update",
+    possession: "any",
+  })
+  async connectOrderEvents(
+    @common.Param() params: OrderWhereUniqueInput,
+    @common.Body() body: OrderEventWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      orderEvents: {
+        connect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Patch("/:id/orderEvents")
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "update",
+    possession: "any",
+  })
+  async updateOrderEvents(
+    @common.Param() params: OrderWhereUniqueInput,
+    @common.Body() body: OrderEventWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      orderEvents: {
+        set: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
+  }
+
+  @common.Delete("/:id/orderEvents")
+  @nestAccessControl.UseRoles({
+    resource: "Order",
+    action: "update",
+    possession: "any",
+  })
+  async disconnectOrderEvents(
+    @common.Param() params: OrderWhereUniqueInput,
+    @common.Body() body: OrderEventWhereUniqueInput[]
+  ): Promise<void> {
+    const data = {
+      orderEvents: {
+        disconnect: body,
+      },
+    };
+    await this.service.update({
+      where: params,
+      data,
+      select: { id: true },
+    });
   }
 }
