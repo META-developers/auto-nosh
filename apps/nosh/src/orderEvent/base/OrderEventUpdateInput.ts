@@ -39,7 +39,7 @@ class OrderEventUpdateInput {
   @Field(() => OrderWhereUniqueInput, {
     nullable: true,
   })
-  order?: OrderWhereUniqueInput | null;
+  order?: OrderWhereUniqueInput;
 
   @ApiProperty({
     required: false,

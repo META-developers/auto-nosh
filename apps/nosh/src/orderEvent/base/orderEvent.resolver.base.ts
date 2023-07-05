@@ -96,11 +96,9 @@ export class OrderEventResolverBase {
       data: {
         ...args.data,
 
-        order: args.data.order
-          ? {
-              connect: args.data.order,
-            }
-          : undefined,
+        order: {
+          connect: args.data.order,
+        },
       },
     });
   }
@@ -121,11 +119,9 @@ export class OrderEventResolverBase {
         data: {
           ...args.data,
 
-          order: args.data.order
-            ? {
-                connect: args.data.order,
-              }
-            : undefined,
+          order: {
+            connect: args.data.order,
+          },
         },
       });
     } catch (error) {
