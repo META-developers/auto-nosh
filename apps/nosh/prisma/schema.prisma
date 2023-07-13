@@ -22,35 +22,22 @@ model User {
 }
 
 model Business {
-  cuisineTypes CuisineType[]
-  id           String        @id @default(cuid())
+  cuisineTypes BusinessType[]
+  id           String         @id @default(cuid())
 }
 
-model CuisineType {
+model BusinessType {
   business    Business[]
   description String?
-  id          String              @id @default(cuid())
+  id          String               @id @default(cuid())
   image       String?
-  name        EnumCuisineTypeName
+  name        EnumBusinessTypeName
 }
 
-enum EnumCuisineTypeName {
-  Mexican
-  American
-  Italian
-  Chinese
-  Japanese
-  Indian
-  Thai
-  Coffee
-  FastFood
-  Brazilian
-  Salad
-  Sushi
-  Pizza
-  Burgers
-  Greek
-  Sandwiches
-  Korean
-  Desserts
+enum EnumBusinessTypeName {
+  Food
+  Alcohol
+  Convenience
+  Pets
+  Grocery
 }

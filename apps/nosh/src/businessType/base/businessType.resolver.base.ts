@@ -19,32 +19,32 @@ import { GqlDefaultAuthGuard } from "../../auth/gqlDefaultAuth.guard";
 import * as common from "@nestjs/common";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
-import { CreateBusinessArgs } from "./CreateBusinessArgs";
-import { UpdateBusinessArgs } from "./UpdateBusinessArgs";
-import { DeleteBusinessArgs } from "./DeleteBusinessArgs";
-import { BusinessCountArgs } from "./BusinessCountArgs";
-import { BusinessFindManyArgs } from "./BusinessFindManyArgs";
-import { BusinessFindUniqueArgs } from "./BusinessFindUniqueArgs";
-import { Business } from "./Business";
-import { BusinessTypeFindManyArgs } from "../../businessType/base/BusinessTypeFindManyArgs";
-import { BusinessType } from "../../businessType/base/BusinessType";
-import { BusinessService } from "../business.service";
+import { CreateBusinessTypeArgs } from "./CreateBusinessTypeArgs";
+import { UpdateBusinessTypeArgs } from "./UpdateBusinessTypeArgs";
+import { DeleteBusinessTypeArgs } from "./DeleteBusinessTypeArgs";
+import { BusinessTypeCountArgs } from "./BusinessTypeCountArgs";
+import { BusinessTypeFindManyArgs } from "./BusinessTypeFindManyArgs";
+import { BusinessTypeFindUniqueArgs } from "./BusinessTypeFindUniqueArgs";
+import { BusinessType } from "./BusinessType";
+import { BusinessFindManyArgs } from "../../business/base/BusinessFindManyArgs";
+import { Business } from "../../business/base/Business";
+import { BusinessTypeService } from "../businessType.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
-@graphql.Resolver(() => Business)
-export class BusinessResolverBase {
+@graphql.Resolver(() => BusinessType)
+export class BusinessTypeResolverBase {
   constructor(
-    protected readonly service: BusinessService,
+    protected readonly service: BusinessTypeService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
 
   @graphql.Query(() => MetaQueryPayload)
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "read",
     possession: "any",
   })
-  async _businessesMeta(
-    @graphql.Args() args: BusinessCountArgs
+  async _businessTypesMeta(
+    @graphql.Args() args: BusinessTypeCountArgs
   ): Promise<MetaQueryPayload> {
     const result = await this.service.count(args);
     return {
@@ -53,28 +53,28 @@ export class BusinessResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => [Business])
+  @graphql.Query(() => [BusinessType])
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "read",
     possession: "any",
   })
-  async businesses(
-    @graphql.Args() args: BusinessFindManyArgs
-  ): Promise<Business[]> {
+  async businessTypes(
+    @graphql.Args() args: BusinessTypeFindManyArgs
+  ): Promise<BusinessType[]> {
     return this.service.findMany(args);
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.Query(() => Business, { nullable: true })
+  @graphql.Query(() => BusinessType, { nullable: true })
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "read",
     possession: "own",
   })
-  async business(
-    @graphql.Args() args: BusinessFindUniqueArgs
-  ): Promise<Business | null> {
+  async businessType(
+    @graphql.Args() args: BusinessTypeFindUniqueArgs
+  ): Promise<BusinessType | null> {
     const result = await this.service.findOne(args);
     if (result === null) {
       return null;
@@ -83,15 +83,15 @@ export class BusinessResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Business)
+  @graphql.Mutation(() => BusinessType)
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "create",
     possession: "any",
   })
-  async createBusiness(
-    @graphql.Args() args: CreateBusinessArgs
-  ): Promise<Business> {
+  async createBusinessType(
+    @graphql.Args() args: CreateBusinessTypeArgs
+  ): Promise<BusinessType> {
     return await this.service.create({
       ...args,
       data: args.data,
@@ -99,15 +99,15 @@ export class BusinessResolverBase {
   }
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
-  @graphql.Mutation(() => Business)
+  @graphql.Mutation(() => BusinessType)
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "update",
     possession: "any",
   })
-  async updateBusiness(
-    @graphql.Args() args: UpdateBusinessArgs
-  ): Promise<Business | null> {
+  async updateBusinessType(
+    @graphql.Args() args: UpdateBusinessTypeArgs
+  ): Promise<BusinessType | null> {
     try {
       return await this.service.update({
         ...args,
@@ -123,15 +123,15 @@ export class BusinessResolverBase {
     }
   }
 
-  @graphql.Mutation(() => Business)
+  @graphql.Mutation(() => BusinessType)
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "delete",
     possession: "any",
   })
-  async deleteBusiness(
-    @graphql.Args() args: DeleteBusinessArgs
-  ): Promise<Business | null> {
+  async deleteBusinessType(
+    @graphql.Args() args: DeleteBusinessTypeArgs
+  ): Promise<BusinessType | null> {
     try {
       return await this.service.delete(args);
     } catch (error) {
@@ -145,17 +145,17 @@ export class BusinessResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [BusinessType], { name: "cuisineTypes" })
+  @graphql.ResolveField(() => [Business], { name: "business" })
   @nestAccessControl.UseRoles({
-    resource: "BusinessType",
+    resource: "Business",
     action: "read",
     possession: "any",
   })
-  async resolveFieldCuisineTypes(
-    @graphql.Parent() parent: Business,
-    @graphql.Args() args: BusinessTypeFindManyArgs
-  ): Promise<BusinessType[]> {
-    const results = await this.service.findCuisineTypes(parent.id, args);
+  async resolveFieldBusiness(
+    @graphql.Parent() parent: BusinessType,
+    @graphql.Args() args: BusinessFindManyArgs
+  ): Promise<Business[]> {
+    const results = await this.service.findBusiness(parent.id, args);
 
     if (!results) {
       return [];

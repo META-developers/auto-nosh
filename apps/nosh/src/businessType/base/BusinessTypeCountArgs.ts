@@ -9,30 +9,20 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { ObjectType, Field } from "@nestjs/graphql";
+import { ArgsType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BusinessType } from "../../businessType/base/BusinessType";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
+import { BusinessTypeWhereInput } from "./BusinessTypeWhereInput";
 import { Type } from "class-transformer";
 
-@ObjectType()
-class Business {
+@ArgsType()
+class BusinessTypeCountArgs {
   @ApiProperty({
     required: false,
-    type: () => [BusinessType],
+    type: () => BusinessTypeWhereInput,
   })
-  @ValidateNested()
-  @Type(() => BusinessType)
-  @IsOptional()
-  cuisineTypes?: Array<BusinessType>;
-
-  @ApiProperty({
-    required: true,
-    type: String,
-  })
-  @IsString()
-  @Field(() => String)
-  id!: string;
+  @Field(() => BusinessTypeWhereInput, { nullable: true })
+  @Type(() => BusinessTypeWhereInput)
+  where?: BusinessTypeWhereInput;
 }
 
-export { Business as Business };
+export { BusinessTypeCountArgs as BusinessTypeCountArgs };

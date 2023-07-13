@@ -10,7 +10,7 @@ https://docs.amplication.com/how-to/custom-code
 ------------------------------------------------------------------------------
   */
 import { PrismaService } from "../../prisma/prisma.service";
-import { Prisma, Business, CuisineType } from "@prisma/client";
+import { Prisma, Business, BusinessType } from "@prisma/client";
 
 export class BusinessServiceBase {
   constructor(protected readonly prisma: PrismaService) {}
@@ -49,8 +49,8 @@ export class BusinessServiceBase {
 
   async findCuisineTypes(
     parentId: string,
-    args: Prisma.CuisineTypeFindManyArgs
-  ): Promise<CuisineType[]> {
+    args: Prisma.BusinessTypeFindManyArgs
+  ): Promise<BusinessType[]> {
     return this.prisma.business
       .findUniqueOrThrow({
         where: { id: parentId },

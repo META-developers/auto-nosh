@@ -18,74 +18,82 @@ import { plainToClass } from "class-transformer";
 import { ApiNestedQuery } from "../../decorators/api-nested-query.decorator";
 import * as nestAccessControl from "nest-access-control";
 import * as defaultAuthGuard from "../../auth/defaultAuth.guard";
-import { BusinessService } from "../business.service";
+import { BusinessTypeService } from "../businessType.service";
 import { AclValidateRequestInterceptor } from "../../interceptors/aclValidateRequest.interceptor";
 import { AclFilterResponseInterceptor } from "../../interceptors/aclFilterResponse.interceptor";
-import { BusinessCreateInput } from "./BusinessCreateInput";
-import { BusinessWhereInput } from "./BusinessWhereInput";
-import { BusinessWhereUniqueInput } from "./BusinessWhereUniqueInput";
-import { BusinessFindManyArgs } from "./BusinessFindManyArgs";
-import { BusinessUpdateInput } from "./BusinessUpdateInput";
-import { Business } from "./Business";
-import { BusinessTypeFindManyArgs } from "../../businessType/base/BusinessTypeFindManyArgs";
-import { BusinessType } from "../../businessType/base/BusinessType";
-import { BusinessTypeWhereUniqueInput } from "../../businessType/base/BusinessTypeWhereUniqueInput";
+import { BusinessTypeCreateInput } from "./BusinessTypeCreateInput";
+import { BusinessTypeWhereInput } from "./BusinessTypeWhereInput";
+import { BusinessTypeWhereUniqueInput } from "./BusinessTypeWhereUniqueInput";
+import { BusinessTypeFindManyArgs } from "./BusinessTypeFindManyArgs";
+import { BusinessTypeUpdateInput } from "./BusinessTypeUpdateInput";
+import { BusinessType } from "./BusinessType";
+import { BusinessFindManyArgs } from "../../business/base/BusinessFindManyArgs";
+import { Business } from "../../business/base/Business";
+import { BusinessWhereUniqueInput } from "../../business/base/BusinessWhereUniqueInput";
 
 @swagger.ApiBearerAuth()
 @common.UseGuards(defaultAuthGuard.DefaultAuthGuard, nestAccessControl.ACGuard)
-export class BusinessControllerBase {
+export class BusinessTypeControllerBase {
   constructor(
-    protected readonly service: BusinessService,
+    protected readonly service: BusinessTypeService,
     protected readonly rolesBuilder: nestAccessControl.RolesBuilder
   ) {}
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Post()
-  @swagger.ApiCreatedResponse({ type: Business })
+  @swagger.ApiCreatedResponse({ type: BusinessType })
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "create",
     possession: "any",
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
-  async create(@common.Body() data: BusinessCreateInput): Promise<Business> {
+  async create(
+    @common.Body() data: BusinessTypeCreateInput
+  ): Promise<BusinessType> {
     return await this.service.create({
       data: data,
       select: {
+        description: true,
         id: true,
+        image: true,
+        name: true,
       },
     });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get()
-  @swagger.ApiOkResponse({ type: [Business] })
-  @ApiNestedQuery(BusinessFindManyArgs)
+  @swagger.ApiOkResponse({ type: [BusinessType] })
+  @ApiNestedQuery(BusinessTypeFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "read",
     possession: "any",
   })
   @swagger.ApiForbiddenResponse({
     type: errors.ForbiddenException,
   })
-  async findMany(@common.Req() request: Request): Promise<Business[]> {
-    const args = plainToClass(BusinessFindManyArgs, request.query);
+  async findMany(@common.Req() request: Request): Promise<BusinessType[]> {
+    const args = plainToClass(BusinessTypeFindManyArgs, request.query);
     return this.service.findMany({
       ...args,
       select: {
+        description: true,
         id: true,
+        image: true,
+        name: true,
       },
     });
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
   @common.Get("/:id")
-  @swagger.ApiOkResponse({ type: Business })
+  @swagger.ApiOkResponse({ type: BusinessType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "read",
     possession: "own",
   })
@@ -93,12 +101,15 @@ export class BusinessControllerBase {
     type: errors.ForbiddenException,
   })
   async findOne(
-    @common.Param() params: BusinessWhereUniqueInput
-  ): Promise<Business | null> {
+    @common.Param() params: BusinessTypeWhereUniqueInput
+  ): Promise<BusinessType | null> {
     const result = await this.service.findOne({
       where: params,
       select: {
+        description: true,
         id: true,
+        image: true,
+        name: true,
       },
     });
     if (result === null) {
@@ -111,10 +122,10 @@ export class BusinessControllerBase {
 
   @common.UseInterceptors(AclValidateRequestInterceptor)
   @common.Patch("/:id")
-  @swagger.ApiOkResponse({ type: Business })
+  @swagger.ApiOkResponse({ type: BusinessType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "update",
     possession: "any",
   })
@@ -122,15 +133,18 @@ export class BusinessControllerBase {
     type: errors.ForbiddenException,
   })
   async update(
-    @common.Param() params: BusinessWhereUniqueInput,
-    @common.Body() data: BusinessUpdateInput
-  ): Promise<Business | null> {
+    @common.Param() params: BusinessTypeWhereUniqueInput,
+    @common.Body() data: BusinessTypeUpdateInput
+  ): Promise<BusinessType | null> {
     try {
       return await this.service.update({
         where: params,
         data: data,
         select: {
+          description: true,
           id: true,
+          image: true,
+          name: true,
         },
       });
     } catch (error) {
@@ -144,10 +158,10 @@ export class BusinessControllerBase {
   }
 
   @common.Delete("/:id")
-  @swagger.ApiOkResponse({ type: Business })
+  @swagger.ApiOkResponse({ type: BusinessType })
   @swagger.ApiNotFoundResponse({ type: errors.NotFoundException })
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "delete",
     possession: "any",
   })
@@ -155,13 +169,16 @@ export class BusinessControllerBase {
     type: errors.ForbiddenException,
   })
   async delete(
-    @common.Param() params: BusinessWhereUniqueInput
-  ): Promise<Business | null> {
+    @common.Param() params: BusinessTypeWhereUniqueInput
+  ): Promise<BusinessType | null> {
     try {
       return await this.service.delete({
         where: params,
         select: {
+          description: true,
           id: true,
+          image: true,
+          name: true,
         },
       });
     } catch (error) {
@@ -175,25 +192,22 @@ export class BusinessControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/cuisineTypes")
-  @ApiNestedQuery(BusinessTypeFindManyArgs)
+  @common.Get("/:id/business")
+  @ApiNestedQuery(BusinessFindManyArgs)
   @nestAccessControl.UseRoles({
-    resource: "BusinessType",
+    resource: "Business",
     action: "read",
     possession: "any",
   })
-  async findManyCuisineTypes(
+  async findManyBusiness(
     @common.Req() request: Request,
-    @common.Param() params: BusinessWhereUniqueInput
-  ): Promise<BusinessType[]> {
-    const query = plainToClass(BusinessTypeFindManyArgs, request.query);
-    const results = await this.service.findCuisineTypes(params.id, {
+    @common.Param() params: BusinessTypeWhereUniqueInput
+  ): Promise<Business[]> {
+    const query = plainToClass(BusinessFindManyArgs, request.query);
+    const results = await this.service.findBusiness(params.id, {
       ...query,
       select: {
-        description: true,
         id: true,
-        image: true,
-        name: true,
       },
     });
     if (results === null) {
@@ -204,18 +218,18 @@ export class BusinessControllerBase {
     return results;
   }
 
-  @common.Post("/:id/cuisineTypes")
+  @common.Post("/:id/business")
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "update",
     possession: "any",
   })
-  async connectCuisineTypes(
-    @common.Param() params: BusinessWhereUniqueInput,
-    @common.Body() body: BusinessTypeWhereUniqueInput[]
+  async connectBusiness(
+    @common.Param() params: BusinessTypeWhereUniqueInput,
+    @common.Body() body: BusinessWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cuisineTypes: {
+      business: {
         connect: body,
       },
     };
@@ -226,18 +240,18 @@ export class BusinessControllerBase {
     });
   }
 
-  @common.Patch("/:id/cuisineTypes")
+  @common.Patch("/:id/business")
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "update",
     possession: "any",
   })
-  async updateCuisineTypes(
-    @common.Param() params: BusinessWhereUniqueInput,
-    @common.Body() body: BusinessTypeWhereUniqueInput[]
+  async updateBusiness(
+    @common.Param() params: BusinessTypeWhereUniqueInput,
+    @common.Body() body: BusinessWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cuisineTypes: {
+      business: {
         set: body,
       },
     };
@@ -248,18 +262,18 @@ export class BusinessControllerBase {
     });
   }
 
-  @common.Delete("/:id/cuisineTypes")
+  @common.Delete("/:id/business")
   @nestAccessControl.UseRoles({
-    resource: "Business",
+    resource: "BusinessType",
     action: "update",
     possession: "any",
   })
-  async disconnectCuisineTypes(
-    @common.Param() params: BusinessWhereUniqueInput,
-    @common.Body() body: BusinessTypeWhereUniqueInput[]
+  async disconnectBusiness(
+    @common.Param() params: BusinessTypeWhereUniqueInput,
+    @common.Body() body: BusinessWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cuisineTypes: {
+      business: {
         disconnect: body,
       },
     };
