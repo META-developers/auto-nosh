@@ -21,24 +21,36 @@ model User {
   username  String   @unique
 }
 
-model Order {
-  id          String       @id @default(uuid())
-  orderEvents OrderEvent[]
+model Business {
+  cuisineTypes CuisineType[]
+  id           String        @id @default(cuid())
 }
 
-model OrderEvent {
-  createdAt   DateTime                   @default(now())
-  eventSource EnumOrderEventEventSource?
-  id          String                     @id @default(cuid())
-  order       Order                      @relation(fields: [orderId], references: [id])
-  orderId     String
-  status      Int
-  updatedAt   DateTime                   @updatedAt
+model CuisineType {
+  business    Business[]
+  description String?
+  id          String              @id @default(cuid())
+  image       String?
+  name        EnumCuisineTypeName
 }
 
-enum EnumOrderEventEventSource {
-  Nosh
-  Chowly
-  Checkmate
-  Shipday
+enum EnumCuisineTypeName {
+  Mexican
+  American
+  Italian
+  Chinese
+  Japanese
+  Indian
+  Thai
+  Coffee
+  FastFood
+  Brazilian
+  Salad
+  Sushi
+  Pizza
+  Burgers
+  Greek
+  Sandwiches
+  Korean
+  Desserts
 }
