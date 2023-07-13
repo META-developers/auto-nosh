@@ -31,61 +31,61 @@
   },
   {
     "role": "user",
-    "resource": "Order",
+    "resource": "Business",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Order",
+    "resource": "Business",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Order",
+    "resource": "Business",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Order",
+    "resource": "Business",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "Order",
+    "resource": "Business",
     "action": "read:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OrderEvent",
+    "resource": "CuisineType",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OrderEvent",
+    "resource": "CuisineType",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OrderEvent",
+    "resource": "CuisineType",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OrderEvent",
+    "resource": "CuisineType",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "OrderEvent",
+    "resource": "CuisineType",
     "action": "read:any",
     "attributes": "*"
   }
