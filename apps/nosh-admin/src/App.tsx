@@ -9,14 +9,14 @@ import { UserList } from "./user/UserList";
 import { UserCreate } from "./user/UserCreate";
 import { UserEdit } from "./user/UserEdit";
 import { UserShow } from "./user/UserShow";
-import { OrderList } from "./order/OrderList";
-import { OrderCreate } from "./order/OrderCreate";
-import { OrderEdit } from "./order/OrderEdit";
-import { OrderShow } from "./order/OrderShow";
-import { OrderEventList } from "./orderEvent/OrderEventList";
-import { OrderEventCreate } from "./orderEvent/OrderEventCreate";
-import { OrderEventEdit } from "./orderEvent/OrderEventEdit";
-import { OrderEventShow } from "./orderEvent/OrderEventShow";
+import { BusinessList } from "./business/BusinessList";
+import { BusinessCreate } from "./business/BusinessCreate";
+import { BusinessEdit } from "./business/BusinessEdit";
+import { BusinessShow } from "./business/BusinessShow";
+import { CuisineTypeList } from "./cuisineType/CuisineTypeList";
+import { CuisineTypeCreate } from "./cuisineType/CuisineTypeCreate";
+import { CuisineTypeEdit } from "./cuisineType/CuisineTypeEdit";
+import { CuisineTypeShow } from "./cuisineType/CuisineTypeShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -51,18 +51,18 @@ const App = (): React.ReactElement => {
           show={UserShow}
         />
         <Resource
-          name="Order"
-          list={OrderList}
-          edit={OrderEdit}
-          create={OrderCreate}
-          show={OrderShow}
+          name="Business"
+          list={BusinessList}
+          edit={BusinessEdit}
+          create={BusinessCreate}
+          show={BusinessShow}
         />
         <Resource
-          name="OrderEvent"
-          list={OrderEventList}
-          edit={OrderEventEdit}
-          create={OrderEventCreate}
-          show={OrderEventShow}
+          name="CuisineType"
+          list={CuisineTypeList}
+          edit={CuisineTypeEdit}
+          create={CuisineTypeCreate}
+          show={CuisineTypeShow}
         />
       </Admin>
     </div>
