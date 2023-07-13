@@ -145,17 +145,17 @@ export class BusinessResolverBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @graphql.ResolveField(() => [BusinessType], { name: "cuisineTypes" })
+  @graphql.ResolveField(() => [BusinessType], { name: "businessTypes" })
   @nestAccessControl.UseRoles({
     resource: "BusinessType",
     action: "read",
     possession: "any",
   })
-  async resolveFieldCuisineTypes(
+  async resolveFieldBusinessTypes(
     @graphql.Parent() parent: Business,
     @graphql.Args() args: BusinessTypeFindManyArgs
   ): Promise<BusinessType[]> {
-    const results = await this.service.findCuisineTypes(parent.id, args);
+    const results = await this.service.findBusinessTypes(parent.id, args);
 
     if (!results) {
       return [];

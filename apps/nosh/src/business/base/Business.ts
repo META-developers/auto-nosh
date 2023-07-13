@@ -24,7 +24,7 @@ class Business {
   @ValidateNested()
   @Type(() => BusinessType)
   @IsOptional()
-  cuisineTypes?: Array<BusinessType>;
+  businessTypes?: Array<BusinessType>;
 
   @ApiProperty({
     required: true,

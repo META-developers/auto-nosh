@@ -175,19 +175,19 @@ export class BusinessControllerBase {
   }
 
   @common.UseInterceptors(AclFilterResponseInterceptor)
-  @common.Get("/:id/cuisineTypes")
+  @common.Get("/:id/businessTypes")
   @ApiNestedQuery(BusinessTypeFindManyArgs)
   @nestAccessControl.UseRoles({
     resource: "BusinessType",
     action: "read",
     possession: "any",
   })
-  async findManyCuisineTypes(
+  async findManyBusinessTypes(
     @common.Req() request: Request,
     @common.Param() params: BusinessWhereUniqueInput
   ): Promise<BusinessType[]> {
     const query = plainToClass(BusinessTypeFindManyArgs, request.query);
-    const results = await this.service.findCuisineTypes(params.id, {
+    const results = await this.service.findBusinessTypes(params.id, {
       ...query,
       select: {
         description: true,
@@ -204,18 +204,18 @@ export class BusinessControllerBase {
     return results;
   }
 
-  @common.Post("/:id/cuisineTypes")
+  @common.Post("/:id/businessTypes")
   @nestAccessControl.UseRoles({
     resource: "Business",
     action: "update",
     possession: "any",
   })
-  async connectCuisineTypes(
+  async connectBusinessTypes(
     @common.Param() params: BusinessWhereUniqueInput,
     @common.Body() body: BusinessTypeWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cuisineTypes: {
+      businessTypes: {
         connect: body,
       },
     };
@@ -226,18 +226,18 @@ export class BusinessControllerBase {
     });
   }
 
-  @common.Patch("/:id/cuisineTypes")
+  @common.Patch("/:id/businessTypes")
   @nestAccessControl.UseRoles({
     resource: "Business",
     action: "update",
     possession: "any",
   })
-  async updateCuisineTypes(
+  async updateBusinessTypes(
     @common.Param() params: BusinessWhereUniqueInput,
     @common.Body() body: BusinessTypeWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cuisineTypes: {
+      businessTypes: {
         set: body,
       },
     };
@@ -248,18 +248,18 @@ export class BusinessControllerBase {
     });
   }
 
-  @common.Delete("/:id/cuisineTypes")
+  @common.Delete("/:id/businessTypes")
   @nestAccessControl.UseRoles({
     resource: "Business",
     action: "update",
     possession: "any",
   })
-  async disconnectCuisineTypes(
+  async disconnectBusinessTypes(
     @common.Param() params: BusinessWhereUniqueInput,
     @common.Body() body: BusinessTypeWhereUniqueInput[]
   ): Promise<void> {
     const data = {
-      cuisineTypes: {
+      businessTypes: {
         disconnect: body,
       },
     };

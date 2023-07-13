@@ -27,7 +27,7 @@ class BusinessUpdateInput {
   @Field(() => BusinessTypeUpdateManyWithoutBusinessesInput, {
     nullable: true,
   })
-  cuisineTypes?: BusinessTypeUpdateManyWithoutBusinessesInput;
+  businessTypes?: BusinessTypeUpdateManyWithoutBusinessesInput;
 }
 
 export { BusinessUpdateInput as BusinessUpdateInput };

@@ -47,7 +47,7 @@ export class BusinessServiceBase {
     return this.prisma.business.delete(args);
   }
 
-  async findCuisineTypes(
+  async findBusinessTypes(
     parentId: string,
     args: Prisma.BusinessTypeFindManyArgs
   ): Promise<BusinessType[]> {
@@ -55,6 +55,6 @@ export class BusinessServiceBase {
       .findUniqueOrThrow({
         where: { id: parentId },
       })
-      .cuisineTypes(args);
+      .businessTypes(args);
   }
 }
