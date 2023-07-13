@@ -61,31 +61,31 @@
   },
   {
     "role": "user",
-    "resource": "CuisineType",
+    "resource": "BusinessType",
     "action": "read:own",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CuisineType",
+    "resource": "BusinessType",
     "action": "create:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CuisineType",
+    "resource": "BusinessType",
     "action": "update:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CuisineType",
+    "resource": "BusinessType",
     "action": "delete:any",
     "attributes": "*"
   },
   {
     "role": "user",
-    "resource": "CuisineType",
+    "resource": "BusinessType",
     "action": "read:any",
     "attributes": "*"
   }

@@ -1,6 +1,6 @@
-import { CuisineType } from "../cuisineType/CuisineType";
+import { BusinessType } from "../businessType/BusinessType";
 
 export type Business = {
-  cuisineTypes?: Array<CuisineType>;
+  cuisineTypes?: Array<BusinessType>;
   id: string;
 };

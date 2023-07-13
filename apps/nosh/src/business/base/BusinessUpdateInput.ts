@@ -11,7 +11,7 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { CuisineTypeUpdateManyWithoutBusinessesInput } from "./CuisineTypeUpdateManyWithoutBusinessesInput";
+import { BusinessTypeUpdateManyWithoutBusinessesInput } from "./BusinessTypeUpdateManyWithoutBusinessesInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
 
@@ -19,15 +19,15 @@ import { Type } from "class-transformer";
 class BusinessUpdateInput {
   @ApiProperty({
     required: false,
-    type: () => CuisineTypeUpdateManyWithoutBusinessesInput,
+    type: () => BusinessTypeUpdateManyWithoutBusinessesInput,
   })
   @ValidateNested()
-  @Type(() => CuisineTypeUpdateManyWithoutBusinessesInput)
+  @Type(() => BusinessTypeUpdateManyWithoutBusinessesInput)
   @IsOptional()
-  @Field(() => CuisineTypeUpdateManyWithoutBusinessesInput, {
+  @Field(() => BusinessTypeUpdateManyWithoutBusinessesInput, {
     nullable: true,
   })
-  cuisineTypes?: CuisineTypeUpdateManyWithoutBusinessesInput;
+  cuisineTypes?: BusinessTypeUpdateManyWithoutBusinessesInput;
 }
 
 export { BusinessUpdateInput as BusinessUpdateInput };

@@ -6,7 +6,7 @@ import {
   ReferenceArrayInput,
   SelectArrayInput,
 } from "react-admin";
-import { CuisineTypeTitle } from "../cuisineType/CuisineTypeTitle";
+import { BusinessTypeTitle } from "../businessType/BusinessTypeTitle";
 
 export const BusinessEdit = (props: EditProps): React.ReactElement => {
   return (
@@ -14,11 +14,11 @@ export const BusinessEdit = (props: EditProps): React.ReactElement => {
       <SimpleForm>
         <ReferenceArrayInput
           source="cuisineTypes"
-          reference="CuisineType"
+          reference="BusinessType"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}
         >
-          <SelectArrayInput optionText={CuisineTypeTitle} />
+          <SelectArrayInput optionText={BusinessTypeTitle} />
         </ReferenceArrayInput>
       </SimpleForm>
     </Edit>

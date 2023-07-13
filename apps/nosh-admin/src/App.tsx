@@ -13,10 +13,10 @@ import { BusinessList } from "./business/BusinessList";
 import { BusinessCreate } from "./business/BusinessCreate";
 import { BusinessEdit } from "./business/BusinessEdit";
 import { BusinessShow } from "./business/BusinessShow";
-import { CuisineTypeList } from "./cuisineType/CuisineTypeList";
-import { CuisineTypeCreate } from "./cuisineType/CuisineTypeCreate";
-import { CuisineTypeEdit } from "./cuisineType/CuisineTypeEdit";
-import { CuisineTypeShow } from "./cuisineType/CuisineTypeShow";
+import { BusinessTypeList } from "./businessType/BusinessTypeList";
+import { BusinessTypeCreate } from "./businessType/BusinessTypeCreate";
+import { BusinessTypeEdit } from "./businessType/BusinessTypeEdit";
+import { BusinessTypeShow } from "./businessType/BusinessTypeShow";
 import { jwtAuthProvider } from "./auth-provider/ra-auth-jwt";
 
 const App = (): React.ReactElement => {
@@ -58,11 +58,11 @@ const App = (): React.ReactElement => {
           show={BusinessShow}
         />
         <Resource
-          name="CuisineType"
-          list={CuisineTypeList}
-          edit={CuisineTypeEdit}
-          create={CuisineTypeCreate}
-          show={CuisineTypeShow}
+          name="BusinessType"
+          list={BusinessTypeList}
+          edit={BusinessTypeEdit}
+          create={BusinessTypeCreate}
+          show={BusinessTypeShow}
         />
       </Admin>
     </div>

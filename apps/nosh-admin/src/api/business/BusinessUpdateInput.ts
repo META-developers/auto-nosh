@@ -1,5 +1,5 @@
-import { CuisineTypeUpdateManyWithoutBusinessesInput } from "./CuisineTypeUpdateManyWithoutBusinessesInput";
+import { BusinessTypeUpdateManyWithoutBusinessesInput } from "./BusinessTypeUpdateManyWithoutBusinessesInput";
 
 export type BusinessUpdateInput = {
-  cuisineTypes?: CuisineTypeUpdateManyWithoutBusinessesInput;
+  cuisineTypes?: BusinessTypeUpdateManyWithoutBusinessesInput;
 };

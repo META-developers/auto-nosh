@@ -9,23 +9,12 @@ https://docs.amplication.com/how-to/custom-code
 
 ------------------------------------------------------------------------------
   */
-import { ObjectType, Field } from "@nestjs/graphql";
+import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BusinessType } from "../../businessType/base/BusinessType";
-import { ValidateNested, IsOptional, IsString } from "class-validator";
-import { Type } from "class-transformer";
+import { IsString } from "class-validator";
 
-@ObjectType()
-class Business {
-  @ApiProperty({
-    required: false,
-    type: () => [BusinessType],
-  })
-  @ValidateNested()
-  @Type(() => BusinessType)
-  @IsOptional()
-  cuisineTypes?: Array<BusinessType>;
-
+@InputType()
+class BusinessTypeWhereUniqueInput {
   @ApiProperty({
     required: true,
     type: String,
@@ -35,4 +24,4 @@ class Business {
   id!: string;
 }
 
-export { Business as Business };
+export { BusinessTypeWhereUniqueInput as BusinessTypeWhereUniqueInput };

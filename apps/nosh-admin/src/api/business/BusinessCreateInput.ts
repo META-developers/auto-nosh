@@ -1,5 +1,5 @@
-import { CuisineTypeCreateNestedManyWithoutBusinessesInput } from "./CuisineTypeCreateNestedManyWithoutBusinessesInput";
+import { BusinessTypeCreateNestedManyWithoutBusinessesInput } from "./BusinessTypeCreateNestedManyWithoutBusinessesInput";
 
 export type BusinessCreateInput = {
-  cuisineTypes?: CuisineTypeCreateNestedManyWithoutBusinessesInput;
+  cuisineTypes?: BusinessTypeCreateNestedManyWithoutBusinessesInput;
 };

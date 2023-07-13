@@ -11,35 +11,46 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { InputType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { BusinessTypeListRelationFilter } from "../../businessType/base/BusinessTypeListRelationFilter";
+import { BusinessTypeWhereInput } from "./BusinessTypeWhereInput";
 import { ValidateNested, IsOptional } from "class-validator";
 import { Type } from "class-transformer";
-import { StringFilter } from "../../util/StringFilter";
 
 @InputType()
-class BusinessWhereInput {
+class BusinessTypeListRelationFilter {
   @ApiProperty({
     required: false,
-    type: () => BusinessTypeListRelationFilter,
+    type: () => BusinessTypeWhereInput,
   })
   @ValidateNested()
-  @Type(() => BusinessTypeListRelationFilter)
+  @Type(() => BusinessTypeWhereInput)
   @IsOptional()
-  @Field(() => BusinessTypeListRelationFilter, {
+  @Field(() => BusinessTypeWhereInput, {
     nullable: true,
   })
-  cuisineTypes?: BusinessTypeListRelationFilter;
+  every?: BusinessTypeWhereInput;
 
   @ApiProperty({
     required: false,
-    type: StringFilter,
+    type: () => BusinessTypeWhereInput,
   })
-  @Type(() => StringFilter)
+  @ValidateNested()
+  @Type(() => BusinessTypeWhereInput)
   @IsOptional()
-  @Field(() => StringFilter, {
+  @Field(() => BusinessTypeWhereInput, {
     nullable: true,
   })
-  id?: StringFilter;
-}
+  some?: BusinessTypeWhereInput;
 
-export { BusinessWhereInput as BusinessWhereInput };
+  @ApiProperty({
+    required: false,
+    type: () => BusinessTypeWhereInput,
+  })
+  @ValidateNested()
+  @Type(() => BusinessTypeWhereInput)
+  @IsOptional()
+  @Field(() => BusinessTypeWhereInput, {
+    nullable: true,
+  })
+  none?: BusinessTypeWhereInput;
+}
+export { BusinessTypeListRelationFilter as BusinessTypeListRelationFilter };
