@@ -28,7 +28,7 @@ class BusinessWhereInput {
   @Field(() => BusinessTypeListRelationFilter, {
     nullable: true,
   })
-  cuisineTypes?: BusinessTypeListRelationFilter;
+  businessTypes?: BusinessTypeListRelationFilter;
 
   @ApiProperty({
     required: false,

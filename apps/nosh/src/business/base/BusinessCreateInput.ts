@@ -27,7 +27,7 @@ class BusinessCreateInput {
   @Field(() => BusinessTypeCreateNestedManyWithoutBusinessesInput, {
     nullable: true,
   })
-  cuisineTypes?: BusinessTypeCreateNestedManyWithoutBusinessesInput;
+  businessTypes?: BusinessTypeCreateNestedManyWithoutBusinessesInput;
 }
 
 export { BusinessCreateInput as BusinessCreateInput };

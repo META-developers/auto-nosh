@@ -13,7 +13,7 @@ export const BusinessEdit = (props: EditProps): React.ReactElement => {
     <Edit {...props}>
       <SimpleForm>
         <ReferenceArrayInput
-          source="cuisineTypes"
+          source="businessTypes"
           reference="BusinessType"
           parse={(value: any) => value && value.map((v: any) => ({ id: v }))}
           format={(value: any) => value && value.map((v: any) => v.id)}

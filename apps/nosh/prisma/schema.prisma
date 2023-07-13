@@ -22,8 +22,8 @@ model User {
 }
 
 model Business {
-  cuisineTypes BusinessType[]
-  id           String         @id @default(cuid())
+  businessTypes BusinessType[]
+  id            String         @id @default(cuid())
 }
 
 model BusinessType {

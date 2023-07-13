@@ -2,6 +2,6 @@ import { BusinessTypeListRelationFilter } from "../businessType/BusinessTypeList
 import { StringFilter } from "../../util/StringFilter";
 
 export type BusinessWhereInput = {
-  cuisineTypes?: BusinessTypeListRelationFilter;
+  businessTypes?: BusinessTypeListRelationFilter;
   id?: StringFilter;
 };
